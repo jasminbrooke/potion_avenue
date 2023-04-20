@@ -1,0 +1,2 @@
+class PotionMaterial < ApplicationRecord
+end

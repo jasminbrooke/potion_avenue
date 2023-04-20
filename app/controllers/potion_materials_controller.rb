@@ -1,0 +1,2 @@
+class PotionMaterialsController < ApplicationController
+end
