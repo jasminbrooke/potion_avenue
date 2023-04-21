@@ -1,23 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import CreateNewPotion from './CreateNewPotion';
+import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
+// import NavBar from './NavBar'
+
+
 
 function App() {
+
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    
+    <div>
+      <header>Hello!</header>
+      
+
+      {/* <div id="navContainer">
+        <BrowserRouter>
+          <NavBar />
+          <div>
+            <Switch>
+              <Route exact path="1" element={}/>
+            </Switch>
+            <Switch>
+              <Route exact path="2" element={}/>
+            </Switch>
+            <Switch>
+              <Route exact path="3" element={}/>
+            </Switch>
+            <Switch>
+              <Route exact path="4" element={}/>
+            </Switch>
+          </div>
+        </BrowserRouter> */}
+
+
+
+      <CreateNewPotion />
     </div>
   );
 }
