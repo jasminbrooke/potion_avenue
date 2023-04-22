@@ -11,7 +11,8 @@ class MaterialsController < ApplicationController
         if material
             render json: material, status: :ok
         else 
-            render json: errors: { material.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: material.errors.full_messages }, status: :unprocessable_entity
+        end
     end 
 
 end

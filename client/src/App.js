@@ -2,10 +2,29 @@ import './App.css';
 import CreateNewPotion from './CreateNewPotion';
 import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
 import NavBar from './NavBar'
-
+import UserHome from './UserHome';
+import { useEffect, useState } from "react"
+import Inventory from './Inventory';
+import Shopfront from './Shopfront';
 
 
 function App() {
+  const [materials, setMaterials] = useState([])
+
+  useEffect(() => {
+      getMaterials()
+    }, [])
+
+  const getMaterials = () => {
+      fetch('/materials')
+      .then(response => response.json())
+      .then(data => {
+        setMaterials(data);
+        console.log(data)
+      })
+      
+  }
+
 
   return (
     <div>
@@ -14,19 +33,19 @@ function App() {
           <NavBar />
           <div>
             <Switch>
-              <Route exact path="1" element={<CreateNewPotion />}/>
+              <Route exact path="myprofile" element={<UserHome />}/>
             </Switch>
 
             <Switch>
-              <Route exact path="2" element={<CreateNewPotion />}/>
+              <Route exact path="createnewpotion" element={<CreateNewPotion materials={materials}/>}/>
             </Switch>
 
             <Switch>
-              <Route exact path="3" element={<CreateNewPotion />}/>
+              <Route exact path="shopfront" element={<Shopfront />}/>
             </Switch>
 
             <Switch>
-              <Route exact path="4" element={<CreateNewPotion />}/>
+              <Route exact path="viewinventory" element={<Inventory materials={materials}/>}/>
             </Switch>
 
           </div>

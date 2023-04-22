@@ -10,7 +10,7 @@ class PotionsController < ApplicationController
         if potion.valid?
             render json: potion, status: :ok
         else
-            render errors: { potion.errors.full_messages }, status: :unprocessable_entity
+            render  { errors: potion.errors.full_messages }, status: :unprocessable_entity
         end
     end 
 

@@ -8,10 +8,10 @@ const NavBar = () => {
     return (
         <AppBar position="sticky" >
             <Toolbar id='navbar'>
-                <NavLink to="/1">1</NavLink>
-                <NavLink to="/2">2</NavLink>
-                <NavLink to="/3">3</NavLink>
-                <NavLink to="/4">4</NavLink>
+                <NavLink to="/myprofile">My profile</NavLink>
+                <NavLink to="/createnewpotion">Create New Potion</NavLink>
+                <NavLink to="/shopfront">Shopfront</NavLink>
+                <NavLink to="/viewinventory">View Inventory</NavLink>
             </Toolbar>
     </AppBar>
     );

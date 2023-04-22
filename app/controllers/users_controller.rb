@@ -6,7 +6,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :ok
         else
-            render errors: { user.errors.full_messages }, status: :unprocessable_entity
+            render  {errors: user.errors.full_messages }, status: :unprocessable_entity
         end
     end 
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         if user.valid?
             render json: user, status: :ok
         else
-            render errors: { user.errors.full_messages }, status: :unprocessable_entity
+            render  { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
     end 
 
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
         if user
             render json: user, status: :ok
         else 
-            render json: errors: { user.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end 
 
     private 

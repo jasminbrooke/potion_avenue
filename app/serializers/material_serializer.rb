@@ -1,3 +1,3 @@
 class MaterialSerializer < ActiveModel::Serializer
-    attributes
+    attributes :id, :name, :cost, :time, :reward
 end
