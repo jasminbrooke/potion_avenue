@@ -6,13 +6,18 @@ import UserHome from './UserHome';
 import { useEffect, useState } from "react"
 import Inventory from './Inventory';
 import Shopfront from './Shopfront';
+import backgroundImage from './assets/backgroundImage.webp';
+
 
 
 function App() {
   const [materials, setMaterials] = useState([])
+  const [potions, setPotions] = useState([])
+
 
   useEffect(() => {
       getMaterials()
+      getPotions()
     }, [])
 
   const getMaterials = () => {
@@ -25,9 +30,19 @@ function App() {
       
   }
 
+  const getPotions = () => {
+    fetch('/potions')
+    .then(response => response.json())
+    .then(data => {
+      setPotions(data);
+      console.log(data)
+    })
+    
+}
+
 
   return (
-    <div>
+    <div style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover',backgroundPosition: 'center' }}>
       <div id="navContainer">
         <BrowserRouter>
           <NavBar />
@@ -41,20 +56,16 @@ function App() {
             </Switch>
 
             <Switch>
-              <Route exact path="shopfront" element={<Shopfront />}/>
+              <Route exact path="shopfront" element={<Shopfront potions={potions}/>}/>
             </Switch>
 
             <Switch>
-              <Route exact path="viewinventory" element={<Inventory materials={materials}/>}/>
+              <Route exact path="viewinventory" element={<Inventory materials={materials} potions={potions}/>}/>
             </Switch>
 
           </div>
         </BrowserRouter>
         </div>
-
-
-        <header>Hello!</header>
-
     </div>
 
   );

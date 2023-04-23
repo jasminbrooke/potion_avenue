@@ -1,12 +1,18 @@
-import React, { useState } from "react"
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import MaterialList from "./MaterialList";
+import React from "react"
+import PotionList from "./PotionList"
 
-const FinishPotion = ( { materials } ) => {
+const FinishPotion = ( { materials, potions } ) => {
     return (
         <div>
             <header>This is the FinishPotion</header>
+
+
+            <p>
+                Here you can:
+            </p>
+                See your FinishPotion
+                <PotionList potions={potions}/>
+            
         </div>
     )
 }
