@@ -16,10 +16,6 @@ const Inventory = ( { materials } ) => {
                 {materials.map((material, i) => (<li key={i}> {material.name} </li>))}
                 
             </p>
-
-
-
-            <MaterialList materials={materials}/>
         </div>
     )
 }

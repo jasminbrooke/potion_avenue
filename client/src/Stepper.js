@@ -12,12 +12,11 @@ import NamePotion from './NamePotion';
 import FinishPotion from './FinishPotion';
 
 export default function VerticalLinearStepper( { materials } ) {
-
     const steps = [
         {
           label: 'Select Materials',
           description: `Select Materials`,
-          component:  <MixMaterials materials={materials}/>,
+          component:  <MixMaterials materials={materials}/>
         },
         {
           label: 'Create a name',
