@@ -7,13 +7,15 @@ import StepContent from '@mui/material/StepContent';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import MixMaterials from './MixMaterials';
 import NamePotion from './NamePotion';
 import FinishPotion from './FinishPotion';
+import { useSelector } from 'react-redux'
+import MaterialList from './MaterialList';
 
 export default function VerticalLinearStepper( { materials } ) {
+  const materialArray = useSelector(state => state.materialReducer.materials)
 
-  
+
   const handleSubmit = (e, newPotion) => {
     e.preventDefault()
     fetch('/potions', {
@@ -32,7 +34,7 @@ export default function VerticalLinearStepper( { materials } ) {
         {
           label: 'Select Materials',
           description: `Select Materials`,
-          component:  <MixMaterials materials={materials}/>
+          component:  <MaterialList materials={materials} materialArray={materialArray}/>
         },
         {
           label: 'Create a name',

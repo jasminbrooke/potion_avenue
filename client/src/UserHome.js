@@ -51,11 +51,6 @@ const UserHome = () => {
         <CssBaseline />
 
     </Box>
-    {/* <MixMaterials materials={materials}/> */}
-
-
-
-
         </div>
     )
 }

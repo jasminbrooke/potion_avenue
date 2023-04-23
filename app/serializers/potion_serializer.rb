@@ -1,3 +1,4 @@
 class PotionSerializer < ActiveModel::Serializer
-    attributes
+    attributes :cost, :brew_time, :name, :description, :reward
+
 end
