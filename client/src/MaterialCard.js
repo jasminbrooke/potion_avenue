@@ -43,18 +43,18 @@ const MaterialCard = ( { material } ) => {
 
     return (
         <div>
-        <Box gridColumn="span 3">
-                <Card sx={cardStyle}>
-                    <CardActionArea onClick={() => handleClick()}>
+        {/* <Box gridColumn="span 3"> */}
+                <Card sx={{...cardStyle, height: 150 }}>
+                    <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
                         <CardHeader>{material.name}</CardHeader>
-                        <CardContent>
+                        <CardContent sx={{ textAlign: "center" }}>
                         <Typography variant="body2" color="text.secondary">
                         {material.description}
                         </Typography>
                         </CardContent>
                     </CardActionArea>
                 </Card>
-        </Box>
+        {/* </Box> */}
         </div>
     )
 }

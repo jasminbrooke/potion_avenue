@@ -1,47 +1,46 @@
 import React, { useState } from "react"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import MixMaterials from "./MixMaterials";
-import Stepper from "./Stepper"
+import Button from '@mui/material/Button'
 
-const NamePotion = ( { materials } ) => {
+const NamePotion = ( { handleSubmit } ) => {
 
     const [name, setName] = useState('')
-    const [image, setImage] = useState()
-    const [price, setPrice] = useState(10)
     const [description, setDescription] = useState("A questionable potion with unknown effects...")
+    const [image, setImage] = useState('http://www.clipartbest.com/cliparts/eTM/yMq/eTMyMqxAc.png')
     
-    const [newPotion, setNewPotion] = useState({
+    const newPotion={
         name: name,
         image: image,
-        price: price,
-        description: description,
-        // materials: materials
-    
-    })
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
+        description: description
+    }  
+
 
  return (
         <div>
             <header>Create New Potion</header>
-            <Box>
+            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}> 
             <form onSubmit={(e) => handleSubmit(newPotion)}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
             <TextField 
             onChange={(e) => setName(e.target.value)}
             id="standard-basic" 
             label="Potion Name" 
-            variant="standard" />
+            variant="standard" 
+            sx={{ flex: 1, mr: 2 }}
+            />
             
         
             <TextField 
             onChange={(e) => setDescription(e.target.value)}
             id="standard-basic" 
             label="Potion Description" 
-            variant="standard" />
-            
+            variant="standard" 
+            sx={{ flex: 1}}
+            />
+                </Box>
+
+                <Button type="submit">Brew Potion</Button>
             </form>
         
             </Box>

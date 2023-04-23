@@ -12,6 +12,22 @@ import NamePotion from './NamePotion';
 import FinishPotion from './FinishPotion';
 
 export default function VerticalLinearStepper( { materials } ) {
+
+  
+  const handleSubmit = (e, newPotion) => {
+    e.preventDefault()
+    fetch('/potions', {
+      method: 'POST',
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(newPotion)
+  })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error))
+  }
+
     const steps = [
         {
           label: 'Select Materials',
@@ -21,7 +37,7 @@ export default function VerticalLinearStepper( { materials } ) {
         {
           label: 'Create a name',
           description:'Name.',
-          component: <NamePotion />
+          component: <NamePotion handleSubmit={handleSubmit} />
         },
         {
           label: 'Add to Menu',
@@ -46,7 +62,7 @@ export default function VerticalLinearStepper( { materials } ) {
   };
 
   return (
-    <Box sx={{ maxWidth: 400 }}>
+    <Box sx={{ maxWidth: 700, margin: '0 auto' }}>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label}>
