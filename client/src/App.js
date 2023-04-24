@@ -6,13 +6,14 @@ import UserHome from './UserHome';
 import { useEffect, useState } from "react"
 import Inventory from './Inventory';
 import Shopfront from './Shopfront';
-import backgroundImage from './assets/backgroundImage.webp';
-
-
 
 function App() {
   const [materials, setMaterials] = useState([])
   const [potions, setPotions] = useState([])
+
+
+  
+
 
 
   useEffect(() => {
@@ -42,7 +43,7 @@ function App() {
 
 
   return (
-    <div style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover',backgroundPosition: 'center' }}>
+    <div>
       <div id="navContainer">
         <BrowserRouter>
           <NavBar />

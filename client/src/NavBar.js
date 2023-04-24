@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 
 const NavBar = () => {
     return (
-        <AppBar position="sticky" >
+        <AppBar position="sticky" style={{ backgroundColor: 'black', opacity: 0.5 }} >
             <Toolbar id='navbar'>
                 <NavLink to="/myprofile">My profile</NavLink>
                 <NavLink to="/createnewpotion">Create New Potion</NavLink>

@@ -1,13 +1,9 @@
 import React, { useState } from "react"
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material";
 import CardHeader from '@mui/material/CardHeader';
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import { styled } from '@mui/material/styles';
 import { addMaterial, removeMaterial } from "./actions/materialActions";
 import { useDispatch, useSelector } from "react-redux"
 
@@ -27,7 +23,6 @@ const MaterialCard = ( { material } ) => {
         } 
     }
 
-
     const cardStyle =
     {
         maxWidth: 400,
@@ -39,22 +34,21 @@ const MaterialCard = ( { material } ) => {
         justifyContent: "space-between",
         height: "100%",
         pointerEvents: disabled ? "none" : "auto",
+        border: 0.5
       }
 
     return (
         <div>
-        {/* <Box gridColumn="span 3"> */}
-                <Card sx={{...cardStyle, height: 150 }}>
+                <Card sx={{...cardStyle, height: 100 }}>
                     <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
                         <CardHeader>{material.name}</CardHeader>
-                        <CardContent sx={{ textAlign: "center" }}>
-                        <Typography variant="body2" color="text.secondary">
-                        {material.description}
-                        </Typography>
+                        <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"  }}>
+                            <Typography variant="body2" color="text.secondary">
+                                {material.description}
+                            </Typography>
                         </CardContent>
                     </CardActionArea>
                 </Card>
-        {/* </Box> */}
         </div>
     )
 }

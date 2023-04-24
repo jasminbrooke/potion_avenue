@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import CustomerCard from "./CustomerCard"
 import Grid from '@mui/material/Grid'; // Grid version 1
+import Stack from '@mui/material/Stack';
 
 const CustomerList = ( {customerArray} ) => {
     
-    
     return (
 
-        <Grid container spacing={2} >
-            <div>
-            {customerArray.map((customer, i) => <CustomerCard key={i} customer={customer}/>)}
-            </div>
-        </Grid>
+            <Stack direction="row" spacing={2} >
+                {customerArray.map((customer, i) => <CustomerCard key={i} customer={customer}/>)}
+            </Stack>
+
     )
     
 }

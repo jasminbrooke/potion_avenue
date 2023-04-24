@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import NamePotion from './NamePotion';
 import { useSelector } from 'react-redux'
 import MaterialList from './MaterialList';
-import FinishPotion from './FinishPotion';
 import PotionList from './PotionList';
 
 export default function VerticalLinearStepper( { materials } ) {
@@ -65,7 +64,7 @@ export default function VerticalLinearStepper( { materials } ) {
   };
 
   return (
-    <Box sx={{ maxWidth: 700, margin: '0 auto' }}>
+    <Box sx={{ maxWidth: 600, maxheight: 500, margin: '0 auto' }}>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={step.label}>

@@ -14,25 +14,17 @@ const PotionCard = ( { potion } ) => {
         console.log(potion)
     }
 
-
     return (
-        <div>
-                    {/* <Box gridColumn="span 3"> */}
-                    <Card sx={{height: 150 }}>
-                    <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
-                        <CardHeader>{potion.name}</CardHeader>
-                        <CardContent sx={{ textAlign: "center" }}>
+        <Card sx={{height: 150, width: 200 }}>
+                <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
+                    <CardHeader>{potion.name}</CardHeader>
+                    <CardContent sx={{ textAlign: "center" }}>
                         <Typography variant="body2" color="text.secondary">
-                        {potion.description}
+                            {potion.description}
                         </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-        {/* </Box> */}
-
-
-
-        </div>
+                    </CardContent>
+                </CardActionArea>
+        </Card>
     )
 }
 
