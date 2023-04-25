@@ -23,11 +23,9 @@ const Menu = ( { potions } ) => {
     //     }
           
     return (
-        <Container>
-            <Stack direction="row" spacing={2}>
+            <Stack direction="row" spacing={2} sx={{alignItems: 'center', justifyContent: 'center'}} >
                 {potions?.map((potion, i)=> <PotionCard key={i} potion={potion} />)}
             </Stack>
-        </Container>
     )
 }
 

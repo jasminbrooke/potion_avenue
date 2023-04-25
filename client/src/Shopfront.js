@@ -3,6 +3,7 @@ import CustomerList from "./CustomerList"
 import Container from "@mui/material/Container";
 import PotionList from "./PotionList";
 import { Box } from "@mui/material";
+import ScienceIcon from '@mui/icons-material/Science';
 
 const Shopfront = ( { potions, getPotions } ) => {
     const [customers, setCustomers] = useState([])
