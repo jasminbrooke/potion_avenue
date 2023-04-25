@@ -6,15 +6,11 @@ import UserHome from './UserHome';
 import { useEffect, useState } from "react"
 import Inventory from './Inventory';
 import Shopfront from './Shopfront';
+import Menu from './Menu'
 
 function App() {
   const [materials, setMaterials] = useState([])
   const [potions, setPotions] = useState([])
-
-
-  
-
-
 
   useEffect(() => {
       getMaterials()
@@ -26,9 +22,7 @@ function App() {
       .then(response => response.json())
       .then(data => {
         setMaterials(data);
-        console.log(data)
       })
-      
   }
 
   const getPotions = () => {
@@ -38,7 +32,6 @@ function App() {
       setPotions(data);
       console.log(data)
     })
-    
 }
 
 
@@ -57,11 +50,15 @@ function App() {
             </Switch>
 
             <Switch>
-              <Route exact path="shopfront" element={<Shopfront potions={potions}/>}/>
+              <Route exact path="shopfront" element={<Shopfront potions={potions} getPotions={getPotions}/>}/>
             </Switch>
 
             <Switch>
               <Route exact path="viewinventory" element={<Inventory materials={materials} potions={potions}/>}/>
+            </Switch>
+
+            <Switch>
+              <Route exact path="menu" element={<Menu materials={materials} potions={potions}/>}/>
             </Switch>
 
           </div>

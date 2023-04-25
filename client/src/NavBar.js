@@ -11,6 +11,7 @@ const NavBar = () => {
                 <NavLink to="/myprofile">My profile</NavLink>
                 <NavLink to="/createnewpotion">Create New Potion</NavLink>
                 <NavLink to="/shopfront">Shopfront</NavLink>
+                <NavLink to="/menu">Menu</NavLink>
                 <NavLink to="/viewinventory">View Inventory</NavLink>
             </Toolbar>
     </AppBar>

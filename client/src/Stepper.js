@@ -33,12 +33,12 @@ export default function VerticalLinearStepper( { materials } ) {
     const steps = [
         {
           label: 'Select Materials',
-          description: `Select Materials`,
+          description: `The materials you select will determine the qualities your potion possesses.`,
           component:  <MaterialList materials={materials} materialArray={materialArray}/>
         },
         {
           label: 'Create a name',
-          description:'Name.',
+          description:'Choose any name and description you would like.',
           component: <NamePotion handleSubmit={handleSubmit} />
         },
         {

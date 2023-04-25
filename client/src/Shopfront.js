@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react"
 import CustomerList from "./CustomerList"
 import Container from "@mui/material/Container";
 import PotionList from "./PotionList";
+import { Box } from "@mui/material";
 
-const Shopfront = ( { potions } ) => {
+const Shopfront = ( { potions, getPotions } ) => {
     const [customers, setCustomers] = useState([])
     const [customerArray, setCustomerArray] = useState([])
 
@@ -17,17 +18,21 @@ const Shopfront = ( { potions } ) => {
 
     useEffect(() => {
         getCustomers()
+        getPotions()
       }, [])
     
     return (
-        <div>
+        <Box>
             <Container sx={{margin: '0 auto'}}>
               <CustomerList customerArray={customerArray} potions={potions} />
             </Container>
+            <div>
+              x
+            </div>
             <Container sx={{margin: '0 auto'}}>
               <PotionList potions={potions} />
             </Container>
-        </div>
+        </Box>
     )}
 
 export default Shopfront

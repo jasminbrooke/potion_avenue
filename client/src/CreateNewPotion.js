@@ -3,10 +3,9 @@ import Stepper from "./Stepper"
 
 const CreateNewPotion = ( { materials } ) => {
 
-
     return(
         <div>
-            <Stepper  materials={materials}/>
+            <Stepper materials={materials}/>
         </div>
     )}
 

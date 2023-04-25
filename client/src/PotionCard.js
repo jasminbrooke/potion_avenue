@@ -12,18 +12,23 @@ const PotionCard = ( { potion } ) => {
 
     const handleClick = () => {
         console.log(potion)
+        console.log(potion.materials)
     }
 
     return (
         <Card sx={{height: 150, width: 200 }}>
-                <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
-                    <CardHeader>{potion.name}</CardHeader>
+            <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
                     <CardContent sx={{ textAlign: "center" }}>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography sx={{ fontSize: 14 }}>
                             {potion.description}
                         </Typography>
+                            {potion.materials?.map((material, i) => <ul key={i}>
+                                <li>{material.name}</li>
+                            </ul>)}
+                        <Typography>
+                        </Typography>
                     </CardContent>
-                </CardActionArea>
+            </CardActionArea>
         </Card>
     )
 }

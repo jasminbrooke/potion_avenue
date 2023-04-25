@@ -1,20 +1,33 @@
 import React, { useState } from "react"
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import PotionCard from "./PotionCard"
+import { Stack } from "@mui/material"
+import Container from '@mui/material/Container';
 
-const Menu = () => {
+const Menu = ( { potions } ) => {
+
+    // const handleDeletePotion = () => {
+    //     fetch('/potion/'{}, {
+    //       method: 'DELETE'
+    //     });
+    //   }
+    // const handleEditPotion = () => {
+    //     fetch('/potion/'{}, {
+    //         method: 'PATCH',
+    //         headers: {
+    //         'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //         // Add your data here
+    //         })
+    //     });
+    //     }
+          
     return (
-        <div>
-            <header>This is the Menu</header>
-
-
-            <p>
-                Here you can:
-
-                See your menu
-                
-            </p>
-        </div>
+        <Container>
+            <Stack direction="row" spacing={2}>
+                {potions?.map((potion, i)=> <PotionCard key={i} potion={potion} />)}
+            </Stack>
+        </Container>
     )
 }
 

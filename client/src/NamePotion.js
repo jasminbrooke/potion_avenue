@@ -20,37 +20,33 @@ const NamePotion = ( { handleSubmit } ) => {
     const handleClick = () => {
         console.log(materialArray)
     }
+
  return (
         <div>
-            <Button onClick={() => handleClick()}></Button>
-            <header>Create New Potion</header>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}> 
-            <form onSubmit={(e) => handleSubmit(e, newPotion)}>
-                
-            <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <TextField 
-            onChange={(e) => setName(e.target.value)}
-            id="standard-basic" 
-            label="Potion Name" 
-            variant="standard" 
-            sx={{ flex: 1, mr: 2 }}
-            />
-            
-            <TextField 
-            onChange={(e) => setDescription(e.target.value)}
-            id="standard-basic" 
-            label="Potion Description" 
-            variant="standard" 
-            sx={{ flex: 1}}
-            />
-                </Box>
-
-                <Button type="submit">Brew Potion</Button>
-            </form>
-        
+                <form onSubmit={(e) => handleSubmit(e, newPotion)}>
+                    
+                    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <TextField 
+                            onChange={(e) => setName(e.target.value)}
+                            id="standard-basic" 
+                            label="Potion Name" 
+                            variant="standard" 
+                            sx={{ flex: 1, mr: 2 }}
+                        />
+                        
+                        <TextField 
+                            onChange={(e) => setDescription(e.target.value)}
+                            id="standard-basic" 
+                            label="Potion Description" 
+                            variant="standard" 
+                            sx={{ flex: 1}}
+                        />
+                    </Box>
+                    <Button type="submit">Brew Potion</Button>
+                </form>
             </Box>
         </div>
-
-            )}
+    )}
 
 export default NamePotion

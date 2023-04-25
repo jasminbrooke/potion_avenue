@@ -4,7 +4,14 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-image: url('./assets/backgroundImage.webp');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat; 
+  background-color: rgb(20, 15, 11);
+  height: 100%;
+  width: 100%;
+  background-attachment: fixed;
 }
 
 code {
@@ -20,14 +27,4 @@ code {
 
 #navbar a {
   color: white
-}
-
-body {
-  background-image: url('./assets/backgroundImage.webp');
-  background-position: center;
-  background-size: contain;
-  background-repeat: repeat-x; 
-  height: 100%;
-  width: 100%;
-  background-attachment: fixed;
 }

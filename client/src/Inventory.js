@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Button } from "@mui/material/Button";
 
 const Inventory = ( { materials } ) => {
     const rows = materials.map((material, i) => ({
@@ -18,8 +18,8 @@ const Inventory = ( { materials } ) => {
 
     return (
         <div>
-            <TableContainer component={Paper}>
-      <Table sx={{ width: '50%', minWidth: 400, margin: 'auto' }} size="small" aria-label="a dense table">
+            <TableContainer sx={{ width: 800, margin: 'auto' }}>
+      <Table sx={{ minWidth: 400}} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <TableCell>Material</TableCell>

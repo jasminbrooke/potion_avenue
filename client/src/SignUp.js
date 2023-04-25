@@ -37,43 +37,37 @@ const SignUp = () => {
         <div>
             <header>Create an Account</header>
 
-            <Box>
-    <CssBaseline />
-      <Container maxWidth="sm">
-            <form onSubmit={(e) => handleSubmit()}>
-                <TextField 
-                    onChange={(e) => setDisplayname(e.target.value)}
-                    id="standard-basic" 
-                    label="Display Name" 
-                    variant="standard" />
-    
-
-                <TextField 
-                    onChange={(e) => setUsername(e.target.value)}
-                    id="standard-basic" 
-                    label="Username" 
-                    variant="standard" />
-
-                <TextField 
-                    onChange={(e) => setPassword(e.target.value)}
-                    id="standard-basic" 
-                    label="Display Name" 
-                    variant="standard" />
-
-                <TextField 
-                    onChange={(e) => setPasswordconfirmation(e.target.value)}
-                    id="standard-basic" 
-                    label="Display Name" 
-                    variant="standard" />
-                    <Button type='submit'> Create Account </Button>
-                </form>
-                {errors.map((error, i) => <Typography key={i}>{ error }</Typography>)}
-
-        </Container>
-        <CssBaseline />
-
-    </Box>
-        </div>
+        <Box>
+            <CssBaseline />
+                <Container maxWidth="sm">
+                    <form onSubmit={(e) => handleSubmit()}>
+                        <TextField 
+                            onChange={(e) => setDisplayname(e.target.value)}
+                            id="standard-basic" 
+                            label="Display Name" 
+                            variant="standard" />
+                        <TextField 
+                            onChange={(e) => setUsername(e.target.value)}
+                            id="standard-basic" 
+                            label="Username" 
+                            variant="standard" />
+                        <TextField 
+                            onChange={(e) => setPassword(e.target.value)}
+                            id="standard-basic" 
+                            label="Display Name" 
+                            variant="standard" />
+                        <TextField 
+                            onChange={(e) => setPasswordconfirmation(e.target.value)}
+                            id="standard-basic" 
+                            label="Display Name" 
+                            variant="standard" />
+                        <Button type='submit'> Create Account </Button>
+                    </form>
+                    {errors.map((error, i) => <Typography key={i}>{ error }</Typography>)}
+                </Container>
+            <CssBaseline />
+        </Box>
+    </div>
     )
 }
 
