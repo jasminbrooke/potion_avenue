@@ -14,7 +14,7 @@ const UserHome = () => {
         <div>
             <header>My profile</header>
             <Box>
-                    <Container maxWidth="sm">
+                <Container maxWidth="sm">
                     <form onSubmit={(e) => handleSubmit()}>
                         <TextField 
                             onChange={(e) => setName(e.target.value)}
@@ -28,8 +28,8 @@ const UserHome = () => {
                             label="Username" 
                             variant="standard" 
                             />
-                        </form>
-                    </Container>
+                    </form>
+                </Container>
             </Box>
         </div>
     )

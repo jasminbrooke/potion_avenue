@@ -1,8 +1,10 @@
 import React, { useState } from "react"
+import { TextField, Button } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import Container from '@mui/material/Container';
 
-const SignUp = () => {
+const SignUp = ({ handleLogin }) => {
     const [displayname, setDisplayname] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -35,12 +37,11 @@ const SignUp = () => {
 
     return (
         <div>
-            <header>Create an Account</header>
+        <Typography variant="h4">Create an Account</Typography>
 
         <Box>
-            <CssBaseline />
                 <Container maxWidth="sm">
-                    <form onSubmit={(e) => handleSubmit()}>
+                    <form onSubmit={(e) => handleSubmit(e)}>
                         <TextField 
                             onChange={(e) => setDisplayname(e.target.value)}
                             id="standard-basic" 
@@ -54,18 +55,17 @@ const SignUp = () => {
                         <TextField 
                             onChange={(e) => setPassword(e.target.value)}
                             id="standard-basic" 
-                            label="Display Name" 
+                            label="Password" 
                             variant="standard" />
                         <TextField 
                             onChange={(e) => setPasswordconfirmation(e.target.value)}
                             id="standard-basic" 
-                            label="Display Name" 
+                            label="Password Confirmation" 
                             variant="standard" />
                         <Button type='submit'> Create Account </Button>
                     </form>
                     {errors.map((error, i) => <Typography key={i}>{ error }</Typography>)}
                 </Container>
-            <CssBaseline />
         </Box>
     </div>
     )

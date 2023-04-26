@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import materialReducer from './materialReducer';
+import MaterialReducer from './MaterialReducer';
+import LoginReducer from './LoginReducer';
 
 const allReducer = combineReducers({
-    materialReducer
+    MaterialReducer,
+    LoginReducer
 })
 
 export default allReducer;

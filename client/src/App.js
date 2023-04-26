@@ -1,71 +1,61 @@
 import './App.css';
-import CreateNewPotion from './CreateNewPotion';
-import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
-import NavBar from './NavBar'
-import UserHome from './UserHome';
-import { useEffect, useState } from "react"
-import Inventory from './Inventory';
-import Shopfront from './Shopfront';
-import Menu from './Menu'
+import React, { useState, useEffect } from 'react'
+import Typography from '@mui/material/Typography';
+import LogIn from './LogIn'
+import SignUp from './SignUp'
+import Home from './Home'
+import { setCurrentUser } from "./actions/LoginActions";
+import { useDispatch, useSelector } from "react-redux"
 
 function App() {
-  const [materials, setMaterials] = useState([])
-  const [potions, setPotions] = useState([])
+  const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.LoginReducer.currentUser)
 
   useEffect(() => {
-      getMaterials()
-      getPotions()
-    }, [])
+    fetch("/me").then((response) => {
+      if (response.ok) {
+        response.json().then((user) => handleLogin(user));
+        // call users#show and check if anyone is logged in by checking the session
+        // if so, set them as the current user
+        // if not, do nothing
+      }
+    });
+  }, []);
 
-  const getMaterials = () => {
-      fetch('/materials')
-      .then(response => response.json())
-      .then(data => {
-        setMaterials(data);
-      })
+  const handleLogin = (user) => dispatch(setCurrentUser(user));
+  const handleLogout = () => {
+    fetch('/logout', {
+        method: 'DELETE',
+    })
+    .then(() => dispatch(setCurrentUser(null)));
   }
 
-  const getPotions = () => {
-    fetch('/potions')
-    .then(response => response.json())
-    .then(data => {
-      setPotions(data);
-      console.log(data)
-    })
-}
-
+  const renderPage = (() => {
+    if(currentUser) {
+      return (
+          <Home 
+              handleLogin={handleLogin}
+              handleLogout={handleLogout}
+            />
+      )
+    } else {
+      return (
+        <div id="login">
+          <Typography variant="h2">Potion Avenue</Typography>
+          <Typography variant="h4">Log In or Sign Up!</Typography>
+          <LogIn handleLogin={handleLogin} />
+          <SignUp handleLogin={handleLogin} />
+        </div>
+      )
+    }
+  })
 
   return (
     <div>
-      <div id="navContainer">
-        <BrowserRouter>
-          <NavBar />
-          <div>
-            <Switch>
-              <Route exact path="myprofile" element={<UserHome />}/>
-            </Switch>
-
-            <Switch>
-              <Route exact path="createnewpotion" element={<CreateNewPotion materials={materials}/>}/>
-            </Switch>
-
-            <Switch>
-              <Route exact path="shopfront" element={<Shopfront potions={potions} getPotions={getPotions}/>}/>
-            </Switch>
-
-            <Switch>
-              <Route exact path="viewinventory" element={<Inventory materials={materials} potions={potions}/>}/>
-            </Switch>
-
-            <Switch>
-              <Route exact path="menu" element={<Menu materials={materials} potions={potions}/>}/>
-            </Switch>
-
-          </div>
-        </BrowserRouter>
-        </div>
+      <div className="App">
+        {renderPage()}
+      </div>
     </div>
-
   );
 }
 

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :ok
         else
-            render  {errors: user.errors.full_messages }, status: :unprocessable_entity
+            render json: {errors: user.errors.full_messages }, status: :unprocessable_entity
         end
     end 
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         if user.valid?
             render json: user, status: :ok
         else
-            render  { errors: user.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
     end 
 
@@ -28,16 +28,17 @@ class UsersController < ApplicationController
     end 
 
     def show
-        user = User.find_by(id: params[:id])
+        user = User.find_by(id: session[:id])
         if user
             render json: user, status: :ok
         else 
-            render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+            render json: { error: "Not authorized" }, status: :unauthorized
+        end
     end 
 
     private 
 
     def user_params
-        params.permit(:username :password :password_confirmation :display_name)
+        params.permit(:username, :password, :password_confirmation, :displayname)
     end
 end

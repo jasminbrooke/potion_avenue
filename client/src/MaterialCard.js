@@ -8,7 +8,7 @@ import { addMaterial, removeMaterial } from "./actions/materialActions";
 import { useDispatch, useSelector } from "react-redux"
 
 const MaterialCard = ( { material } ) => {
-    const materialArray = useSelector(state => state.materialReducer.materials)
+    const materialArray = useSelector(state => state.MaterialReducer.materials)
     const [isSelected, setIsSelected] = useState(false);
     const dispatch = useDispatch();
     const disabled = !isSelected && materialArray.length === 3
