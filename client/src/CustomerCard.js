@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material";
 
-const CustomerCard = ({customer}) => {
+const CustomerCard = ({customer, handleCustomerClick}) => {
     const {name:{first, last}, dob: {age}, picture: {thumbnail}} = customer
 
     const cardStyle =
@@ -15,12 +15,14 @@ const CustomerCard = ({customer}) => {
     
     return (
             <Card sx={{...cardStyle, height: 100, width: 150 }}>
-                <CardActionArea sx={{ height: "100%" }}>
-                    <img
-                    floated='right'
-                    size='mini'
-                    src={thumbnail}
-                    />
+                <CardActionArea 
+                onClick={() => {handleCustomerClick(customer)}}
+                    sx={{ height: "100%" }}>
+                        <img
+                            floated='right'
+                            size='mini'
+                            src={thumbnail}
+                            />
                     {first}
                 </CardActionArea>
             </Card>
