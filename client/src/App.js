@@ -5,11 +5,11 @@ import LogIn from './LogIn'
 import SignUp from './SignUp'
 import Home from './Home'
 import { setCurrentUser } from "./actions/LoginActions";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
 function App() {
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.LoginReducer.currentUser)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -22,16 +22,23 @@ function App() {
     });
   }, []);
 
-  const handleLogin = (user) => dispatch(setCurrentUser(user));
+  const handleLogin = (user) => {
+    dispatch(setCurrentUser(user));
+    setIsLoggedIn(true)
+    console.log(user)
+  }
   const handleLogout = () => {
     fetch('/logout', {
         method: 'DELETE',
     })
-    .then(() => dispatch(setCurrentUser(null)));
+    .then(() => {
+      dispatch(setCurrentUser(null))
+      setIsLoggedIn(false)
+    })
   }
 
   const renderPage = (() => {
-    if(currentUser) {
+    if(isLoggedIn) {
       return (
           <Home 
               handleLogin={handleLogin}

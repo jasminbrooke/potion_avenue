@@ -7,9 +7,14 @@ class PotionsController < ApplicationController
     
     def create
         potion = Potion.create(potion_params)
+        potion.update(
+                cost: potion.calculate_cost,
+                brew_time: potion.calculate_brew_time,
+                quality: potion.calculate_quality,
+                reward: potion.calculate_reward
+            )
         if potion.valid?
             potion.materials << Material.where(id: params[:material_ids]) # associate materials with the potion
-            potion.update_attribute(:cost, potion.calculate_cost) # set the cost attribute
             render json: potion, status: :ok
         else
             render json: { errors: potion.errors.full_messages }, status: :unprocessable_entity
@@ -44,7 +49,7 @@ class PotionsController < ApplicationController
     private 
 
     def potion_params
-        params.permit(:name, :description, :cost, :brew_time, :reward)
+        params.permit(:name, :description, :cost, :brew_time, :reward, :user_id, :quantity)
     end
 
 end

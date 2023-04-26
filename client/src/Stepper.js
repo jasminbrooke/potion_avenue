@@ -13,12 +13,12 @@ import MaterialList from './MaterialList';
 import PotionList from './PotionList';
 
 export default function VerticalLinearStepper( { materials } ) {
-  const materialArray = useSelector(state => state.materialReducer.materials)
-
+  const materialArray = useSelector(state => state.MaterialReducer.materials)
+  const user = useSelector(state => state.LoginReducer.currentUser)
 
   const handleSubmit = (e, newPotion) => {
     e.preventDefault()
-    fetch('/potions', {
+    fetch(`/users/${user.id}/potions`, {
       method: 'POST',
       headers: {
         'content-type' : 'application/json'

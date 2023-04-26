@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-    attributes :displayname, :username, :password
+    attributes :id, :displayname, :username
 
     has_many :potions
 end

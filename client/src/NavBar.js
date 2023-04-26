@@ -8,7 +8,7 @@ const NavBar = () => {
     return (
         <AppBar position="sticky" style={{ backgroundColor: 'black', opacity: 0.5 }} >
             <Toolbar id='navbar'>
-                <NavLink to="/myprofile">My profile</NavLink>
+                <NavLink to="/manageaccount">Manage Account</NavLink>
                 <NavLink to="/createnewpotion">Create New Potion</NavLink>
                 <NavLink to="/shopfront">Shopfront</NavLink>
                 <NavLink to="/menu">Menu</NavLink>

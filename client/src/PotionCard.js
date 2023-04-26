@@ -11,6 +11,7 @@ import ScienceIcon from '@mui/icons-material/Science';
 
 const PotionCard = ( { potion } ) => {
     const [brewing, setBrewing] = useState(false)
+    // const timer = potion.brew_time
     
     const handleClick = () => {
         console.log(potion)

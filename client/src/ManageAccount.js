@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 
-const UserHome = () => {
+const ManageAccount = () => {
     const [name, setName] = useState('')
     const [username, setUsername] = useState('')
 
@@ -35,4 +35,4 @@ const UserHome = () => {
     )
 }
 
-export default UserHome
+export default ManageAccount

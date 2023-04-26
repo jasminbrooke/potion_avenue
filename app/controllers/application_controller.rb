@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    # before_action :authorize
+    before_action :authorize
 
   include ActionController::Cookies
   rescue_from ActiveRecord::RecordNotFound, with: ->(exception) { not_found_response(exception) }
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
     render json: { errors: [exception.message]}, status: :not_found
   end
 
-  # def authorize
-  #   return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
-  # end
+  def authorize
+    return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
+  end
 end

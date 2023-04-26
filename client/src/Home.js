@@ -41,7 +41,7 @@ function Home() {
           <NavBar />
           <div>
             <Switch>
-              <Route exact path="myprofile" element={<ManageAccount />}/>
+              <Route exact path="manageaccount" element={<ManageAccount />}/>
             </Switch>
 
             <Switch>

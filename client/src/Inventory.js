@@ -13,18 +13,22 @@ import MacroOffIcon from '@mui/icons-material/MacroOff';
 const Inventory = ( { materials } ) => {
   const [cartItems, setCartItems] = useState([]);
 
+  const IncreaseQuantity = () => {
+
+  } 
+
+  const DecreaseQuantity = () => {
+    
+  } 
+
     const rows = materials.map((material, i) => ({
         name: material.name, 
         cost: material.cost, 
         time: material.time, 
         reward: material.reward,
-        description: material.description
-        // quantity: material.quantity
+        description: material.description,
+        quantity: material.quantity
     }))
-
-    const addToCart = (item) => {
-      setCartItems((prevState) => [...prevState, item]);
-    };
 
     return (
         <div>
@@ -32,13 +36,13 @@ const Inventory = ( { materials } ) => {
       <Table sx={{ minWidth: 400, padding: '8px', fontSize: '14px'}} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Material</TableCell>
+            <TableCell >Material</TableCell>
             <TableCell >Description</TableCell>
             <TableCell >Time</TableCell>
             <TableCell >Cost</TableCell>
             <TableCell >Profit</TableCell>
-            <TableCell>Add to Cart</TableCell>
-            <TableCell>Quantity</TableCell>
+            <TableCell >Quantity</TableCell>
+            <TableCell >Add to Cart</TableCell>
             
 
           </TableRow>
@@ -51,13 +55,13 @@ const Inventory = ( { materials } ) => {
     <TableCell >{row.time} </TableCell>
     <TableCell >{row.cost}</TableCell>
     <TableCell >{row.reward}</TableCell>
-    <TableCell> Quantity </TableCell>
+    <TableCell> {row.quantity} </TableCell>
 
     <TableCell sx={{ padding: '4px' }}>
       
       
-    <IconButton sx={{ fontSize: '12px' }} onClick={() => addToCart(row)}> <LocalFloristIcon sx={{ fontSize: 'medium' }}/>Add</IconButton>
-      <IconButton sx={{ fontSize: '12px' }} onClick={() => addToCart(row)}> <MacroOffIcon sx={{ fontSize: 'medium' }}/>Remove</IconButton>
+    <IconButton sx={{ fontSize: '12px' }} onClick={() => IncreaseQuantity(row)}> <LocalFloristIcon sx={{ fontSize: 'medium' }}/>Add</IconButton>
+      <IconButton sx={{ fontSize: '12px' }} onClick={() => DecreaseQuantity(row)}> <MacroOffIcon sx={{ fontSize: 'medium' }}/>Remove</IconButton>
       
       
       </TableCell>
@@ -66,7 +70,7 @@ const Inventory = ( { materials } ) => {
 
 <TableRow>
         <TableCell colSpan={4} />
-        <TableCell>Total Cost:</TableCell>
+        <TableCell>Total Cost: </TableCell>
         <TableCell>{/* {cart.reduce((total, item) => total + item.cost, 0)} */} aMt </TableCell>
         <TableCell colSpan={2}> <Button type='submit'>Submit</Button> </TableCell>
         

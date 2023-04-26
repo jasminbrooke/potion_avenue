@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     end 
 
     def show
-        user = User.find_by(id: session[:id])
+        user = User.find(session[:id])
         if user
             render json: user, status: :ok
         else 
