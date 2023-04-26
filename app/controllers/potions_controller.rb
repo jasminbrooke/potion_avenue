@@ -49,7 +49,7 @@ class PotionsController < ApplicationController
     private 
 
     def potion_params
-        params.permit(:name, :description, :cost, :brew_time, :reward, :user_id, :quantity)
+        params.permit(:name, :description, :cost, :brew_time, :reward, :user_id, :quantity, :quality, material_ids: [])
     end
 
 end

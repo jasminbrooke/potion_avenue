@@ -13,12 +13,10 @@ import MacroOffIcon from '@mui/icons-material/MacroOff';
 const Inventory = ( { materials } ) => {
   const [cartItems, setCartItems] = useState([]);
 
-  const IncreaseQuantity = () => {
-
+  const IncreaseQuantity = (material) => {
   } 
 
   const DecreaseQuantity = () => {
-    
   } 
 
     const rows = materials.map((material, i) => ({

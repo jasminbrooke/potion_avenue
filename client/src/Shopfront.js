@@ -30,13 +30,14 @@ const Shopfront = ( { potions, getPotions } ) => {
           setCustomerArray(prevQueue => {
             const newQueue = [...prevQueue];
             newQueue.shift(); // remove the first customer from the queue
+            customers.shift()
             const nextCustomer = customers.find(customer => !prevQueue.includes(customer));
             return newQueue.concat(nextCustomer);
           });
         }, 5000);
       
         return () => clearInterval(interval);
-      }, [customers]);
+      }, [customerArray]);
 
 
       const handleCustomerClick = () => {
@@ -46,7 +47,7 @@ const Shopfront = ( { potions, getPotions } ) => {
     return (
         <Box>
             <Container sx={{margin: '0 auto'}}>
-              <CustomerList handleCustomerClick={handleCustomerClick} customerArray={customerArray} potions={potions} />
+              <CustomerList setServed={setServed} handleCustomerClick={handleCustomerClick} customerArray={customerArray} potions={potions} served={served}/>
             </Container>
             <div>
               x

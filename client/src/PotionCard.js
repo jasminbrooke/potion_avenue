@@ -11,21 +11,25 @@ import ScienceIcon from '@mui/icons-material/Science';
 
 const PotionCard = ( { potion } ) => {
     const [brewing, setBrewing] = useState(false)
-    // const timer = potion.brew_time
+    const [remainingTime, setRemainingTime] = useState(null);
+    const timer = potion.brew_time
     
     const handleClick = () => {
         console.log(potion)
         console.log(potion.materials)
         setBrewing(true)
+        setRemainingTime(timer);
+    const intervalId = setInterval(() => {
+      setRemainingTime(prevTime => prevTime - 1);
+    }, 1000);
         setTimeout(() => {
             setBrewing(false);
-          }, 5000);
-        // handleBrew()
+          }, timer * 1000);
     }
 
     const defaultCard = (        
         <Card sx={{height: 200, width: 200 }}>
-            <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
+            <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()} disabled={brewing}>
                     <CardContent sx={{ textAlign: "center" }}>
                         <Typography sx={{ fontSize: 14 }}>
                             {potion.description}
@@ -44,7 +48,9 @@ const PotionCard = ( { potion } ) => {
         <Card sx={{height: 200, width: 200 }}>
             <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
                     <CardContent sx={{ textAlign: "center", fontSize: 20 }}>
-                        <Typography> <ScienceIcon /> </Typography>
+                        <Typography> 
+                        {remainingTime !== null && <p>Time remaining: {remainingTime}s</p>}
+                            <ScienceIcon /> </Typography>
                     </CardContent>
             </CardActionArea>
         </Card>
