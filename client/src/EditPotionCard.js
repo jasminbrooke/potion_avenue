@@ -31,7 +31,7 @@ const EditPotionCard = ( { potion, handleEditPotion } ) => {
     }
 
     const defaultCard =
-(    <Card sx={{height: 275, width: 250 }}>
+(    <Card sx={{height: 275, width: 250, backgroundColor: '#fff8e8' }}>
     <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
             <CardContent sx={{ textAlign: "center", fontSize: 12 }}>
                 <Typography sx={{fontSize: 14 }}>{potion.name} </Typography>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Card from '@mui/material/Card';
-import { CardActionArea } from "@mui/material";
+import { CardActionArea } from "@mui/material"; 
 
 const CustomerCard = ({customer, handleCustomerClick, served}) => {
     const {name:{first, last}, dob: {age}, picture: {thumbnail}} = customer
@@ -10,8 +10,10 @@ const CustomerCard = ({customer, handleCustomerClick, served}) => {
         width: 200,
         display: "flex",
         justifyContent: "space-between",
-        height: "100%"
-      }
+        height: "100%",
+        backgroundColor: '#7d4534'
+        // backgroundImage: "url(/assets/wood.avif)"
+    }
 
 
     const servedCard = (
@@ -46,7 +48,7 @@ const CustomerCard = ({customer, handleCustomerClick, served}) => {
 
     
     return (
-        <Card sx={{...cardStyle, height: 150, width: 200 }}>
+        <Card sx={{...cardStyle, height: 150, width: 200, raised: true }}>
 
         {served ? servedCard : defaultCard}
         </Card>

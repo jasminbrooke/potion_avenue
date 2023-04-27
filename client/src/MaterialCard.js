@@ -26,7 +26,7 @@ const MaterialCard = ( { material } ) => {
     const cardStyle =
     {
         maxWidth: 400,
-        backgroundColor: isSelected ? "lightblue" : "white",
+        backgroundColor: isSelected ? "lightblue" : "fff8e8",
         cursor: isSelected ? "default" : "pointer",
         opacity: disabled ? 0.5 : 1,
         display: "flex",
