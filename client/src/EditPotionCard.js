@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import Card from '@mui/material/Card';
 import { Button, CardActionArea, TextField } from "@mui/material";
-import CardHeader from '@mui/material/CardHeader';
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import Stack from '@mui/material/Stack';
+import { useSelector } from 'react-redux'
 
-const EditPotionCard = ( { potion, handleEditPotion, handleDeletePotion } ) => {
+const EditPotionCard = ( { potion, handleEditPotion } ) => {
+    const user = useSelector(state => state.LoginReducer.currentUser)
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -15,8 +15,15 @@ const EditPotionCard = ( { potion, handleEditPotion, handleDeletePotion } ) => {
         name: name, 
         description: description}
 
+        const handleDeletePotion = () => {
+            console.log(potion);
+            fetch(`/users/${user.id}/potions/${potion.id}`,{
+                method: 'DELETE'
+              })}
+
     const handleClick = () => {
         setEditMode(!editMode)
+        console.log(potion)
     }
 
     const handleSubmit = () => {
@@ -55,7 +62,8 @@ const EditPotionCard = ( { potion, handleEditPotion, handleDeletePotion } ) => {
                             )}
                     </Stack>
                     </form>
-                    <Button type='submit'> Update Changes </Button> <Button onClick={() => handleDeletePotion()}> Delete </Button>
+                    <Button type='submit'> Update Changes </Button> 
+                    <Button onClick={() => handleDeletePotion()}> Delete </Button>
                 </CardContent>
     </Card>
     )

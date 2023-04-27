@@ -1,16 +1,10 @@
 import React, { useState } from "react"
-import PotionCard from "./PotionCard"
 import { Stack } from "@mui/material"
-import Container from '@mui/material/Container';
 import EditPotionCard from "./EditPotionCard";
 
 const Menu = ( { potions } ) => {
 
-    const handleDeletePotion = () => {
-        // fetch('/potion/'{}, {
-        //   method: 'DELETE'
-        // });
-      }
+
 
     const handleEditPotion = () => {
         // fetch('/potion/'{}, {
@@ -30,7 +24,7 @@ const Menu = ( { potions } ) => {
                 <EditPotionCard 
                     key={i} 
                     potion={potion} 
-                    handleDeletePotion={handleDeletePotion} 
+                    // handleDeletePotion={handleDeletePotion} 
                     handleEditPotion={handleEditPotion} 
                 />)}
             </Stack>
