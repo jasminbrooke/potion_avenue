@@ -1,19 +1,19 @@
 import React, { useState } from "react"
+import { useSelector, useDispatch } from 'react-redux'
+import { setCurrentUser } from "./actions/LoginActions";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
-import { useSelector } from 'react-redux'
-import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import { Dispatch } from "react";
 
 const ManageAccount = () => {
     const user = useSelector(state => state.LoginReducer.currentUser)
+    const dispatch = useDispatch();
 
-    const [displayname, setDisplayname] = useState('')
-    const [username, setUsername] = useState('')
-    const [storename, setStorename] = useState('')
-    
+    const [displayname, setDisplayname] = useState(user.displayname)
+    const [username, setUsername] = useState(user.username)
+    const [storename, setStorename] = useState(user.store_name)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`/users/${user.id}`, {
@@ -24,14 +24,14 @@ const ManageAccount = () => {
         body: JSON.stringify({
             displayname: displayname,
             username: username,
-            storename: storename
+            store_name: storename
         })
     })
     .then(response => response.json())
-    // .then((updatedUser) => {
-    //     dispatch({ type: "UPDATE_USER_SUCCESS", payload: updatedUser });
-    //   })
-    //   .catch((error) => console.error(error));
+    .then((updatedUser) => {
+        dispatch(setCurrentUser(updatedUser));
+      })
+      .catch((error) => console.error(error));
   }
 
     return (
@@ -41,23 +41,26 @@ const ManageAccount = () => {
             <Box>
                 <Container maxWidth="sm">
                     <form onSubmit={(e) => handleSubmit(e)}>
-                        <TextField 
+                        <TextField
+                            defaultValue={displayname}
                             onChange={(e) => setDisplayname(e.target.value)}
-                            label="Display Name" 
+                            label="Display Name"
                             variant="standard" 
                             />
                         <TextField 
+                            defaultValue={username}
                             onChange={(e) => setUsername(e.target.value)} 
                             label="Username" 
                             variant="standard" 
                             />
-                        <TextField 
+                        <TextField
+                            defaultValue={storename}
                             onChange={(e) => setStorename(e.target.value)} 
                             label="Storename" 
                             variant="standard" 
                         />
+                        <Button type='submit'>Update Changes</Button>
                     </form>
-                    <Button type='submit'>Update Changes</Button>
                 </Container>
             </Box>
         </div>
