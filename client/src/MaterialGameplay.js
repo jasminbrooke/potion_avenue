@@ -5,12 +5,11 @@ import CardHeader from '@mui/material/CardHeader';
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 
-const MaterialGameplay = ( { materials, mixture, handleMixture } ) => {
-
+const MaterialGameplay = ( { mixture, handleMixture, material } ) => {
     const [isSelected, setIsSelected] = useState(false);
     const disabled = !isSelected && mixture.length === 3 //disable cards when there are three materials in mixture
 
-    const handleClick = () => {
+    const handleClick = (material) => {
         if (!isSelected) {
             handleMixture([...mixture, material]) //should add material to the mixture and set card to selected
             setIsSelected(!isSelected)
@@ -25,31 +24,28 @@ const MaterialGameplay = ( { materials, mixture, handleMixture } ) => {
 
     const cardStyle =
     {
-        maxWidth: 400,
+        width: 200,
+        height: 100,
         backgroundColor: isSelected ? "lightblue" : "fff8e8",
         cursor: isSelected ? "default" : "pointer",
         opacity: disabled ? 0.5 : 1,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: "100%",
         pointerEvents: disabled ? "none" : "auto",
-        border: 0.5
+        margin: .5,
       }
 
     return (
-        <div>
-                <Card sx={{...cardStyle, height: 100 }}>
-                    <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
-                        <CardHeader>{material.name}</CardHeader>
-                        <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"  }}>
-                            <Typography variant="body2" color="text.secondary">
-                                {material.description}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-        </div>
+        <>
+            <Card key={material.id} sx={{...cardStyle}}>
+                <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick(material)}>
+                    <CardHeader>{material.name}</CardHeader>
+                    <CardContent>
+                        <Typography variant="body2" color="text.secondary">
+                            {material.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
+        </>
     )
 }
 

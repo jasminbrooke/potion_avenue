@@ -8,10 +8,9 @@ import ScienceIcon from '@mui/icons-material/Science';
 import { setCurrentUser } from "./actions/LoginActions";
 import MaterialGameplay from "./MaterialGameplay";
 import CardActionArea from "@mui/material/Card";
+import MaterialCard from "./MaterialCard";
 
 const Shopfront = ( { potions, materials } ) => {
-
-  const materialList = materials.map((material, i) => <Card> {material.name} </Card>)
 
   const [customers, setCustomers] = useState([])
   const [customerArray, setCustomerArray] = useState([])
@@ -83,8 +82,10 @@ const Shopfront = ( { potions, materials } ) => {
           <PotionList potions={potions} />
         </Container>
 
-        <Container>
-        <MaterialGameplay handleMixture={handleMixture} mixture={handleMixture} materialList={materialList}/>
+        <Container sx={{margin: '0 auto', display: "flex"}}>
+          {materials.map((material, i) => 
+        <MaterialGameplay key={i} handleMixture={handleMixture} mixture={mixture} material={material}/>
+          )}
         </Container>
     </Box>
   );
