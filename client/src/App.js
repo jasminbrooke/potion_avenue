@@ -5,6 +5,7 @@ import LogIn from './LogIn'
 import SignUp from './SignUp'
 import Home from './Home'
 import { setCurrentUser } from "./actions/LoginActions";
+import { setPotions } from "./actions/PotionActions"
 import { useDispatch } from "react-redux"
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
   const handleLogin = (user) => {
     dispatch(setCurrentUser(user));
+    dispatch(setPotions(user.potions))
     setIsLoggedIn(true)
     console.log(user)
   }

@@ -14,10 +14,11 @@ class PotionsController < ApplicationController
                 reward: potion.calculate_reward
             )
         if potion.valid?
-            potion.materials << Material.where(id: params[:material_ids]) # associate materials with the potion
+            materials = Material.where(id: params[:material_ids]).uniq
+            potion.materials << materials # associate materials with the potion
             render json: potion, status: :ok
         else
-            render json: { errors: potion.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: potion.errors.messages }, status: :unprocessable_entity
         end
     end 
 
@@ -25,9 +26,10 @@ class PotionsController < ApplicationController
         potion = Potion.find_by(id: params[:id])
         potion.update(potion_params)
         if potion.valid?
-            render json: potion, status: :ok
+            user = User.find(params[:user_id])
+            render json: user.potions, status: :ok
         else
-            render json: { errors: potion.errors.full_messages }, status: :unprocessable_entity
+            render json: { errors: potion.errors.messages }, status: :unprocessable_entity
         end
     end 
 

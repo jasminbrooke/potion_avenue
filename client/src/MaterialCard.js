@@ -1,25 +1,24 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material";
 import CardHeader from '@mui/material/CardHeader';
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import { addMaterial, removeMaterial } from "./actions/materialActions";
-import { useDispatch, useSelector } from "react-redux"
 
-const MaterialCard = ( { material } ) => {
-    const materialArray = useSelector(state => state.MaterialReducer.materials)
+const MaterialCard = ( { material, setMixture, mixture } ) => {
     const [isSelected, setIsSelected] = useState(false);
-    const dispatch = useDispatch();
-    const disabled = !isSelected && materialArray.length === 3
+    const disabled = !isSelected && mixture.length === 3 //disable cards when there are three materials in mixture
 
     const handleClick = () => {
-        if (isSelected) {
-            dispatch(removeMaterial(material))
+        if (!isSelected) {
+            setMixture([...mixture, material]) //should add material to the mixture and set card to selected
             setIsSelected(!isSelected)
-        } else if (materialArray.length < 3) {
-            dispatch(addMaterial(material))
+            console.log(mixture)
+
+        } else if (isSelected) {
+            setMixture(mixture.filter((m => m !== material))) //should remove material from mixture and deselect card
             setIsSelected(!isSelected)
+            console.log(mixture)
         } 
     }
 

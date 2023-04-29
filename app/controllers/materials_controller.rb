@@ -5,7 +5,6 @@ class MaterialsController < ApplicationController
         render json: materials
     end
 
-
     def show
         material = Material.find_by(id: params[:id])
         if material

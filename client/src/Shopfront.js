@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import ScienceIcon from '@mui/icons-material/Science';
 import { setCurrentUser } from "./actions/LoginActions";
 
-const Shopfront = ( { potions, getPotions } ) => {
+const Shopfront = ( { potions } ) => {
   const [customers, setCustomers] = useState([])
   const [customerArray, setCustomerArray] = useState([])
   const [served, setServed] = useState(false)
@@ -22,7 +22,6 @@ const Shopfront = ( { potions, getPotions } ) => {
   useEffect(() => {
     if (customers.length === 0) {
       getCustomers()
-      getPotions()
     }
   }, [])
 
