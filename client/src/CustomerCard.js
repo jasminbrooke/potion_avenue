@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import Card from '@mui/material/Card';
 import { CardActionArea, Typography } from "@mui/material"; 
 import ScienceIcon from '@mui/icons-material/Science';
+import IconButton from '@mui/material/IconButton';
 
-const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer}) => {
+const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer, handleBottleClick, handleCustomerClick}) => {
+    const [full, setFull] = useState(false)
     const {request, name:{first, last}, dob: {age}, picture: {thumbnail}} = customer
+    // const readytofill = 
 
     const handleClick = (customer) => {
         handleCurrentCustomer(customer)
+        handleCustomerClick(request)
         console.log(customer)
         console.log(currentCustomer)
     }
@@ -53,6 +57,11 @@ const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer}
         </CardActionArea>
     )
 
+    const bottleStyle = {
+        color: full ? 'success' : '#FFFFFF' + '80',
+        
+    }
+
 
     
     return (
@@ -61,7 +70,9 @@ const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer}
 
         {served ? servedCard : defaultCard}
         </Card>
-        <ScienceIcon sx={{ fontSize: 150, color: '#FFFFFF' + '80' }} />
+        <IconButton onClick={() => handleBottleClick(customer)} >
+            <ScienceIcon sx={{ ...bottleStyle, fontSize: 150 }}/>
+        </IconButton>
         </div>
     )
     

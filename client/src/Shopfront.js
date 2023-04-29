@@ -11,12 +11,24 @@ import CardActionArea from "@mui/material/Card";
 import MaterialCard from "./MaterialCard";
 
 const Shopfront = ( { potions, materials } ) => {
-
+  //put current order in redux?
   const [customers, setCustomers] = useState([])
   const [customerArray, setCustomerArray] = useState([])
   const [playingGame, setPlayingGame] = useState(false)
   const [currentCustomer, setCurrentCustomer] = useState({})
   const [mixture, setMixture] = useState([])
+  const [selectedRecipe, setSelectedRecipe] = useState({})
+  const [full, setFull] = useState(false)
+
+  const handleBrew = () => {
+    //subtract from materials quantity
+    //set card to brewing (bubbles)
+    //if mixture === selectedpotionrecipecard.materials array
+      //success! customer is happy, add to budget
+    //else customer is like "i think im gonna be sick... D="
+    //no sale
+    //clear mixture, deselect everything
+  }
 
   const handleMixture = (mixture) => {
     setMixture(mixture)
@@ -42,22 +54,32 @@ const Shopfront = ( { potions, materials } ) => {
 
   const startGame = () => {
     setPlayingGame(true)
-    let interval = setInterval(() => {
-      setCustomerArray(prevQueue => {
-        const newQueue = [...prevQueue];
-        const newCustomerArray = [...customers]
-        newQueue.shift(); // remove the first customer from the queue
-        newCustomerArray.shift()
-        const nextCustomer = newCustomerArray.find(customer => !prevQueue.includes(customer));
-        return newQueue.concat(nextCustomer);
-      });
-    }, 20000);
+    // let interval = setInterval(() => {
+    //   setCustomerArray(prevQueue => {
+    //     const newQueue = [...prevQueue];
+    //     const newCustomerArray = [...customers]
+    //     newQueue.shift(); // remove the first customer from the queue
+    //     newCustomerArray.shift()
+    //     const nextCustomer = newCustomerArray.find(customer => !prevQueue.includes(customer));
+    //     return newQueue.concat(nextCustomer);
+    //   });
+    // }, 20000);
   
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }
 
+  const handleBottleClick = (customer) => {
+    // if request.quantity > 0
+        // request.quantity - 1
+        // 
+        //check mixture brew time with potion brew time discrepency, 
+        //if mixture.brew_time < potion.brew_time ... overbrewed!
+    setFull(true)
+  }
 
-  const handleCustomerClick = () => {
+  const handleCustomerClick = (request) => {
+    setSelectedRecipe(request)
+    console.log("this is the request:" + request)
   };
 
   const customerList = (
@@ -67,19 +89,21 @@ const Shopfront = ( { potions, materials } ) => {
       potions={potions}
       handleCurrentCustomer={handleCurrentCustomer}
       currentCustomer={currentCustomer}
+      selectedRecipe={selectedRecipe}
+      handleBottleClick={handleBottleClick}
     />
   )
 
   return (
     <Box>
         <Container sx={{margin: '0 auto'}}>
-          {playingGame ? customerList : <Button onClick={() => startGame()}>Start Game</Button>}
+          {playingGame ? customerList : <Button onClick={() => startGame()}>Start Game</Button> }
         </Container>
         <div>
           x
         </div>
         <Container sx={{margin: '0 auto'}}>
-          <PotionList potions={potions} />
+          <PotionList potions={potions} selectedRecipe={selectedRecipe} mixture={mixture} handleMixture={handleMixture}/>
         </Container>
 
         <Container sx={{margin: '0 auto', display: "flex"}}>
