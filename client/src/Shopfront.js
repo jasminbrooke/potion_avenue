@@ -3,14 +3,30 @@ import CustomerList from "./CustomerList"
 import Container from "@mui/material/Container";
 import PotionList from "./PotionList";
 import { Box } from "@mui/material";
+import Button from '@mui/material/Button';
 import ScienceIcon from '@mui/icons-material/Science';
 import { setCurrentUser } from "./actions/LoginActions";
+import MaterialGameplay from "./MaterialGameplay";
+import CardActionArea from "@mui/material/Card";
 
-const Shopfront = ( { potions } ) => {
+const Shopfront = ( { potions, materials } ) => {
+
+  const materialList = materials.map((material, i) => <Card> {material.name} </Card>)
+
   const [customers, setCustomers] = useState([])
   const [customerArray, setCustomerArray] = useState([])
-  const [served, setServed] = useState(false)
-  const [timer, setTimer] = useState()
+  const [playingGame, setPlayingGame] = useState(false)
+  const [currentCustomer, setCurrentCustomer] = useState({})
+  const [mixture, setMixture] = useState([])
+
+  const handleMixture = (mixture) => {
+    setMixture(mixture)
+    console.log(mixture)
+  }
+
+  const handleCurrentCustomer = (customer) => {
+      setCurrentCustomer(customer)
+  }
 
   const getCustomers = async () => {
     const response = await fetch("https://randomuser.me/api/?results=100&inc=name,dob,picture")
@@ -25,8 +41,9 @@ const Shopfront = ( { potions } ) => {
     }
   }, [])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
+  const startGame = () => {
+    setPlayingGame(true)
+    let interval = setInterval(() => {
       setCustomerArray(prevQueue => {
         const newQueue = [...prevQueue];
         const newCustomerArray = [...customers]
@@ -38,23 +55,36 @@ const Shopfront = ( { potions } ) => {
     }, 5000);
   
     return () => clearInterval(interval);
-  }, [customerArray]);
+  }
 
 
   const handleCustomerClick = () => {
-    setServed(true)
   };
+
+  const customerList = (
+    <CustomerList
+      handleCustomerClick={handleCustomerClick}
+      customerArray={customerArray}
+      potions={potions}
+      handleCurrentCustomer={handleCurrentCustomer}
+      currentCustomer={currentCustomer}
+    />
+  )
 
   return (
     <Box>
         <Container sx={{margin: '0 auto'}}>
-          <CustomerList setServed={setServed} handleCustomerClick={handleCustomerClick} customerArray={customerArray} potions={potions} served={served}/>
+          {playingGame ? customerList : <Button onClick={() => startGame()}>Start Game</Button>}
         </Container>
         <div>
           x
         </div>
         <Container sx={{margin: '0 auto'}}>
           <PotionList potions={potions} />
+        </Container>
+
+        <Container>
+        <MaterialGameplay handleMixture={handleMixture} mixture={handleMixture} materialList={materialList}/>
         </Container>
     </Box>
   );

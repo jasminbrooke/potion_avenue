@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Card from '@mui/material/Card';
-import { CardActionArea } from "@mui/material"; 
+import { CardActionArea, Typography } from "@mui/material"; 
+import ScienceIcon from '@mui/icons-material/Science';
 
-const CustomerCard = ({customer, handleCustomerClick, served}) => {
+const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer}) => {
     const {name:{first, last}, dob: {age}, picture: {thumbnail}} = customer
+
+    const handleClick = (customer) => {
+        handleCurrentCustomer(customer)
+        console.log(customer)
+        console.log(currentCustomer)
+    }
+
     
     const cardStyle =
     {
@@ -11,7 +19,7 @@ const CustomerCard = ({customer, handleCustomerClick, served}) => {
         display: "flex",
         justifyContent: "space-between",
         height: "100%",
-        backgroundColor: '#7d4534'
+        backgroundColor: currentCustomer === customer ? '#fff8e8' : '#7d4534'
         // backgroundImage: "url(/assets/wood.avif)"
     }
 
@@ -32,26 +40,29 @@ const CustomerCard = ({customer, handleCustomerClick, served}) => {
 
     const defaultCard = (
         <CardActionArea 
-        onClick={() => {handleCustomerClick(customer)}}
+        onClick={() => {handleClick(customer)}}
             sx={{ height: "100%" }}>
-                <img
-                    floated='right'
-                    size='mini'
-                    src={thumbnail}
-                    />
-            <p>{first} of {last}</p>
-            <p sx={{ fontsize: '10' }}>Level {age}</p>
-            <p>"Greetings! Please give me a random potion."</p>
+                    <img
+                        floated='right'
+                        size='mini'
+                        src={thumbnail}
+                        />
+                    <p >{first} of {last}</p>
+                    <p sx={{ fontsize: '10' }}>Level {age}</p>
+                    <p>"Greetings! Please give me a random potion."</p>
         </CardActionArea>
     )
 
 
     
     return (
-        <Card sx={{...cardStyle, height: 150, width: 200, raised: true }}>
+        <div>
+        <Card sx={{...cardStyle, height: 200, width: 200, raised: true }}>
 
         {served ? servedCard : defaultCard}
         </Card>
+        <ScienceIcon sx={{ fontSize: 150, color: '#FFFFFF' + '80' }} />
+        </div>
     )
     
 }

@@ -27,7 +27,6 @@ function App() {
     dispatch(setCurrentUser(user));
     dispatch(setPotions(user.potions))
     setIsLoggedIn(true)
-    console.log(user)
   }
   const handleLogout = () => {
     fetch('/logout', {

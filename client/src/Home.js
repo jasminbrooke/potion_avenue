@@ -42,7 +42,7 @@ const Home = () => {
         </Switch>
 
         <Switch>
-          <Route exact path="shopfront" element={<Shopfront potions={potions}/>}/>
+          <Route exact path="shopfront" element={<Shopfront potions={potions} materials={materials} />}/>
         </Switch>
 
         <Switch>

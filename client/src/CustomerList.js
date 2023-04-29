@@ -3,11 +3,18 @@ import CustomerCard from "./CustomerCard"
 import Grid from '@mui/material/Grid'; // Grid version 1
 import Stack from '@mui/material/Stack';
 
-const CustomerList = ( {customerArray, handleCustomerClick} ) => {
+const CustomerList = ( {customerArray, handleCustomerClick, handleCurrentCustomer, currentCustomer } ) => {
     
     return (
         <Stack direction="row" spacing={2} sx={{alignItems: 'center', justifyContent: 'center'}} >
-            {customerArray.map((customer, i) => <CustomerCard key={i} customer={customer} handleCustomerClick={handleCustomerClick} />)}
+            {customerArray.map((customer, i) => 
+            <CustomerCard 
+                key={i} 
+                customer={customer} 
+                handleCustomerClick={handleCustomerClick}
+                handleCurrentCustomer={handleCurrentCustomer}
+                currentCustomer={currentCustomer}
+            />)}
         </Stack>
     )}
 
