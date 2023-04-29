@@ -51,7 +51,7 @@ const Shopfront = ( { potions, materials } ) => {
         const nextCustomer = newCustomerArray.find(customer => !prevQueue.includes(customer));
         return newQueue.concat(nextCustomer);
       });
-    }, 5000);
+    }, 20000);
   
     return () => clearInterval(interval);
   }

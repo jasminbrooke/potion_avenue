@@ -3,8 +3,13 @@ import CustomerCard from "./CustomerCard"
 import Grid from '@mui/material/Grid'; // Grid version 1
 import Stack from '@mui/material/Stack';
 
-const CustomerList = ( {customerArray, handleCustomerClick, handleCurrentCustomer, currentCustomer } ) => {
-    
+const CustomerList = ( {potions, customerArray, handleCustomerClick, handleCurrentCustomer, currentCustomer } ) => {
+
+    customerArray.forEach(customer => {
+        if(!customer.request) {
+            customer.request = potions[Math.floor(Math.random() * potions.length)]
+        }})
+
     return (
         <Stack direction="row" spacing={2} sx={{alignItems: 'center', justifyContent: 'center'}} >
             {customerArray.map((customer, i) => 

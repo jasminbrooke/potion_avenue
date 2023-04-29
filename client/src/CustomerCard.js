@@ -4,7 +4,7 @@ import { CardActionArea, Typography } from "@mui/material";
 import ScienceIcon from '@mui/icons-material/Science';
 
 const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer}) => {
-    const {name:{first, last}, dob: {age}, picture: {thumbnail}} = customer
+    const {request, name:{first, last}, dob: {age}, picture: {thumbnail}} = customer
 
     const handleClick = (customer) => {
         handleCurrentCustomer(customer)
@@ -12,15 +12,15 @@ const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer}
         console.log(currentCustomer)
     }
 
-    
+    const color = '#fff8e8';
+
     const cardStyle =
     {
         width: 200,
         display: "flex",
         justifyContent: "space-between",
         height: "100%",
-        backgroundColor: currentCustomer === customer ? '#fff8e8' : '#7d4534'
-        // backgroundImage: "url(/assets/wood.avif)"
+        backgroundColor: currentCustomer === customer ?  '#fff8e8' : '#7d4534'
     }
 
 
@@ -49,7 +49,7 @@ const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer}
                         />
                     <p >{first} of {last}</p>
                     <p sx={{ fontsize: '10' }}>Level {age}</p>
-                    <p>"Greetings! Please give me a random potion."</p>
+                    <p>"Greetings! Please give me a {request.name} "</p>
         </CardActionArea>
     )
 
