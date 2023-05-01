@@ -6,9 +6,9 @@ import { Box } from "@mui/material";
 import Button from '@mui/material/Button';
 import ScienceIcon from '@mui/icons-material/Science';
 import { setCurrentUser } from "./actions/LoginActions";
-import MaterialGameplay from "./MaterialGameplay";
 import CardActionArea from "@mui/material/Card";
 import MaterialCard from "./MaterialCard";
+import Slots from "./Slots";
 
 const Shopfront = ( { potions, materials } ) => {
   //put current order in redux?
@@ -16,23 +16,63 @@ const Shopfront = ( { potions, materials } ) => {
   const [customerArray, setCustomerArray] = useState([])
   const [playingGame, setPlayingGame] = useState(false)
   const [currentCustomer, setCurrentCustomer] = useState({})
-  const [mixture, setMixture] = useState([])
+  const [brewingMaterials, setBrewingMaterials] = useState([])
   const [selectedRecipe, setSelectedRecipe] = useState({})
-  const [full, setFull] = useState(false)
+  const [comparison, setComparison] = useState({})
 
+  const handleServe = () => {
+    //get points and feedback
+    return(
+      comparison.cost > selectedRecipe.cost ? console.log('Too expensive') : console.log('Cheaply made...'),
+      comparison.quality > selectedRecipe.quality ? console.log('Well, la dee da.') : console.log('I think I am gonna be sick!'),
+      comparison.brew_time > selectedRecipe.brew_time ? console.log('Finally!') : console.log('Seems underbrewed...')
+    )
+  }
+ 
   const handleBrew = () => {
+    return(
+      //determine if brewingMaterials and selectedRecipe matches
+      comparison.cost === selectedRecipe.cost ? console.log('Thank you!') : ('error'),
+      comparison.time === selectedRecipe.brew_time ? console.log('Thank you!') : ('error'),
+      comparison.quality === selectedRecipe.quality ? console.log('Thank you!') : ('error')
+    )
+  }
+
+  const handleMix = (brewingMaterials) => {
+    const results = brewingMaterials.reduce((accumulator, material) => { 
+      ['cost', 'quality', 'time'].forEach(key => {
+        accumulator[key] ||= 0
+        accumulator[key] += material[key]
+      })
+        return (accumulator)
+    }, {})
+    console.log(results)
+    console.log('Current customer' + currentCustomer.name)
+    console.log('Recipe' + selectedRecipe.name)
+    setBrewingMaterials([])
+    setComparison(results)
+
+
+    //if results.cost >
+    //if results.brew_time >
+    //if results.quality >
+
     //subtract from materials quantity
     //set card to brewing (bubbles)
-    //if mixture === selectedpotionrecipecard.materials array
+    //if brewingMaterials === selectedpotionrecipecard.materials array
       //success! customer is happy, add to budget
     //else customer is like "i think im gonna be sick... D="
     //no sale
-    //clear mixture, deselect everything
+    //clear brewingMaterials, deselect everything
   }
 
-  const handleMixture = (mixture) => {
-    setMixture(mixture)
-    console.log(mixture)
+  const handleMixture = (material) => {
+    if (brewingMaterials.includes(material)) {
+      setBrewingMaterials((prevMaterials => [...prevMaterials.filter((m => m !== material ))]))
+    } else if (brewingMaterials.length < 3 && !brewingMaterials.includes(material)) {
+      setBrewingMaterials((prevMaterials => [...prevMaterials, material]))
+    }
+    console.log(brewingMaterials)
   }
 
   const handleCurrentCustomer = (customer) => {
@@ -68,16 +108,9 @@ const Shopfront = ( { potions, materials } ) => {
     // return () => clearInterval(interval);
   }
 
-  const handleBottleClick = (customer) => {
-    // if request.quantity > 0
-        // request.quantity - 1
-        // 
-        //check mixture brew time with potion brew time discrepency, 
-        //if mixture.brew_time < potion.brew_time ... overbrewed!
-    setFull(true)
-  }
 
   const handleCustomerClick = (request) => {
+    debugger
     setSelectedRecipe(request)
     console.log("this is the request:" + request)
   };
@@ -90,7 +123,6 @@ const Shopfront = ( { potions, materials } ) => {
       handleCurrentCustomer={handleCurrentCustomer}
       currentCustomer={currentCustomer}
       selectedRecipe={selectedRecipe}
-      handleBottleClick={handleBottleClick}
     />
   )
 
@@ -102,15 +134,16 @@ const Shopfront = ( { potions, materials } ) => {
         <div>
           x
         </div>
-        <Container sx={{margin: '0 auto'}}>
-          <PotionList potions={potions} selectedRecipe={selectedRecipe} mixture={mixture} handleMixture={handleMixture}/>
-        </Container>
-
-        <Container sx={{margin: '0 auto', display: "flex"}}>
-          {materials.map((material, i) => 
-        <MaterialGameplay key={i} handleMixture={handleMixture} mixture={mixture} material={material}/>
-          )}
-        </Container>
+    <Container sx={{margin: '0 auto'}}>
+        <Slots 
+        handleMix={handleMix} 
+        handleBrew={handleBrew} 
+        brewingMaterials={brewingMaterials} 
+        materials={materials} 
+        handleMixture={handleMixture}
+        selectedRecipe={selectedRecipe}
+        handleServe={handleServe}/>
+    </Container>
     </Box>
   );
 };

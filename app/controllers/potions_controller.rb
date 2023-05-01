@@ -14,8 +14,6 @@ class PotionsController < ApplicationController
                 reward: potion.calculate_reward
             )
         if potion.valid?
-            materials = Material.where(id: params[:material_ids]).uniq
-            potion.materials << materials # associate materials with the potion
             render json: potion, status: :ok
         else
             render json: { errors: potion.errors.messages }, status: :unprocessable_entity

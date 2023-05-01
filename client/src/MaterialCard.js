@@ -38,16 +38,16 @@ const MaterialCard = ( { material, setMixture, mixture } ) => {
 
     return (
         <div>
-                <Card sx={{...cardStyle, height: 100 }}>
-                    <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
-                        <CardHeader>{material.name}</CardHeader>
-                        <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"  }}>
-                            <Typography variant="body2" color="text.secondary">
-                                {material.description}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
+            <Card sx={{...cardStyle, height: 100 }}>
+                <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
+                    <CardHeader>{material.name}</CardHeader>
+                    <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"  }}>
+                        <Typography variant="body2" color="text.secondary">
+                            {material.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+            </Card>
         </div>
     )
 }

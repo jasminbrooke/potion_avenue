@@ -70,9 +70,9 @@ const CustomerCard = ({customer, served, currentCustomer, handleCurrentCustomer,
 
         {served ? servedCard : defaultCard}
         </Card>
-        <IconButton onClick={() => handleBottleClick(customer)} >
+        {/* <IconButton onClick={() => handleBottleClick(customer)} >
             <ScienceIcon sx={{ ...bottleStyle, fontSize: 150 }}/>
-        </IconButton>
+        </IconButton> */}
         </div>
     )
     
