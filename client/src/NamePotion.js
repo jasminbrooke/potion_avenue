@@ -9,9 +9,13 @@ const NamePotion = ( { handleSubmit, potionErrors } ) => {
     const user_id = useSelector(state => state.LoginReducer.currentUser.id)
     const [name, setName] = useState('')
     const [description, setDescription] = useState("A questionable potion with unknown effects...")
-    // const [image, setImage] = useState('http://www.clipartbest.com/cliparts/eTM/yMq/eTMyMqxAc.png')
 
+    // const [image, setImage] = useState('http://www.clipartbest.com/cliparts/eTM/yMq/eTMyMqxAc.png')
     
+
+
+
+
     const newPotion={
         name,
         // image: image,
@@ -19,10 +23,6 @@ const NamePotion = ( { handleSubmit, potionErrors } ) => {
         user_id: user_id
     }  
 
-    const handleClick = () => {
-        console.log(materialArray)
-        console.log(user_id)
-    }
 
  return (
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}> 
@@ -44,7 +44,10 @@ const NamePotion = ( { handleSubmit, potionErrors } ) => {
                             sx={{ flex: 1}}
                         />
                     </Box>
-                    <Button type="submit">Brew Potion</Button>
+                    <Button 
+                    id="gooey-button" 
+                    type="submit"> Brew Potion
+                    </Button>
                 </form>
             </Box>
     )}
