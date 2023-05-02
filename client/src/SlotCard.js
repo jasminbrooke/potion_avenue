@@ -1,55 +1,55 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useRef, useState} from "react"
 import MaterialSelector from "./MaterialSelector";
 import ScienceIcon from '@mui/icons-material/Science';
 import IconButton from '@mui/material/IconButton';
-import { Typography } from "@mui/material";
 
 const SlotCard = ( { 
-    selectedRecipe, 
     brewingMaterials, 
     handleMixture, 
     materials, 
     handleBrew, 
     handleMix, 
     slot, 
-    selectedCard, 
+    selectedSlot, 
     onSelect, 
-    setSelectedCard,
-    handleServe
+    setSelectedSlot,
+    handleServe,
+    currentCustomer
     } ) => {
-
-    const [readytoBrew, setReadytoBrew] = useState(false)
+    const [ready, setReady] = useState('toStart')
     const [brewing, setBrewing] = useState(false)
-    const [readytoServe, setReadytoServe] = useState(false)
     const [message, setMessage] = useState('')
-    const timer = selectedRecipe.brew_time
+    const timer = currentCustomer?.request?.brew_time
+    const customer = useRef(currentCustomer)
 
-    //change logic so materialSelector is its own state, that way the card be deselected when brewing
-    // selectionMode? 
-    //put customers name on Card????
+    useEffect(() => {
+        if (selectedSlot === slot) {
+            customer.current = currentCustomer;
+        }
+      }, [selectedSlot]);
 
-    const handleClick = (brewingMaterials) => {
-        console.log(brewingMaterials)
-        console.log(selectedRecipe)
+    const handleClickMix = (brewingMaterials) => {
+        setReady('toBrew')
         handleMix(brewingMaterials)
-        setReadytoBrew(true)
         setMessage('Ready to brew!')
     }
 
     const handleBottleClick = () => {
-        if (readytoServe) {
-            handleServe()
-            setReadytoBrew(false)
-            setSelectedCard(null)
-        } else {
+        if (ready === 'toBrew') {
             setBrewing(true)
             setMessage('Brewing...')
             handleBrew()
             setTimeout(() => {
                 setBrewing(false);
-                setReadytoServe(true)
-                setMessage('Ready to Serve!')
+                setReady('toServe')
+                setMessage('Ready to Serve! ' + customer?.current?.name?.first) 
             }, timer * 1000);
+        } else if (ready === 'toServe') {
+            handleServe(customer.current)
+            setReady('toStart')
+            setSelectedSlot(null)
+        } else {
+            console.log(ready)
         }
     }
 
@@ -63,21 +63,36 @@ const SlotCard = ( {
         opacity: '0.5',
     }
 
+
+    const renderSelector = () => {
+        return (
+            <>
+            <MaterialSelector 
+                materials={materials}  
+                brewingMaterials={brewingMaterials} 
+                handleMixture={handleMixture}
+                handleMix={handleMix}
+                />
+                <IconButton onClick={() => handleClickMix(brewingMaterials)}> Mix! </IconButton>
+                <> {brewingMaterials.map((material) => <p key={material.id}> {material.name} </p>)} </>
+            </>
+        )
+    }
+
     const renderCard = () => {
-        if (selectedCard === slot && !readytoBrew) {
+        if (ready === 'toStart') {
             return (
                 <>
-                <MaterialSelector 
-                    materials={materials}  
-                    brewingMaterials={brewingMaterials} 
-                    handleMixture={handleMixture}
-                    handleMix={handleMix}
-                    />
-                    <IconButton onClick={() => handleClick(brewingMaterials)}> Mix! </IconButton>
-                    <> {brewingMaterials.map((material) => <p key={material.id}> {material.name} </p>)} </>
+                    <IconButton 
+                        onClick={() => onSelect(slot)}
+                        disabled={!currentCustomer}
+                        // selectedSlot && !(selectedSlot === slot) && 
+                        >
+                        <ScienceIcon sx={{ ...emptyBottle, fontSize: 150 }} />
+                    </IconButton>   
                 </>
             )
-        } else if (readytoBrew) {
+        } else {
             return (
                 <>
                     <IconButton
@@ -88,25 +103,14 @@ const SlotCard = ( {
                     <p>{message}</p>
                 </>
             )
-        } else {
-            return (
-                <>
-                    <IconButton 
-                        onClick={() => onSelect(slot)}
-                        disabled={selectedCard && selectedCard === slot} 
-                        >
-                        <ScienceIcon sx={{ ...emptyBottle, fontSize: 150 }} />
-                    </IconButton>   
-                </>
-            )
         }
     }
 
     return (
-        <div>
-            {renderCard()}
-        </div>
-    )
+        selectedSlot === slot && ready === 'toStart'
+          ? renderSelector()
+          : renderCard()
+      )
 }
 
 export default SlotCard;

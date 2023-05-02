@@ -11,25 +11,30 @@ import MaterialCard from "./MaterialCard";
 import Slots from "./Slots";
 
 const Shopfront = ( { potions, materials } ) => {
-  //put current order in redux?
   const [customers, setCustomers] = useState([])
   const [customerArray, setCustomerArray] = useState([])
   const [playingGame, setPlayingGame] = useState(false)
-  const [currentCustomer, setCurrentCustomer] = useState({})
+  const [currentCustomer, setCurrentCustomer] = useState(null)
   const [brewingMaterials, setBrewingMaterials] = useState([])
   const [selectedRecipe, setSelectedRecipe] = useState({})
   const [comparison, setComparison] = useState({})
+  const [served, setServed] = useState(false)
+  const [feedback, setFeedback] = useState('')
 
-  const handleServe = () => {
+  const handleServe = (customer) => {
     //get points and feedback
+    setServed(true)
     return(
-      comparison.cost > selectedRecipe.cost ? console.log('Too expensive') : console.log('Cheaply made...'),
-      comparison.quality > selectedRecipe.quality ? console.log('Well, la dee da.') : console.log('I think I am gonna be sick!'),
-      comparison.brew_time > selectedRecipe.brew_time ? console.log('Finally!') : console.log('Seems underbrewed...')
+
+      comparison.cost > customer.request.cost ? console.log('Too expensive') : console.log('Cheaply made...'),
+      comparison.quality > customer.request.quality ? console.log('Well, la dee da.') : console.log('I think I am gonna be sick!'),
+      comparison.brew_time > customer.request.brew_time ? console.log('Finally!') : console.log('Seems underbrewed...'),
+      console.log()
     )
   }
  
   const handleBrew = () => {
+    setCurrentCustomer(null)
     return(
       //determine if brewingMaterials and selectedRecipe matches
       comparison.cost === selectedRecipe.cost ? console.log('Thank you!') : ('error'),
@@ -46,24 +51,8 @@ const Shopfront = ( { potions, materials } ) => {
       })
         return (accumulator)
     }, {})
-    console.log(results)
-    console.log('Current customer' + currentCustomer.name)
-    console.log('Recipe' + selectedRecipe.name)
     setBrewingMaterials([])
     setComparison(results)
-
-
-    //if results.cost >
-    //if results.brew_time >
-    //if results.quality >
-
-    //subtract from materials quantity
-    //set card to brewing (bubbles)
-    //if brewingMaterials === selectedpotionrecipecard.materials array
-      //success! customer is happy, add to budget
-    //else customer is like "i think im gonna be sick... D="
-    //no sale
-    //clear brewingMaterials, deselect everything
   }
 
   const handleMixture = (material) => {
@@ -72,11 +61,6 @@ const Shopfront = ( { potions, materials } ) => {
     } else if (brewingMaterials.length < 3 && !brewingMaterials.includes(material)) {
       setBrewingMaterials((prevMaterials => [...prevMaterials, material]))
     }
-    console.log(brewingMaterials)
-  }
-
-  const handleCurrentCustomer = (customer) => {
-      setCurrentCustomer(customer)
   }
 
   const getCustomers = async () => {
@@ -108,44 +92,46 @@ const Shopfront = ( { potions, materials } ) => {
     // return () => clearInterval(interval);
   }
 
-
-  const handleCustomerClick = (request) => {
-    debugger
-    setSelectedRecipe(request)
-    console.log("this is the request:" + request)
+  const handleCurrentCustomer = (customer) => {
+    if (!currentCustomer) {
+      setCurrentCustomer(customer)
+      setSelectedRecipe(customer.request)
+  } else {
+    console.log(currentCustomer)
+  }
   };
 
-  const customerList = (
-    <CustomerList
-      handleCustomerClick={handleCustomerClick}
-      customerArray={customerArray}
-      potions={potions}
-      handleCurrentCustomer={handleCurrentCustomer}
-      currentCustomer={currentCustomer}
-      selectedRecipe={selectedRecipe}
-    />
-  )
-
   return (
-    <Box>
-        <Container sx={{margin: '0 auto'}}>
-          {playingGame ? customerList : <Button onClick={() => startGame()}>Start Game</Button> }
-        </Container>
-        <div>
-          x
-        </div>
-    <Container sx={{margin: '0 auto'}}>
+    playingGame ?
+      <Box>
+        <CustomerList
+          customerArray={customerArray}
+          potions={potions}
+          handleCurrentCustomer={handleCurrentCustomer}
+          currentCustomer={currentCustomer}
+          selectedRecipe={selectedRecipe}
+          served={served}
+        /> 
+          <div>
+            x
+          </div>
+      <Container sx={{margin: '0 auto'}}>
         <Slots 
-        handleMix={handleMix} 
-        handleBrew={handleBrew} 
-        brewingMaterials={brewingMaterials} 
-        materials={materials} 
-        handleMixture={handleMixture}
-        selectedRecipe={selectedRecipe}
-        handleServe={handleServe}/>
-    </Container>
-    </Box>
-  );
+          handleMix={handleMix} 
+          handleBrew={handleBrew} 
+          brewingMaterials={brewingMaterials} 
+          materials={materials} 
+          handleMixture={handleMixture}
+          selectedRecipe={selectedRecipe}
+          currentCustomer={currentCustomer}
+          handleServe={handleServe}/>
+        </Container>
+      </Box>
+      :
+      <Container>
+      <Button onClick={() => startGame()}>Start Game</Button>
+      </Container>
+      )
 };
 
 export default Shopfront

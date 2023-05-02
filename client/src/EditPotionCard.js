@@ -65,6 +65,7 @@ const EditPotionCard = ( { potion } ) => {
                             potion.materials?.map((material, i) => <Typography sx={{fontSize: 12 }} key={i}>|{material.name}|</Typography>)
                         }
                     </Stack>
+                    <Typography>| cost:{potion.cost} | time:{potion.brew_time} |</Typography>
                 </CardContent>
             </CardActionArea>
         </Card>

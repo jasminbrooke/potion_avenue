@@ -17,11 +17,15 @@ const Slots = ({
     readytoBrew,
     handleBrew,
     handleMix,
-    handleServe
+    handleServe,
+    currentCustomer,
  }) => {
     const slots = [1, 2, 3, 4, 5]
-    const [selectedCard, setSelectedCard] = useState(null)
-    const onSelect = (slot) => setSelectedCard(slot)
+    const [selectedSlot, setSelectedSlot] = useState(null)
+
+    const onSelect = (slot) => {
+        setSelectedSlot(slot)
+    }
 
     return (
         <Stack direction="row">
@@ -36,10 +40,11 @@ const Slots = ({
                             handleBrew={handleBrew}
                             handleMix={handleMix}
                             slot={slot}
-                            selectedCard={selectedCard}
+                            selectedSlot={selectedSlot}
                             onSelect={onSelect}
-                            setSelectedCard={setSelectedCard}
+                            setSelectedSlot={setSelectedSlot}
                             handleServe={handleServe}
+                            currentCustomer={currentCustomer}
                         />
                 </Card>
             ))}

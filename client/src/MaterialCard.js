@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material";
-import CardHeader from '@mui/material/CardHeader';
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 
@@ -40,10 +39,9 @@ const MaterialCard = ( { material, setMixture, mixture } ) => {
         <div>
             <Card sx={{...cardStyle, height: 100 }}>
                 <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
-                    <CardHeader>{material.name}</CardHeader>
                     <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"  }}>
                         <Typography variant="body2" color="text.secondary">
-                            {material.description}
+                            {material.name}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
