@@ -44,7 +44,6 @@ const NamePotion = ( { handleSubmit, potionErrors } ) => {
                             sx={{ flex: 1}}
                         />
                     </Box>
-                    <Button onClick={() => handleClick()}>XXX</Button>
                     <Button type="submit">Brew Potion</Button>
                 </form>
             </Box>
