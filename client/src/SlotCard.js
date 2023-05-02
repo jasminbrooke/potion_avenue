@@ -30,7 +30,7 @@ const SlotCard = ( {
 
     const handleClickMix = (brewingMaterials) => {
         setReady('toBrew')
-        handleMix(brewingMaterials)
+        handleMix(brewingMaterials, customer.current)
         setMessage('Ready to brew!')
     }
 
@@ -38,7 +38,7 @@ const SlotCard = ( {
         if (ready === 'toBrew') {
             setBrewing(true)
             setMessage('Brewing...')
-            handleBrew()
+            handleBrew(customer.current)
             setTimeout(() => {
                 setBrewing(false);
                 setReady('toServe')
