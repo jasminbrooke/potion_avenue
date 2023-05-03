@@ -10,18 +10,14 @@ import CreatePotionForm from "./CreatePotionForm";
 
 const Home = () => {
   const user = useSelector(state => state.LoginReducer.currentUser)
+  const potions = useSelector(state => state.PotionReducer.potions)
   const [materials, setMaterials] = useState([])
-  const [potions, setPotions] = useState(user.potions)
 
   const getMaterials = async () => {
     const response = await fetch('/materials');
     const data = await response.json();
       setMaterials(data);
   }
-  
-  useEffect(() => {
-    setPotions(user.potions)
-  }, [user])
 
   useEffect(() => {
     getMaterials()
@@ -42,11 +38,11 @@ const Home = () => {
         </Switch>
 
         <Switch>
-          <Route exact path="shopfront" element={<Shopfront potions={potions} materials={materials} />}/>
+          <Route exact path="shopfront" element={<Shopfront materials={materials} />}/>
         </Switch>
 
         <Switch>
-          <Route exact path="viewinventory" element={<Inventory materials={materials} potions={potions}/>}/>
+          <Route exact path="viewinventory" element={<Inventory materials={materials} />}/>
         </Switch>
 
         <Switch>

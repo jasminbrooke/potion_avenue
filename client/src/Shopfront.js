@@ -10,7 +10,7 @@ import CardActionArea from "@mui/material/Card";
 import MaterialCard from "./MaterialCard";
 import Slots from "./Slots";
 
-const Shopfront = ( { potions, materials } ) => {
+const Shopfront = ( { materials } ) => {
   const [customers, setCustomers] = useState([])
   const [customerArray, setCustomerArray] = useState([])
   const [playingGame, setPlayingGame] = useState(false)
@@ -87,7 +87,6 @@ const Shopfront = ( { potions, materials } ) => {
       <Box>
         <CustomerList
           customerArray={customerArray}
-          potions={potions}
           handleCurrentCustomer={handleCurrentCustomer}
           currentCustomer={currentCustomer}
           served={served}
@@ -104,8 +103,8 @@ const Shopfront = ( { potions, materials } ) => {
         </Container>
       </Box>
       :
-      <Container>
-      <Button onClick={() => startGame()}>Start Game</Button>
+      <Container id="start-game">
+        <Button sx={{ fontSize: '2rem' }} onClick={() => startGame()}>Start Game</Button>
       </Container>
       )
 };

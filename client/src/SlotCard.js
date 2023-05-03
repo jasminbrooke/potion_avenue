@@ -43,7 +43,7 @@ const SlotCard = ( {
           return brewingMaterials.some(brewingMaterial => brewingMaterial.name === requestMaterial.name)
         })
         let res = brewingMaterials.reduce((accumulator, material) => { 
-        ['cost', 'quality', 'time'].forEach(key => {
+        ['cost', 'quality', 'brew_time'].forEach(key => {
             accumulator[key] ||= 0
             accumulator[key] += material[key]
         })
@@ -56,12 +56,20 @@ const SlotCard = ( {
       }
 
     const processFeedback = (res) => {
-debugger
-        // const differences = array1.map((value, index) => Math.abs(value - array2[index]));
-        // const maxDifference = Math.max(...differences);
-        // const maxDifferenceIndex = differences.indexOf(maxDifference);
+        let maxDiff = 0
+        let maxDiffKey = null
         
-
+        for (const key in res) {
+            if (customer.current.request.hasOwnProperty(key)) {
+                const diff = Math.abs(res[key] - customer.current.request[key])
+                if (diff > maxDiff) {
+                    maxDiff = diff
+                    maxDiffKey = key
+                }
+            }
+        }
+        debugger
+        // res[maxDiffKey] > customer.current.request[maxDiffKey] 
 
 
         // results.cost > customer.current.request.cost ?

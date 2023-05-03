@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_021442) do
     t.string "name"
     t.string "description"
     t.integer "cost"
-    t.integer "time"
+    t.integer "brew_time"
     t.integer "reward"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

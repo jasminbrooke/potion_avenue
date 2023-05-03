@@ -38,4 +38,8 @@ code {
   margin: auto;
 }
 
-
+#start-game {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+}

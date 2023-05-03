@@ -12,7 +12,7 @@ class Potion < ApplicationRecord
     end
 
     def calculate_brew_time
-        materials.sum(:time)
+        materials.sum(:brew_time)
     end
 
     def calculate_quality

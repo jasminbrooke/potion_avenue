@@ -4,7 +4,7 @@ class CreateMaterials < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.integer :cost
-      t.integer :time
+      t.integer :brew_time
       t.integer :reward
 
       t.timestamps
