@@ -10,13 +10,9 @@ import MaterialSelector from "./MaterialSelector";
 import SlotCard from './SlotCard'
 
 const Slots = ({
-    selectedRecipe,
-    brewingMaterials,
-    handleMixture,
     materials,
     readytoBrew,
     handleBrew,
-    handleMix,
     handleServe,
     currentCustomer,
  }) => {
@@ -34,11 +30,7 @@ const Slots = ({
                         <SlotCard
                             readytoBrew={readytoBrew}
                             materials={materials}
-                            selectedRecipe={selectedRecipe}
-                            brewingMaterials={brewingMaterials}
-                            handleMixture={handleMixture}
                             handleBrew={handleBrew}
-                            handleMix={handleMix}
                             slot={slot}
                             selectedSlot={selectedSlot}
                             onSelect={onSelect}

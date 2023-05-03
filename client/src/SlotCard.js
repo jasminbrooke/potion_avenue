@@ -3,12 +3,9 @@ import MaterialSelector from "./MaterialSelector";
 import ScienceIcon from '@mui/icons-material/Science';
 import IconButton from '@mui/material/IconButton';
 
-const SlotCard = ( { 
-    brewingMaterials, 
-    handleMixture, 
+const SlotCard = ( {  
     materials, 
-    handleBrew, 
-    handleMix, 
+    handleBrew,
     slot, 
     selectedSlot, 
     onSelect, 
@@ -19,8 +16,11 @@ const SlotCard = ( {
     const [ready, setReady] = useState('toStart')
     const [brewing, setBrewing] = useState(false)
     const [message, setMessage] = useState('')
+    const [brewingMaterials, setBrewingMaterials] = useState([])
     const timer = currentCustomer?.request?.brew_time
     const customer = useRef(currentCustomer)
+    const [results, setResults] = useState({})
+    const [feedback, setFeedback] = useState('')
 
     useEffect(() => {
         if (selectedSlot === slot) {
@@ -28,24 +28,59 @@ const SlotCard = ( {
         }
       }, [selectedSlot]);
 
-    const handleClickMix = (brewingMaterials) => {
+      const handleMixture = (material) => {
+        if (brewingMaterials.includes(material)) {
+          setBrewingMaterials((prevMaterials => [...prevMaterials.filter((m => m !== material ))]))
+        } else if (brewingMaterials.length < 3 && !brewingMaterials.includes(material)) {
+          setBrewingMaterials((prevMaterials => [...prevMaterials, material]))
+        }
+      }
+
+      const handleMix = (brewingMaterials) => {
         setReady('toBrew')
-        handleMix(brewingMaterials, customer.current)
         setMessage('Ready to brew!')
+        const arraysMatch = customer.current.request.materials.every(requestMaterial => {
+          return brewingMaterials.some(brewingMaterial => brewingMaterial.name === requestMaterial.name)
+        })
+        let res = brewingMaterials.reduce((accumulator, material) => { 
+        ['cost', 'quality', 'time'].forEach(key => {
+            accumulator[key] ||= 0
+            accumulator[key] += material[key]
+        })
+            return (accumulator)
+        }, {})
+        res['success'] = arraysMatch
+        setResults(res)
+        setBrewingMaterials([])
+        processFeedback(res)
+      }
+
+    const processFeedback = (res) => {
+debugger
+        // const differences = array1.map((value, index) => Math.abs(value - array2[index]));
+        // const maxDifference = Math.max(...differences);
+        // const maxDifferenceIndex = differences.indexOf(maxDifference);
+        
+
+
+
+        // results.cost > customer.current.request.cost ?
+        // results.quality > customer.current.request.quality ?
+        // results.brew_time > customer.current.request.brew_time ?
     }
 
     const handleBottleClick = () => {
         if (ready === 'toBrew') {
             setBrewing(true)
             setMessage('Brewing...')
-            handleBrew(customer.current)
+            handleBrew()
             setTimeout(() => {
                 setBrewing(false);
                 setReady('toServe')
                 setMessage('Ready to Serve! ' + customer?.current?.name?.first) 
             }, timer * 1000);
         } else if (ready === 'toServe') {
-            handleServe(customer.current)
+            handleServe(customer.current, results)
             setReady('toStart')
             setSelectedSlot(null)
         } else {
@@ -73,7 +108,7 @@ const SlotCard = ( {
                 handleMixture={handleMixture}
                 handleMix={handleMix}
                 />
-                <IconButton onClick={() => handleClickMix(brewingMaterials)}> Mix! </IconButton>
+                <IconButton onClick={() => handleMix(brewingMaterials)}> Mix! </IconButton>
                 <> {brewingMaterials.map((material) => <p key={material.id}> {material.name} </p>)} </>
             </>
         )

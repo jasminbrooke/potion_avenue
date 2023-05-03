@@ -15,17 +15,23 @@ const Shopfront = ( { potions, materials } ) => {
   const [customerArray, setCustomerArray] = useState([])
   const [playingGame, setPlayingGame] = useState(false)
   const [currentCustomer, setCurrentCustomer] = useState(null)
-  const [brewingMaterials, setBrewingMaterials] = useState([]) //can we move this to slotcard?
-  const [selectedRecipe, setSelectedRecipe] = useState({})
-  const [comparison, setComparison] = useState({})
   const [served, setServed] = useState(false)
-  const [feedback, setFeedback] = useState('')
+  const [feedback, setFeedback] = useState([])
 
 
-  const handleServe = (customer) => {
-    console.log(customer)
-    //get points and feedback
-    setServed(true)
+
+
+  const handleServe = (customer, results) => {
+    if (results.success === true) {
+      setFeedback()
+    } else {
+      // results.cost > customer.request.cost ?
+      // results.quality > customer.request.quality ?
+      // results.brew_time > customer.request.brew_time ?
+    }
+  
+    
+    
     return(
 
       // comparison.cost > customer.request.cost ? console.log('Too expensive') : console.log('Cheaply made...'),
@@ -35,44 +41,8 @@ const Shopfront = ( { potions, materials } ) => {
     )
   }
  
-  const handleBrew = (customer) => {
-    setCurrentCustomer(null) //this might be the only thing in the brewing process that needs to happen in shopfront until the end
-    // return(
-      //determine if brewingMaterials and selectedRecipe matches
-      // comparison.cost === selectedRecipe.cost ? console.log('Thank you!') : ('error'),
-      // comparison.time === selectedRecipe.brew_time ? console.log('Thank you!') : ('error'),
-      // comparison.quality === selectedRecipe.quality ? console.log('Thank you!') : ('error')
-    // )
-  }
-
-  //dont think any of this needs to be here
-  const handleMix = (brewingMaterials, customer) => {
-    const arraysMatch = customer.request.materials.every(requestMaterial => {
-      return brewingMaterials.some(brewingMaterial => brewingMaterial.name === requestMaterial.name)
-    })
-    // const arraysMatch = array1.every(item1 => array2.some(item2 => item1.name === item2.name));
-    // //check if arrays match
-    // const arraysMatch = customer.request.materials.every(material => brewingMaterials.some(material));
-   //if not compare discrepency
-      const results = brewingMaterials.reduce((accumulator, material) => { 
-        ['cost', 'quality', 'time'].forEach(key => {
-          accumulator[key] ||= 0
-          accumulator[key] += material[key]
-        })
-          return (accumulator)
-      }, {})
-    setBrewingMaterials([])
-    setComparison(results)
-  }
-
-  // does this need to be in shopfront? can we move it down to slotCard? does shopfront need brewing materials? 
-  // we just need the results in shopfront
-  const handleMixture = (material) => {
-    if (brewingMaterials.includes(material)) {
-      setBrewingMaterials((prevMaterials => [...prevMaterials.filter((m => m !== material ))]))
-    } else if (brewingMaterials.length < 3 && !brewingMaterials.includes(material)) {
-      setBrewingMaterials((prevMaterials => [...prevMaterials, material]))
-    }
+  const handleBrew = () => {
+    setCurrentCustomer(null) 
   }
 
   const getCustomers = async () => {
@@ -107,7 +77,6 @@ const Shopfront = ( { potions, materials } ) => {
   const handleCurrentCustomer = (customer) => {
     if (!currentCustomer) {
       setCurrentCustomer(customer)
-      setSelectedRecipe(customer.request)
   } else {
     console.log(currentCustomer)
   }
@@ -121,7 +90,6 @@ const Shopfront = ( { potions, materials } ) => {
           potions={potions}
           handleCurrentCustomer={handleCurrentCustomer}
           currentCustomer={currentCustomer}
-          selectedRecipe={selectedRecipe}
           served={served}
         /> 
           <div>
@@ -129,12 +97,8 @@ const Shopfront = ( { potions, materials } ) => {
           </div>
       <Container sx={{margin: '0 auto'}}>
         <Slots 
-          handleMix={handleMix} 
           handleBrew={handleBrew} 
-          brewingMaterials={brewingMaterials} 
           materials={materials} 
-          handleMixture={handleMixture}
-          selectedRecipe={selectedRecipe}
           currentCustomer={currentCustomer}
           handleServe={handleServe}/>
         </Container>
