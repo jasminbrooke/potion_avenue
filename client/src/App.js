@@ -28,6 +28,7 @@ function App() {
     dispatch(setPotions(user.potions))
     setIsLoggedIn(true)
   }
+
   const handleLogout = () => {
     fetch('/logout', {
         method: 'DELETE',
@@ -41,10 +42,7 @@ function App() {
   const renderPage = (() => {
     if(isLoggedIn) {
       return (
-          <Home 
-              handleLogin={handleLogin}
-              handleLogout={handleLogout}
-            />
+          <Home handleLogout={handleLogout}/>
       )
     } else {
       return (

@@ -8,7 +8,7 @@ import Shopfront from './Shopfront';
 import Menu from './Menu'
 import CreatePotionForm from "./CreatePotionForm";
 
-const Home = () => {
+const Home = ( { handleLogout } ) => {
   const user = useSelector(state => state.LoginReducer.currentUser)
   const potions = useSelector(state => state.PotionReducer.potions)
   const [materials, setMaterials] = useState([])
@@ -27,7 +27,7 @@ const Home = () => {
 
   <div id="navContainer">
     <BrowserRouter>
-      <NavBar />
+      <NavBar handleLogout={handleLogout} />
       <div>
         <Switch>
           <Route exact path="manageaccount" element={<ManageAccount />}/>

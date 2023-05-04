@@ -3,8 +3,9 @@ import { useSelector } from 'react-redux'
 import CustomerCard from "./CustomerCard"
 import Grid from '@mui/material/Grid'; // Grid version 1
 import Stack from '@mui/material/Stack';
+import Slide from '@mui/material/Slide';
 
-const CustomerList = ( { customerArray, handleCurrentCustomer, currentCustomer, served } ) => {
+const CustomerList = ( { customerArray, handleCurrentCustomer, currentCustomer, servedCustomers, waitingCustomers } ) => {
     const potions = useSelector(state => state.PotionReducer.potions)
     
     customerArray.forEach(customer => {
@@ -20,7 +21,10 @@ const CustomerList = ( { customerArray, handleCurrentCustomer, currentCustomer, 
                 customer={customer} 
                 handleCurrentCustomer={handleCurrentCustomer}
                 currentCustomer={currentCustomer}
-            />)}
+                servedCustomers={servedCustomers}
+                waitingCustomers={waitingCustomers}
+            /> 
+            )}
         </Stack>
     )}
 

@@ -56,19 +56,24 @@ const SlotCard = ( {
       }
 
     const processFeedback = (res) => {
-        let maxDiff = 0
-        let maxDiffKey = null
+        // if (res.quality < customer.current.request.quality) {
+        //     console.log('Gross')
+        // }}
+
+        //
+        // let maxDiff = 0
+        // let maxDiffKey = null
         
-        for (const key in res) {
-            if (customer.current.request.hasOwnProperty(key)) {
-                const diff = Math.abs(res[key] - customer.current.request[key])
-                if (diff > maxDiff) {
-                    maxDiff = diff
-                    maxDiffKey = key
-                }
-            }
-        }
-        debugger
+        // for (const key in res) {
+        //     if (customer.current.request.hasOwnProperty(key)) {
+        //         const diff = Math.abs(res[key] - customer.current.request[key])
+        //         if (diff > maxDiff) {
+        //             maxDiff = diff
+        //             maxDiffKey = key
+        //         }
+        //     }
+        // }
+        //
         // res[maxDiffKey] > customer.current.request[maxDiffKey] 
 
 
@@ -81,7 +86,7 @@ const SlotCard = ( {
         if (ready === 'toBrew') {
             setBrewing(true)
             setMessage('Brewing...')
-            handleBrew()
+            handleBrew(customer.current)
             setTimeout(() => {
                 setBrewing(false);
                 setReady('toServe')

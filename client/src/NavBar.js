@@ -4,7 +4,8 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 
 
-const NavBar = () => {
+const NavBar = ({ handleLogout }) => {
+
     return (
         <AppBar position="sticky" style={{ backgroundColor: 'black', opacity: 0.5 }} >
             <Toolbar id='navbar'>
@@ -13,6 +14,7 @@ const NavBar = () => {
                 <NavLink to="/shopfront">Shopfront</NavLink>
                 <NavLink to="/menu">Menu</NavLink>
                 <NavLink to="/viewinventory">View Inventory</NavLink>
+                <NavLink to="/" onClick={() => handleLogout()}>Log Out</NavLink>
             </Toolbar>
     </AppBar>
     );

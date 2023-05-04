@@ -2,47 +2,49 @@ import React, { useState, useEffect } from "react"
 import CustomerList from "./CustomerList"
 import Container from "@mui/material/Container";
 import PotionList from "./PotionList";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 import ScienceIcon from '@mui/icons-material/Science';
 import { setCurrentUser } from "./actions/LoginActions";
 import CardActionArea from "@mui/material/Card";
 import MaterialCard from "./MaterialCard";
 import Slots from "./Slots";
+import Alert from "@mui/material/Alert";
 
 const Shopfront = ( { materials } ) => {
+  const [points, setPoints] = useState(0)
   const [customers, setCustomers] = useState([])
   const [customerArray, setCustomerArray] = useState([])
   const [playingGame, setPlayingGame] = useState(false)
   const [currentCustomer, setCurrentCustomer] = useState(null)
-  const [served, setServed] = useState(false)
-  const [feedback, setFeedback] = useState([])
-
-
-
+  const [servedCustomers, setServedCustomers] = useState([]);
+  const [waitingCustomers, setwaitingCustomers] = useState([])
+  const [feedback, setFeedback] = useState('')
 
   const handleServe = (customer, results) => {
+
+    setServedCustomers([...servedCustomers, customer])
     if (results.success === true) {
-      setFeedback()
+      setPoints(points + 10)
+      setFeedback('This is just what I wanted!')
     } else {
+      setPoints(points + 5)
+      setFeedback('This is all wrong.')
       // results.cost > customer.request.cost ?
       // results.quality > customer.request.quality ?
       // results.brew_time > customer.request.brew_time ?
     }
-  
-    
     
     return(
 
-      // comparison.cost > customer.request.cost ? console.log('Too expensive') : console.log('Cheaply made...'),
-      // comparison.quality > customer.request.quality ? console.log('Well, la dee da.') : console.log('I think I am gonna be sick!'),
-      // comparison.brew_time > customer.request.brew_time ? console.log('Finally!') : console.log('Seems underbrewed...'),
       console.log()
     )
   }
  
-  const handleBrew = () => {
+  const handleBrew = (customer) => {
+    setwaitingCustomers([...waitingCustomers, customer])
     setCurrentCustomer(null) 
+    console.log('waiting' + waitingCustomers.length)
   }
 
   const getCustomers = async () => {
@@ -79,20 +81,23 @@ const Shopfront = ( { materials } ) => {
       setCurrentCustomer(customer)
   } else {
     console.log(currentCustomer)
+    console.log('currentCustomer')
   }
   };
 
   return (
     playingGame ?
       <Box>
+        <Typography>{points}</Typography>
         <CustomerList
           customerArray={customerArray}
           handleCurrentCustomer={handleCurrentCustomer}
           currentCustomer={currentCustomer}
-          served={served}
+          servedCustomers={servedCustomers}
+          waitingCustomers={waitingCustomers}
         /> 
           <div>
-            x
+            x 
           </div>
       <Container sx={{margin: '0 auto'}}>
         <Slots 

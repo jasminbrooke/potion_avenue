@@ -5,17 +5,12 @@ import Button from '@mui/material/Button'
 import { useSelector } from 'react-redux'
 
 const NamePotion = ( { handleSubmit, potionErrors } ) => {
-    const materialArray = useSelector(state => state.MaterialReducer.materials)
     const user_id = useSelector(state => state.LoginReducer.currentUser.id)
     const [name, setName] = useState('')
     const [description, setDescription] = useState("A questionable potion with unknown effects...")
 
     // const [image, setImage] = useState('http://www.clipartbest.com/cliparts/eTM/yMq/eTMyMqxAc.png')
     
-
-
-
-
     const newPotion={
         name,
         // image: image,
@@ -24,9 +19,15 @@ const NamePotion = ( { handleSubmit, potionErrors } ) => {
     }  
 
 
+
+    const handleClick = (e, newPotion) => {
+        handleSubmit(e, newPotion)
+    }
+
+
  return (
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}> 
-                <form onSubmit={(e) => handleSubmit(e, newPotion)}>
+                <form onSubmit={(e) => handleClick(e, newPotion)}>
                     <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                         <TextField
                             error={potionErrors.name?.[0]}
