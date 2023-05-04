@@ -35,8 +35,8 @@ const ManageAccount = () => {
   }
 
     return (
-        <div>
-            <header>My profile</header>
+        <div id="manage-account">
+            <header>My Profile</header>
             <p>{user.displayname} ({user.username}) {user.storename}</p>
             <Box>
                 <Container maxWidth="sm">

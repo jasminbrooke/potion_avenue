@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux"
 
 function App() {
   const dispatch = useDispatch();
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function App() {
     } else {
       return (
         <div id="login">
-          <Typography variant="h2">Potion Avenue</Typography>
+          <Typography variant="h2" sx={{ fontFamily: "'Tangerine', cursive;", fontSize: '10rem'}}>Potion Avenue</Typography>
           <Typography variant="h4">Log In or Sign Up!</Typography>
           <LogIn handleLogin={handleLogin} />
           <SignUp handleLogin={handleLogin} />

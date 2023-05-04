@@ -5,17 +5,18 @@ import Grid from '@mui/material/Grid'; // Grid version 1
 import Stack from '@mui/material/Stack';
 import Slide from '@mui/material/Slide';
 
-const CustomerList = ( { customerArray, handleCurrentCustomer, currentCustomer, servedCustomers, waitingCustomers } ) => {
+const CustomerList = ( { visibleCustomers, handleCurrentCustomer, currentCustomer, servedCustomers, waitingCustomers } ) => {
     const potions = useSelector(state => state.PotionReducer.potions)
     
-    customerArray.forEach(customer => {
+    
+    visibleCustomers.forEach(customer => {
         if(!customer.request) {
             customer.request = potions[Math.floor(Math.random() * potions.length)]
         }})
 
     return (
         <Stack direction="row" spacing={2} sx={{alignItems: 'center', justifyContent: 'center'}} >
-            {customerArray.map((customer, i) => 
+            {visibleCustomers.map((customer, i) => 
             <CustomerCard 
                 key={i} 
                 customer={customer} 

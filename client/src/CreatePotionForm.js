@@ -71,6 +71,8 @@ const CreateNewPotion = ( { materials } ) => {
   //   setDescription('')
   //   console.log("aaname)
   // }
+  const handleName = (value) => setName(value)
+  const handleDescription = (value) => setDescription(value)
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -79,9 +81,6 @@ const CreateNewPotion = ( { materials } ) => {
 
     setOpen(false);
   };
-
-  const handleName = (value) => setName(value)
-  const handleDescription = (value) => setDescription(value)
 
     return(
         <div id="potion-form">

@@ -10,35 +10,40 @@ import CardActionArea from "@mui/material/Card";
 import MaterialCard from "./MaterialCard";
 import Slots from "./Slots";
 import Alert from "@mui/material/Alert";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 const Shopfront = ( { materials } ) => {
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('')
   const [points, setPoints] = useState(0)
   const [customers, setCustomers] = useState([])
-  const [customerArray, setCustomerArray] = useState([])
+  const [visibleCustomers, setVisibleCustomers] = useState([])
   const [playingGame, setPlayingGame] = useState(false)
   const [currentCustomer, setCurrentCustomer] = useState(null)
   const [servedCustomers, setServedCustomers] = useState([]);
   const [waitingCustomers, setwaitingCustomers] = useState([])
   const [feedback, setFeedback] = useState('')
 
-  const handleServe = (customer, results) => {
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
 
+  const handleServe = (customer, results) => {
     setServedCustomers([...servedCustomers, customer])
-    if (results.success === true) {
+    if (!visibleCustomers.includes(customer)) {
+      setPoints(points)
+    } else if (results.success === true) {
       setPoints(points + 10)
       setFeedback('This is just what I wanted!')
     } else {
       setPoints(points + 5)
       setFeedback('This is all wrong.')
+      setMessage('Success!')
       // results.cost > customer.request.cost ?
       // results.quality > customer.request.quality ?
       // results.brew_time > customer.request.brew_time ?
     }
-    
-    return(
-
-      console.log()
-    )
   }
  
   const handleBrew = (customer) => {
@@ -51,7 +56,7 @@ const Shopfront = ( { materials } ) => {
     const response = await fetch("https://randomuser.me/api/?results=100&inc=name,dob,picture")
     const customerData = await response.json()
     setCustomers(customerData.results)
-    setCustomerArray(customerData.results.slice(0, 5))
+    setVisibleCustomers(customerData.results.slice(0, 5))
   }
 
   useEffect(() => {
@@ -62,18 +67,21 @@ const Shopfront = ( { materials } ) => {
 
   const startGame = () => {
     setPlayingGame(true)
-    // let interval = setInterval(() => {
-    //   setCustomerArray(prevQueue => {
-    //     const newQueue = [...prevQueue];
-    //     const newCustomerArray = [...customers]
-    //     newQueue.shift(); // remove the first customer from the queue
-    //     newCustomerArray.shift()
-    //     const nextCustomer = newCustomerArray.find(customer => !prevQueue.includes(customer));
-    //     return newQueue.concat(nextCustomer);
-    //   });
-    // }, 20000);
+    let index = 5; //skip first five customers
+    let interval = setInterval(() => {
+      setVisibleCustomers(prevQueue => {
+        const newQueue = [...prevQueue];
+        newQueue.shift(); // remove the first customer from the queue
+        index++;
+        if (index < customers.length) {
+          // add the next customer to the queue
+          newQueue.push(customers[index]);
+        }
+        return newQueue
+      });
+    }, 10000);
   
-    // return () => clearInterval(interval);
+    return () => clearInterval(interval);
   }
 
   const handleCurrentCustomer = (customer) => {
@@ -85,12 +93,29 @@ const Shopfront = ( { materials } ) => {
   }
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
   return (
     playingGame ?
       <Box>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              {`Successfully created ${message}`}
+            </Alert>
+          </Snackbar>
+
+
         <Typography>{points}</Typography>
+        
         <CustomerList
-          customerArray={customerArray}
+          visibleCustomers={visibleCustomers}
           handleCurrentCustomer={handleCurrentCustomer}
           currentCustomer={currentCustomer}
           servedCustomers={servedCustomers}
@@ -109,7 +134,7 @@ const Shopfront = ( { materials } ) => {
       </Box>
       :
       <Container id="start-game">
-        <Button sx={{ fontSize: '2rem' }} onClick={() => startGame()}>Start Game</Button>
+        <Button sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }} onClick={() => startGame()}>Start Game</Button>
       </Container>
       )
 };

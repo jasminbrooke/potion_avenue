@@ -33,7 +33,6 @@ const LogIn = ({ handleLogin }) => {
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <TextField
-
             onChange={(e) => setUsername(e.target.value)}
             id="outlined-basic"
             label="Username"
@@ -41,14 +40,12 @@ const LogIn = ({ handleLogin }) => {
             size="small"
         />
         <TextField
-
             onChange={(e) => setPassword(e.target.value)}
             id="outlined-basic"
             label="Password"
             variant="outlined"
             size="small"
             type="password"
-
         />
         <Button type="submit">Login</Button>
       </form>

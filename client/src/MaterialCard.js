@@ -36,7 +36,7 @@ const MaterialCard = ( { material, setMixture, mixture, reset } ) => {
         justifyContent: "space-between",
         height: "100%",
         pointerEvents: disabled ? "none" : "auto",
-        border: 0.5
+        border: 0.5,
       }
 
     return (
