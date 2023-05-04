@@ -24,34 +24,35 @@ const Home = ( { handleLogout } ) => {
   }, [])
 
   return (
-
+    <>
   <div id="navContainer">
     <BrowserRouter>
       <NavBar handleLogout={handleLogout} />
       <div>
         <Switch>
-          <Route exact path="manageaccount" element={<ManageAccount />}/>
+          <Route exact path="/manageaccount" element={<ManageAccount />}/>
         </Switch>
 
         <Switch>
-          <Route exact path="createnewpotion" element={<CreatePotionForm materials={materials}/>}/>
+          <Route exact path="/createnewpotion" element={<CreatePotionForm materials={materials}/>}/>
         </Switch>
 
         <Switch>
-          <Route exact path="shopfront" element={<Shopfront materials={materials} />}/>
+          <Route exact path="/shopfront" element={<Shopfront materials={materials} />}/>
         </Switch>
 
         <Switch>
-          <Route exact path="viewinventory" element={<Inventory materials={materials} />}/>
+          <Route exact path="/viewinventory" element={<Inventory materials={materials} />}/>
         </Switch>
 
         <Switch>
-          <Route exact path="menu" element={<Menu materials={materials}/>}/>
+          <Route exact path="/menu" element={<Menu materials={materials}/>}/>
         </Switch>
 
       </div>
     </BrowserRouter>
   </div>
+  </>
   );
 }
 

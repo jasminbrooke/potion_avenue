@@ -13,9 +13,12 @@ import Alert from "@mui/material/Alert";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
+const Alert1 = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const Shopfront = ( { materials } ) => {
   const [open, setOpen] = useState(false);
-  const [message, setMessage] = useState('')
   const [points, setPoints] = useState(0)
   const [customers, setCustomers] = useState([])
   const [visibleCustomers, setVisibleCustomers] = useState([])
@@ -23,33 +26,39 @@ const Shopfront = ( { materials } ) => {
   const [currentCustomer, setCurrentCustomer] = useState(null)
   const [servedCustomers, setServedCustomers] = useState([]);
   const [waitingCustomers, setwaitingCustomers] = useState([])
-  const [feedback, setFeedback] = useState('')
+  const [feedback, setFeedback] = useState([])
 
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
 
   const handleServe = (customer, results) => {
+    console.log(feedback)
     setServedCustomers([...servedCustomers, customer])
     if (!visibleCustomers.includes(customer)) {
-      setPoints(points)
+      setPoints(points - 5)
+      setFeedback([...feedback, `${customer.name.first} says 'Just forget it.'`])
     } else if (results.success === true) {
       setPoints(points + 10)
-      setFeedback('This is just what I wanted!')
-    } else {
+      setFeedback([...feedback, `${customer.name.first} says "This is just what I wanted!"`]);
+    } else if (results.cost < customer.request.cost) {
       setPoints(points + 5)
-      setFeedback('This is all wrong.')
-      setMessage('Success!')
-      // results.cost > customer.request.cost ?
-      // results.quality > customer.request.quality ?
-      // results.brew_time > customer.request.brew_time ?
+      setFeedback([...feedback, `${customer.name.first} says "What a rip off."`])
+    } else if (results.quality < customer.request.quality) {
+      setPoints(points + 5)
+      setFeedback([...feedback, `${customer.name.first} says "I think I'm gonna be sick!"`])
+    } else if (results.brew_time < customer.request.brew_time) {
+      setPoints(points + 5)
+      setFeedback([...feedback, `${customer.name.first} says "Seems overbrewed..."`])
+    } else {
+      setPoints(points - 5)
+      setFeedback([...feedback, `${customer.name.first} says "This is NOT what I ordered."`])
     }
+    setOpen(true)
+    console.log(feedback)
   }
+
  
   const handleBrew = (customer) => {
     setwaitingCustomers([...waitingCustomers, customer])
     setCurrentCustomer(null) 
-    console.log('waiting' + waitingCustomers.length)
   }
 
   const getCustomers = async () => {
@@ -106,11 +115,10 @@ const Shopfront = ( { materials } ) => {
     playingGame ?
       <Box>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-              {`Successfully created ${message}`}
+            <Alert feedback={feedback} onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              {feedback[feedback.length - 1]}
             </Alert>
           </Snackbar>
-
 
         <Typography>{points}</Typography>
         
@@ -122,7 +130,8 @@ const Shopfront = ( { materials } ) => {
           waitingCustomers={waitingCustomers}
         /> 
           <div>
-            x 
+            x <Typography>{feedback.slice(-1)}</Typography>
+            <Button onClick={(console.log(feedback))}> X </Button>
           </div>
       <Container sx={{margin: '0 auto'}}>
         <Slots 

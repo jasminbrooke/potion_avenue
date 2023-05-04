@@ -14,7 +14,7 @@ const NavBar = ({ handleLogout }) => {
                 <NavLink to="/shopfront">Shopfront</NavLink>
                 <NavLink to="/menu">Menu</NavLink>
                 <NavLink to="/viewinventory">View Inventory</NavLink>
-                <NavLink to="/" onClick={() => handleLogout()}>Log Out</NavLink>
+                <NavLink to="/login" onClick={() => handleLogout()}>Log Out</NavLink>
             </Toolbar>
     </AppBar>
     );

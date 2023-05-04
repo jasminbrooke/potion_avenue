@@ -16,12 +16,9 @@ const MaterialCard = ( { material, setMixture, mixture, reset } ) => {
         if (!isSelected) {
             setMixture([...mixture, material]) //should add material to the mixture and set card to selected
             setIsSelected(true)
-            console.log(mixture)
-
         } else if (isSelected) {
             setMixture(mixture.filter((m => m !== material))) //should remove material from mixture and deselect card
             setIsSelected(false)
-            console.log(mixture)
         } 
     }
 

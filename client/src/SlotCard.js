@@ -20,7 +20,6 @@ const SlotCard = ( {
     const timer = currentCustomer?.request?.brew_time
     const customer = useRef(currentCustomer)
     const [results, setResults] = useState({})
-    const [feedback, setFeedback] = useState('')
 
     useEffect(() => {
         if (selectedSlot === slot) {

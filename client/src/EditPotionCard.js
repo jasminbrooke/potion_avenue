@@ -17,7 +17,6 @@ const EditPotionCard = ( { potion } ) => {
     const [errors, setErrors] = useState({})
 
     const handleDeletePotion = () => {
-        console.log(potion);
         fetch(`/users/${user.id}/potions/${potion.id}`,{
             method: 'DELETE'
         })
@@ -26,7 +25,6 @@ const EditPotionCard = ( { potion } ) => {
 
     const handleClick = () => {
         setEditMode(!editMode)
-        console.log(potion)
     }
 
     const handleSubmit = (e) => {
