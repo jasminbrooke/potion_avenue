@@ -16,6 +16,9 @@ const CreateNewPotion = ( { materials } ) => {
   const [potionErrors, setPotionErrors] = useState({})
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('')
+  const [reset, setReset] = useState(false)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState("A questionable potion with unknown effects...")
   const dispatch = useDispatch()
   const user = useSelector(state => state.LoginReducer.currentUser)
 
@@ -23,8 +26,14 @@ const CreateNewPotion = ( { materials } ) => {
       console.log("mixture changed: ", mixture);
   }, [mixture]);
 
+  const newPotion={
+    name,
+    // image: image,
+    description,
+    user_id: user.id
+  }
 
-  const handleSubmit = (e, newPotion) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
     const materialIds = mixture.map(material => material.id);
     const requestBody = { ...newPotion, material_ids: materialIds };
@@ -44,6 +53,10 @@ const CreateNewPotion = ( { materials } ) => {
         dispatch(createPotion(data))
         setOpen(true)
         setMessage(data.name)
+        setReset(true)
+        setMixture([])
+        setName('')
+        setDescription('')
       }
     })
   }
@@ -67,6 +80,9 @@ const CreateNewPotion = ( { materials } ) => {
     setOpen(false);
   };
 
+  const handleName = (value) => setName(value)
+  const handleDescription = (value) => setDescription(value)
+
     return(
         <div id="potion-form">
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
@@ -74,8 +90,15 @@ const CreateNewPotion = ( { materials } ) => {
               {`Successfully created ${message}`}
             </Alert>
           </Snackbar>
-          <MaterialList setMixture={setMixture} materials={materials} mixture={mixture}/>
-          <NamePotion handleSubmit={handleSubmit} potionErrors={potionErrors}/>
+          <MaterialList setMixture={setMixture} materials={materials} mixture={mixture} reset={reset}/>
+          <NamePotion
+            handleSubmit={handleSubmit}
+            potionErrors={potionErrors}
+            name={name}
+            description={description}
+            handleName={handleName}
+            handleDescription={handleDescription}
+            />
           <PotionList />
         </div>
     )}

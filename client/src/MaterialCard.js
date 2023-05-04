@@ -1,22 +1,26 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 
-const MaterialCard = ( { material, setMixture, mixture } ) => {
+const MaterialCard = ( { material, setMixture, mixture, reset } ) => {
     const [isSelected, setIsSelected] = useState(false);
     const disabled = !isSelected && mixture.length === 3 //disable cards when there are three materials in mixture
+
+    useEffect(() => {
+        setIsSelected(mixture.includes(material))
+    }, [reset])
 
     const handleClick = () => {
         if (!isSelected) {
             setMixture([...mixture, material]) //should add material to the mixture and set card to selected
-            setIsSelected(!isSelected)
+            setIsSelected(true)
             console.log(mixture)
 
         } else if (isSelected) {
             setMixture(mixture.filter((m => m !== material))) //should remove material from mixture and deselect card
-            setIsSelected(!isSelected)
+            setIsSelected(false)
             console.log(mixture)
         } 
     }
