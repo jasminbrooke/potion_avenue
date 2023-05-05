@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import { Stack } from "@mui/material"
 import EditPotionCard from "./EditPotionCard";
-import { setPotions } from "./actions/LoginActions";
 import { useSelector } from "react-redux"
+import Box from '@mui/material/Box';
+
 
 const Menu = () => {
     const potions = useSelector(state => state.PotionReducer.potions)

@@ -51,35 +51,7 @@ const SlotCard = ( {
         res['success'] = arraysMatch
         setResults(res)
         setBrewingMaterials([])
-        processFeedback(res)
       }
-
-    const processFeedback = (res) => {
-        // if (res.quality < customer.current.request.quality) {
-        //     console.log('Gross')
-        // }}
-
-        //
-        // let maxDiff = 0
-        // let maxDiffKey = null
-        
-        // for (const key in res) {
-        //     if (customer.current.request.hasOwnProperty(key)) {
-        //         const diff = Math.abs(res[key] - customer.current.request[key])
-        //         if (diff > maxDiff) {
-        //             maxDiff = diff
-        //             maxDiffKey = key
-        //         }
-        //     }
-        // }
-        //
-        // res[maxDiffKey] > customer.current.request[maxDiffKey] 
-
-
-        // results.cost > customer.current.request.cost ?
-        // results.quality > customer.current.request.quality ?
-        // results.brew_time > customer.current.request.brew_time ?
-    }
 
     const handleBottleClick = () => {
         if (ready === 'toBrew') {
@@ -146,6 +118,11 @@ const SlotCard = ( {
                         disabled={brewing}
                         onClick={() => handleBottleClick()}>
                         <ScienceIcon sx={{ ...fullBottle, fontSize: 150 }} />
+                        <div className="bubble-container">
+                        <div className="bubble"></div>
+                        <div className="bubble"></div>
+                        <div className="bubble"></div>
+                        </div>
                     </IconButton>
                     <p>{message}</p>
                 </>

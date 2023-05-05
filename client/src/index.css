@@ -6,8 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   background-image: url('./assets/backgroundImage.webp');
   background-position: center;
-  background-size: contain;
-  background-repeat: repeat-x; 
+  background-size: cover;
+  background-repeat: no-repeat; 
   background-color: rgb(75, 42, 16);
   height: 100%;
   width: 100%;
@@ -47,4 +47,34 @@ code {
 #manage-account {
   font-family: 'Tangerine', cursive;
   font-size: 3.5rem;
+}
+
+
+
+.bubble-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.bubble {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  animation: bubble 3s ease-out infinite;
+}
+
+@keyframes bubble {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, -100px);
+  }
 }

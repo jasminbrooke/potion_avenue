@@ -25,12 +25,12 @@ const Shopfront = ( { materials } ) => {
   const [playingGame, setPlayingGame] = useState(false)
   const [currentCustomer, setCurrentCustomer] = useState(null)
   const [servedCustomers, setServedCustomers] = useState([]);
-  const [waitingCustomers, setwaitingCustomers] = useState([])
+  const [waitingCustomers, setWaitingCustomers] = useState([])
   const [feedback, setFeedback] = useState([])
+  const [gameOver, setGameOver] = useState(false)
 
 
   const handleServe = (customer, results) => {
-    console.log(feedback)
     setServedCustomers([...servedCustomers, customer])
     if (!visibleCustomers.includes(customer)) {
       setPoints(points - 5)
@@ -52,17 +52,16 @@ const Shopfront = ( { materials } ) => {
       setFeedback([...feedback, `${customer.name.first} says "This is NOT what I ordered."`])
     }
     setOpen(true)
-    console.log(feedback)
   }
 
  
   const handleBrew = (customer) => {
-    setwaitingCustomers([...waitingCustomers, customer])
+    setWaitingCustomers([...waitingCustomers, customer])
     setCurrentCustomer(null) 
   }
 
   const getCustomers = async () => {
-    const response = await fetch("https://randomuser.me/api/?results=100&inc=name,dob,picture")
+    const response = await fetch("https://randomuser.me/api/?results=20&inc=name,dob,picture")
     const customerData = await response.json()
     setCustomers(customerData.results)
     setVisibleCustomers(customerData.results.slice(0, 5))
@@ -75,9 +74,21 @@ const Shopfront = ( { materials } ) => {
   }, [])
 
   const startGame = () => {
+    setCurrentCustomer([])
+    setServedCustomers([])
+    setWaitingCustomers([])
+    setVisibleCustomers(customers.slice(0, 5))
+    setPoints(0)
     setPlayingGame(true)
     let index = 5; //skip first five customers
     let interval = setInterval(() => {
+      if (index >= 15){
+        console.log("hello " + index)
+        setGameOver(true)
+        setPlayingGame(false)
+        clearInterval(interval)
+        return
+      }
       setVisibleCustomers(prevQueue => {
         const newQueue = [...prevQueue];
         newQueue.shift(); // remove the first customer from the queue
@@ -88,7 +99,7 @@ const Shopfront = ( { materials } ) => {
         }
         return newQueue
       });
-    }, 10000);
+    }, 2000);
   
     return () => clearInterval(interval);
   }
@@ -96,10 +107,7 @@ const Shopfront = ( { materials } ) => {
   const handleCurrentCustomer = (customer) => {
     if (!currentCustomer) {
       setCurrentCustomer(customer)
-  } else {
-    console.log(currentCustomer)
-    console.log('currentCustomer')
-  }
+    }
   };
 
   const handleClose = (event, reason) => {
@@ -110,9 +118,8 @@ const Shopfront = ( { materials } ) => {
     setOpen(false);
   };
 
-
-  return (
-    playingGame ?
+  const renderGame = () => {
+    return (
       <Box>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert feedback={feedback} onClose={handleClose} severity="success" sx={{ width: '100%' }}>
@@ -120,7 +127,7 @@ const Shopfront = ( { materials } ) => {
             </Alert>
           </Snackbar>
 
-        <Typography>{points}</Typography>
+        <Typography sx={{fontSize: "3rem"}}>{points}</Typography>
         
         <CustomerList
           visibleCustomers={visibleCustomers}
@@ -129,10 +136,6 @@ const Shopfront = ( { materials } ) => {
           servedCustomers={servedCustomers}
           waitingCustomers={waitingCustomers}
         /> 
-          <div>
-            x <Typography>{feedback.slice(-1)}</Typography>
-            <Button onClick={(console.log(feedback))}> X </Button>
-          </div>
       <Container sx={{margin: '0 auto'}}>
         <Slots 
           handleBrew={handleBrew} 
@@ -141,11 +144,22 @@ const Shopfront = ( { materials } ) => {
           handleServe={handleServe}/>
         </Container>
       </Box>
-      :
-      <Container id="start-game">
-        <Button sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }} onClick={() => startGame()}>Start Game</Button>
-      </Container>
-      )
+    )
+  }
+
+  const renderStartGame = () => {
+    return (
+      <>
+        {gameOver ? (<Typography>Your Score: {points}</Typography>) : null}
+        <Container id="start-game">
+          <Button sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }} onClick={() => startGame()}>Start Game</Button>
+        </Container>
+      </>
+    )
+  }
+
+
+  return ( playingGame ? renderGame() : renderStartGame() )
 };
 
 export default Shopfront

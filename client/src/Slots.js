@@ -1,12 +1,6 @@
 import React, { useState } from "react"
 import Stack from '@mui/material/Stack';
-import PotionCard from "./PotionCard";
 import Card from '@mui/material/Card';
-import { CardActionArea, Typography } from "@mui/material"; 
-import ScienceIcon from '@mui/icons-material/Science';
-import IconButton from '@mui/material/IconButton';
-import Box from "@mui/material/Box";
-import MaterialSelector from "./MaterialSelector";
 import SlotCard from './SlotCard'
 
 const Slots = ({

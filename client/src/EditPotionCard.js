@@ -56,15 +56,14 @@ const EditPotionCard = ( { potion } ) => {
         <Card sx={{height: 275, width: 250, backgroundColor: color }}>
             <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
                 <CardContent sx={{ textAlign: "center", fontSize: 12 }}>
-                    <Typography sx={{fontSize: 14 }}>{potion.name}</Typography>
-                    <Typography>{potion.description}</Typography>
+                    <Typography variant="h6" sx={{ mb: 1 }}>{potion.name}</Typography>
+                    <Typography sx={{ mb: 2 }}>{potion.description}</Typography>
                     <Stack direction="row" spacing={2} sx={{alignItems: 'center', justifyContent: 'center'}}>
                         {
                             potion.materials?.map((material, i) => <Typography sx={{fontSize: 12 }} key={i}>|{material.name}|</Typography>)
                         }
                     </Stack>
-                    <Typography>| cost:{potion.cost} | time:{potion.brew_time} |</Typography>
-                </CardContent>
+                    <Typography sx={{ mb: 1 }}>| cost: {potion.cost} | time: {potion.brew_time} |</Typography>                </CardContent>
             </CardActionArea>
         </Card>
     )
