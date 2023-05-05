@@ -11,8 +11,9 @@ return (
         <h1>Instructions</h1>
     <li>Press "Start Game" button to begin the game.</li>
     <li>Select a customer card that appears on the screen.</li>
-    <li>Select an empty bottle to start the order.</li>
-    <li>Pick the correct materials for the potion, listed at the bottom of the customer's card.</li>
+    <li>Select any empty bottle to start the order.</li>
+    <li>Pick the correct materials for the potion, listed at the bottom of the customer's card.</li> 
+    <li>You won't know which material is which until you pick it!</li>
     <li>Once you have selected three materials, hit "Mix".</li>
     <li>Once the potion bottle appears, press "Brew" to start the brewing process.</li>
     <li>While the potion is brewing, attend to other customers.</li>
@@ -22,6 +23,8 @@ return (
     <li>Play until you run out of customers.</li>
     <li>See your score at the end of the game.</li>
     <li>Happy brewing! </li>
+
+    <h2> Example: </h2>
     <img alt="gameplaygif" src={gameplaygif}></img>
 
         </ul>
