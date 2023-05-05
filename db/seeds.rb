@@ -18,5 +18,3 @@ Material.create(name: "Yarrow", description: "A flowering plant used for healing
 Material.create(name: "Myrrh", description: "A resin used for purification, protection, and spiritual awareness", cost: 10, brew_time: 10, quality: 9, reward: 13)
 Material.create(name: "Frankincense", description: "A resin used for purification, protection, and spiritual awareness", cost: 12, brew_time: 11, quality: 10, reward: 14)
 Material.create(name: "Mugwort", description: "An herb used for lucid dreaming, psychic awareness, and protection", cost: 10, brew_time: 12, quality: 12, reward: 14)
-
-

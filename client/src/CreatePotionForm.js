@@ -18,7 +18,7 @@ const CreateNewPotion = ( { materials } ) => {
   const [message, setMessage] = useState('')
   const [reset, setReset] = useState(false)
   const [name, setName] = useState('')
-  const [description, setDescription] = useState("A questionable potion with unknown effects...")
+  const [description, setDescription] = useState()
   const dispatch = useDispatch()
   const user = useSelector(state => state.LoginReducer.currentUser)
 

@@ -99,7 +99,7 @@ const Shopfront = ( { materials } ) => {
         }
         return newQueue
       });
-    }, 2000);
+    }, 15000);
   
     return () => clearInterval(interval);
   }
