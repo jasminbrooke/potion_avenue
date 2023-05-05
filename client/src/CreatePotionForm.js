@@ -102,6 +102,7 @@ const CreateNewPotion = ( { materials } ) => {
             handleDescription={handleDescription}
             />
           <PotionList />
+          <h4>Select three materials.</h4>
         </div>
     )}
 
