@@ -39,7 +39,7 @@ code {
 }
 
 #start-game {
-  height: 80vh;
+  height: 50vh;
   display: flex;
   justify-content: center;
 }
@@ -48,8 +48,6 @@ code {
   font-family: 'Tangerine', cursive;
   font-size: 3.5rem;
 }
-
-
 
 .bubble-container {
   position: absolute;
@@ -77,4 +75,13 @@ code {
     opacity: 0;
     transform: translate(0, -100px);
   }
+}
+
+.custom-bullet {
+  list-style-type: none;
+}
+
+.custom-bullet li:before {
+  content: "\2022";
+  margin-right: 10px;
 }

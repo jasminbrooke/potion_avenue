@@ -12,6 +12,7 @@ import Slots from "./Slots";
 import Alert from "@mui/material/Alert";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import Instructions from "./Instructions";
 
 const Alert1 = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -154,6 +155,7 @@ const Shopfront = ( { materials } ) => {
         <Container id="start-game">
           <Button sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }} onClick={() => startGame()}>Start Game</Button>
         </Container>
+        <Instructions />
       </>
     )
   }

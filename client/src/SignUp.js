@@ -55,12 +55,14 @@ const SignUp = ({ handleLogin }) => {
                         <TextField 
                             onChange={(e) => setPassword(e.target.value)}
                             id="standard-basic" 
-                            label="Password" 
+                            label="Password"
+                            type="password" 
                             variant="standard" />
                         <TextField 
                             onChange={(e) => setPasswordconfirmation(e.target.value)}
                             id="standard-basic" 
                             label="Password Confirmation" 
+                            type="password"
                             variant="standard" />
                         <Button type='submit'> Create Account </Button>
                     </form>
