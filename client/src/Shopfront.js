@@ -74,7 +74,7 @@ const Shopfront = ( { materials } ) => {
   }, [])
 
   const startGame = () => {
-    setCurrentCustomer([])
+    setCurrentCustomer(null)
     setServedCustomers([])
     setWaitingCustomers([])
     setVisibleCustomers(customers.slice(0, 5))

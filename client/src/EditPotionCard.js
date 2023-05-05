@@ -44,6 +44,7 @@ const EditPotionCard = ( { potion } ) => {
             if(data.errors){
                 setErrors(data.errors)
             } else {
+                setEditMode(false)
                 dispatch(setPotions(data))
                 setErrors({})
             }
