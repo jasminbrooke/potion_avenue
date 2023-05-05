@@ -38,7 +38,6 @@ const ManageAccount = () => {
         <div id="manage-account">
             <header>My Profile</header>
             <p>{user.displayname} ({user.username}) {user.storename}</p>
-            <p>{user.high_score}</p>
             <Box>
                 <Container maxWidth="sm">
                     <form onSubmit={(e) => handleSubmit(e)}>

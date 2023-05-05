@@ -16,15 +16,12 @@ const CreateNewPotion = ( { materials } ) => {
   const [potionErrors, setPotionErrors] = useState({})
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('')
+  const [messageSeverity, setMessageSeverity] = useState('success')
   const [reset, setReset] = useState(false)
   const [name, setName] = useState('')
   const [description, setDescription] = useState()
   const dispatch = useDispatch()
   const user = useSelector(state => state.LoginReducer.currentUser)
-
-  useEffect(() => {
-      console.log("mixture changed: ", mixture);
-  }, [mixture]);
 
   const newPotion={
     name,
@@ -47,12 +44,18 @@ const CreateNewPotion = ( { materials } ) => {
     .then(res => res.json())
     .then(data => {
       if (data.errors){
+        if(data.errors.material_ids){
+          setMessageSeverity('error')
+          setMessage(data.errors.material_ids[0])
+          setOpen(true)
+        }
         setPotionErrors(data.errors)
       } else {
         setPotionErrors({})
         dispatch(createPotion(data))
         setOpen(true)
-        setMessage(data.name)
+        setMessageSeverity('success')
+        setMessage(`Successfully created ${data.name}`)
         setReset(true)
         setMixture([])
         setName('')
@@ -85,8 +88,8 @@ const CreateNewPotion = ( { materials } ) => {
     return(
         <div id="potion-form">
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-              {`Successfully created ${message}`}
+            <Alert onClose={handleClose} severity={messageSeverity} sx={{ width: '100%' }}>
+              {message}
             </Alert>
           </Snackbar>
           <MaterialList setMixture={setMixture} materials={materials} mixture={mixture} reset={reset}/>
