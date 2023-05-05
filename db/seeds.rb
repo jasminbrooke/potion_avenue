@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+Material.destroy_all
 
 Material.create(name: "Bloodroot", description: "A root used for its medicinal and magical properties in protection, purification, and love spells", cost: 5, brew_time: 1, quality: 1, reward: 6)
 Material.create(name: "Sage", description: "A fragrant herb used for purification, healing, and wisdom", cost: 5, brew_time: 2, quality: 2, reward: 7)
