@@ -34,7 +34,7 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
                     <p sx={{ fontsize: '8' }}>{first} of {last}</p>
                     <p>Level {age} </p>
                     <p>Greetings! I am seeking a {request.name}. </p>
-                    <p>{request.materials.map((material, i) => material.name)}</p>
+                    <p>{request.materials.map(material => material.name + ' ')}</p>
         </CardActionArea>
     )
 
