@@ -7,7 +7,7 @@ const Instructions = () => {
 
 return (
     <Container id="start-game">
-        <ul class="custom-bullet">
+        <ul className="custom-bullet">
         <h1>Instructions</h1>
     <li>Press "Start Game" button to begin the game.</li>
     <li>Select a customer card that appears on the screen.</li>

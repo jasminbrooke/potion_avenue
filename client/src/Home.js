@@ -31,7 +31,7 @@ const Home = ( { handleLogout } ) => {
         There are 12 preset materials to choose from. These materials will determine the attributes of your potion, such as the cost, brew time and quality. 
         Be sure to give your potion a name and description!
 
-        In the menu, you can look at the potions you’ve already created and see their stats.
+        In the menu, you can look at the potions you've already created and see their stats.
         You can also edit, and delete your potions by selecting each potion card.
 
         In the Inventory, you can see the material stats. 
@@ -52,28 +52,12 @@ const Home = ( { handleLogout } ) => {
       <div>
         <Switch>
           <Route exact path="/manageaccount" element={<ManageAccount />}/>
-        </Switch>
-
-        <Switch>
           <Route exact path="/createnewpotion" element={<CreatePotionForm materials={materials}/>}/>
-        </Switch>
-
-        <Switch>
           <Route exact path="/shopfront" element={<Shopfront materials={materials} />}/>
-        </Switch>
-
-        <Switch>
           <Route exact path="/viewinventory" element={<Inventory materials={materials} />}/>
-        </Switch>
-
-        <Switch>
           <Route exact path="/menu" element={<Menu materials={materials}/>}/>
-        </Switch>
-
-        <Switch>
           <Route exact path="/" element={home}/>
         </Switch>
-
       </div>
     </BrowserRouter>
 
