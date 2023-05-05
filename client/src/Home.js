@@ -7,6 +7,7 @@ import Inventory from './Inventory';
 import Shopfront from './Shopfront';
 import Menu from './Menu'
 import CreatePotionForm from "./CreatePotionForm";
+import Container from "@mui/material/Container";
 
 const Home = ( { handleLogout } ) => {
   const user = useSelector(state => state.LoginReducer.currentUser)
@@ -18,6 +19,26 @@ const Home = ( { handleLogout } ) => {
     const data = await response.json();
       setMaterials(data);
   }
+
+  const home = (
+    
+    <Container id="start-game">
+      <h2>
+        Welcome to Potion Avenue, your very own potion shop! <br />
+        To start, create an account. 
+        You can manage your account in the Manage Account route.
+        In the create a potion route, you can create your very own potion by selecting three materials. 
+        There are 12 preset materials to choose from. These materials will determine the attributes of your potion, such as the cost, brew time and quality. 
+        Be sure to give your potion a name and description!
+
+        In the menu, you can look at the potions you’ve already created and see their stats.
+        You can also edit, and delete your potions by selecting each potion card.
+
+        In the Inventory, you can see the material stats. 
+
+        In the Shopfront, you can play the game!
+      </h2>
+    </Container>)
 
   useEffect(() => {
     getMaterials()
@@ -49,8 +70,13 @@ const Home = ( { handleLogout } ) => {
           <Route exact path="/menu" element={<Menu materials={materials}/>}/>
         </Switch>
 
+        <Switch>
+          <Route exact path="/" element={home}/>
+        </Switch>
+
       </div>
     </BrowserRouter>
+
   </div>
   </>
   );

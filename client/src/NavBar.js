@@ -9,6 +9,7 @@ const NavBar = ({ handleLogout }) => {
     return (
         <AppBar position="sticky" style={{ backgroundColor: 'black', opacity: 0.5 }} >
             <Toolbar id='navbar'>
+                <NavLink to="/">Home</NavLink>
                 <NavLink to="/manageaccount">Manage Account</NavLink>
                 <NavLink to="/createnewpotion">Create New Potion</NavLink>
                 <NavLink to="/shopfront">Shopfront</NavLink>
