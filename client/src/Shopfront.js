@@ -33,27 +33,41 @@ const Shopfront = () => {
   const [feedback, setFeedback] = useState([])
   const [gameOver, setGameOver] = useState(false)
 
+  const getCustomers = () => {
+    fetch("/customers").then((response) => {
+      response.json().then((customers) => setCustomers(customers))
+    })
+    console.log(customers)
+  }
+
+  useEffect(() => {
+    getCustomers();
+    setVisibleCustomers(customers.slice(0, 5))
+    console.log(customers)
+    console.log(visibleCustomers)
+  }, []);
+
 
   const handleServe = (customer, results) => {
     setServedCustomers([...servedCustomers, customer])
     if (!visibleCustomers.includes(customer)) {
       setPoints(points - 5)
-      setFeedback([...feedback, `${customer.name.first} says 'Just forget it.'`])
+      setFeedback([...feedback, `${customer.name} says 'Just forget it.'`])
     } else if (results.success === true) {
       setPoints(points + 10)
-      setFeedback([...feedback, `${customer.name.first} says "This is just what I wanted!"`]);
+      setFeedback([...feedback, `${customer.name} says "This is just what I wanted!"`]);
     } else if (results.cost < customer.request.cost) {
       setPoints(points + 5)
-      setFeedback([...feedback, `${customer.name.first} says "What a rip off."`])
+      setFeedback([...feedback, `${customer.name} says "What a rip off."`])
     } else if (results.quality < customer.request.quality) {
       setPoints(points + 5)
-      setFeedback([...feedback, `${customer.name.first} says "I think I'm gonna be sick!"`])
+      setFeedback([...feedback, `${customer.name} says "I think I'm gonna be sick!"`])
     } else if (results.brew_time < customer.request.brew_time) {
       setPoints(points + 5)
-      setFeedback([...feedback, `${customer.name.first} says "Seems overbrewed..."`])
+      setFeedback([...feedback, `${customer.name} says "Seems overbrewed..."`])
     } else {
       setPoints(points - 5)
-      setFeedback([...feedback, `${customer.name.first} says "This is NOT what I ordered."`])
+      setFeedback([...feedback, `${customer.name} says "This is NOT what I ordered."`])
     }
     setOpen(true)
   }
@@ -62,13 +76,6 @@ const Shopfront = () => {
   const handleBrew = (customer) => {
     setWaitingCustomers([...waitingCustomers, customer])
     setCurrentCustomer(null) 
-  }
-
-  const getCustomers = async () => {
-    const response = await fetch("https://randomuser.me/api/?results=20&inc=name,dob,picture")
-    const customerData = await response.json()
-    setCustomers(customerData.results)
-    setVisibleCustomers(customerData.results.slice(0, 5))
   }
 
   useEffect(() => {
@@ -150,10 +157,21 @@ const Shopfront = () => {
       </Box>)
   }
 
+
+  const reviews = (
+    feedback.map((f, i) => <Typography key={i} f={f}>"{f}"</Typography>)
+  )
+
+
   const renderStartGame = () => {
     return (
       <>
-        {visibleCustomers || gameOver ? (<Typography>Your Score: {points}</Typography>) : null}
+        {gameOver ? (
+          <>
+        <Typography>Your Score: {points}</Typography>
+        {reviews}
+          </>
+        ) : null}
         <Container id="start-game">
           <Button sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }} onClick={() => startGame()}>Start Game</Button>
         </Container>

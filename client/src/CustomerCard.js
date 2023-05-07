@@ -3,12 +3,13 @@ import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material"; 
 
 const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCustomer, handleCurrentCustomer}) => {
-    const {request, name:{first, last}, dob: {age}, picture: {thumbnail}} = customer
+    const {request, name, level} = customer
     const served = servedCustomers.includes(customer)
     const waiting = waitingCustomers.includes(customer)
 
     const handleClick = (customer) => {
         handleCurrentCustomer(customer)
+        console.log(request)
     }
 
     const cardStyle =
@@ -29,10 +30,10 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
                     <img
                         floated='right'
                         size='mini'
-                        src={thumbnail}
+                        // src={thumbnail}
                         />
-                    <p sx={{ fontsize: '8' }}>{first} of {last}</p>
-                    <p>Level {age} </p>
+                    <p sx={{ fontsize: '8' }}>{name}</p>
+                    <p>Level {level} </p>
                     <p>Greetings! I am seeking a {request.name}. </p>
                     <p>{request.materials.map(material => material.name + ' ')}</p>
         </CardActionArea>
@@ -45,10 +46,10 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
                     <img
                         floated='right'
                         size='mini'
-                        src={thumbnail}
+                        // src={thumbnail}
                         />
-                    <p >{first} of {last}</p>
-                    <p sx={{ fontsize: '10' }}>Level {age}</p>
+                    <p >{name}</p>
+                    <p sx={{ fontsize: '10' }}>Level {level}</p>
                     <p>{served ? 'Thank you!' : 'waiting...'}</p>
         </CardActionArea>
     )

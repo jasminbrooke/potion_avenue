@@ -10,17 +10,9 @@ import { setMaterials } from "./actions/MaterialActions"
 import { useDispatch } from "react-redux"
 
 function App() {
-  const [customers, setCustomers] = useState([])
   const dispatch = useDispatch();
   
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const getCustomers = () => {
-    fetch("/customers").then((response) => {
-      response.json().then((customers) => setCustomers(customers))
-    })
-    console.log(customers)
-  }
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -45,7 +37,6 @@ function App() {
     dispatch(setCurrentUser(user));
     dispatch(setPotions(user.potions))
     setIsLoggedIn(true)
-    getCustomers()
   }
 
   const handleLogout = () => {

@@ -5,13 +5,4 @@ class CustomersController < ApplicationController
         render json: customers
     end
 
-    def show
-        customer = Customer.find_by(id: params[:id])
-        if customer
-            render json: customer, status: :ok
-        else 
-            render json: { errors: customer.errors.full_messages }, status: :unprocessable_entity
-        end
-    end 
-
 end

@@ -1,3 +1,3 @@
 class CustomerSerializer < ActiveModel::Serializer
-  attributes :id, :name, :class, :level, :budget, :request, :priority, :satisfaction, :reviews
+  attributes :id, :name, :level, :budget, :priority, :satisfaction, :reviews
 end

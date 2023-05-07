@@ -4,3 +4,6 @@ class AddQualityAndQuantityToPotions < ActiveRecord::Migration[7.0]
     add_column :potions, :quantity, :integer
   end
 end
+
+
+
