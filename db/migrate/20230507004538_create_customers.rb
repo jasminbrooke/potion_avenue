@@ -1,6 +1,6 @@
 class CreateCustomers < ActiveRecord::Migration[7.0]
   def change
-    create_table :customers do |t|
+    create_table :customers, if_not_exists: true do |t|
       t.string :name
       t.integer :level
       t.integer :budget
