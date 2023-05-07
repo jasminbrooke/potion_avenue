@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :customers, only: %i[show index update]
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

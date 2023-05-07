@@ -13,12 +13,15 @@ import Alert from "@mui/material/Alert";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import Instructions from "./Instructions";
+import { useSelector } from "react-redux";
 
 const Alert1 = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const Shopfront = ( { materials } ) => {
+const Shopfront = () => {
+  const materials = useSelector(state => state.MaterialReducer.materials)
+
   const [open, setOpen] = useState(false);
   const [points, setPoints] = useState(0)
   const [customers, setCustomers] = useState([])
@@ -144,14 +147,13 @@ const Shopfront = ( { materials } ) => {
           currentCustomer={currentCustomer}
           handleServe={handleServe}/>
         </Container>
-      </Box>
-    )
+      </Box>)
   }
 
   const renderStartGame = () => {
     return (
       <>
-        {gameOver ? (<Typography>Your Score: {points}</Typography>) : null}
+        {visibleCustomers || gameOver ? (<Typography>Your Score: {points}</Typography>) : null}
         <Container id="start-game">
           <Button sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }} onClick={() => startGame()}>Start Game</Button>
         </Container>

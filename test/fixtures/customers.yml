@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  class: MyString
+  level: 1
+  budget: 1
+  request: 1
+  priority: MyString
+  satisfaction: 1
+  reviews: MyString
+
+two:
+  name: MyString
+  class: MyString
+  level: 1
+  budget: 1
+  request: 1
+  priority: MyString
+  satisfaction: 1
+  reviews: MyString

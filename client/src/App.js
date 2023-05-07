@@ -6,12 +6,21 @@ import SignUp from './SignUp'
 import Home from './Home'
 import { setCurrentUser } from "./actions/LoginActions";
 import { setPotions } from "./actions/PotionActions"
+import { setMaterials } from "./actions/MaterialActions"
 import { useDispatch } from "react-redux"
 
 function App() {
+  const [customers, setCustomers] = useState([])
   const dispatch = useDispatch();
   
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const getCustomers = () => {
+    fetch("/customers").then((response) => {
+      response.json().then((customers) => setCustomers(customers))
+    })
+    console.log(customers)
+  }
 
   useEffect(() => {
     fetch("/me").then((response) => {
@@ -24,10 +33,19 @@ function App() {
     });
   }, []);
 
+  useEffect(() => {
+    fetch('/materials').then((response) => {
+      if (response.ok) {
+        response.json().then((materials) => dispatch(setMaterials(materials)))
+      }
+    })
+  }, [])
+
   const handleLogin = (user) => {
     dispatch(setCurrentUser(user));
     dispatch(setPotions(user.potions))
     setIsLoggedIn(true)
+    getCustomers()
   }
 
   const handleLogout = () => {

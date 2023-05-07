@@ -11,7 +11,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const CreateNewPotion = ( { materials } ) => {
+const CreateNewPotion = () => {
   const [mixture, setMixture] = useState([])
   const [potionErrors, setPotionErrors] = useState({})
   const [open, setOpen] = useState(false);
@@ -21,7 +21,9 @@ const CreateNewPotion = ( { materials } ) => {
   const [name, setName] = useState('')
   const [description, setDescription] = useState()
   const dispatch = useDispatch()
+  const materials = useSelector(state => state.MaterialReducer.materials)
   const user = useSelector(state => state.LoginReducer.currentUser)
+  const potions = useSelector(state => state.PotionReducer.potions)
 
   const newPotion={
     name,

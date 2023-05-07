@@ -10,15 +10,6 @@ import CreatePotionForm from "./CreatePotionForm";
 import Container from "@mui/material/Container";
 
 const Home = ( { handleLogout } ) => {
-  const user = useSelector(state => state.LoginReducer.currentUser)
-  const potions = useSelector(state => state.PotionReducer.potions)
-  const [materials, setMaterials] = useState([])
-
-  const getMaterials = async () => {
-    const response = await fetch('/materials');
-    const data = await response.json();
-      setMaterials(data);
-  }
 
   const home = (
     
@@ -40,10 +31,6 @@ const Home = ( { handleLogout } ) => {
       </h2>
     </Container>)
 
-  useEffect(() => {
-    getMaterials()
-  }, [])
-
   return (
     <>
   <div id="navContainer">
@@ -52,10 +39,10 @@ const Home = ( { handleLogout } ) => {
       <div>
         <Switch>
           <Route exact path="/manageaccount" element={<ManageAccount />}/>
-          <Route exact path="/createnewpotion" element={<CreatePotionForm materials={materials}/>}/>
-          <Route exact path="/shopfront" element={<Shopfront materials={materials} />}/>
-          <Route exact path="/viewinventory" element={<Inventory materials={materials} />}/>
-          <Route exact path="/menu" element={<Menu materials={materials}/>}/>
+          <Route exact path="/createnewpotion" element={<CreatePotionForm/>}/>
+          <Route exact path="/shopfront" element={<Shopfront />}/>
+          <Route exact path="/viewinventory" element={<Inventory />}/>
+          <Route exact path="/menu" element={<Menu/>}/>
           <Route exact path="/" element={home}/>
         </Switch>
       </div>

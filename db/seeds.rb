@@ -5,6 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+puts 'seeding data...'
+
 Material.destroy_all
 
 Material.create(name: "Bloodroot", description: "A root used for its medicinal and magical properties in protection, purification, and love spells", cost: 5, brew_time: 1, quality: 1, reward: 6)
@@ -19,3 +22,21 @@ Material.create(name: "Yarrow", description: "A flowering plant used for healing
 Material.create(name: "Myrrh", description: "A resin used for purification, protection, and spiritual awareness", cost: 10, brew_time: 10, quality: 9, reward: 13)
 Material.create(name: "Frankincense", description: "A resin used for purification, protection, and spiritual awareness", cost: 12, brew_time: 11, quality: 10, reward: 14)
 Material.create(name: "Mugwort", description: "An herb used for lucid dreaming, psychic awareness, and protection", cost: 10, brew_time: 12, quality: 12, reward: 14)
+
+
+def random_potion
+    Potion.all.sample
+  end
+      
+10.times do
+    potion = random_potion
+Customer.create(
+    name: "#{Faker::Name.unique.first_name} of #{Faker::Lorem.word}",
+    level: rand(1..10),
+    budget: rand(100..1000),
+    potion: potion,
+    priority: ['brew_time', 'quality', 'price'].sample,
+    satisfaction: rand(1..10),
+    reviews: Faker::Lorem.paragraphs(number: rand(1..5)).join('\n\n')
+)
+    end
