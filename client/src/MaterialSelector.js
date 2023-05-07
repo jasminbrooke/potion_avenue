@@ -11,7 +11,7 @@ const MaterialSelector = ( { handleMixture, brewingMaterials, materials } ) => {
 
     const materialGrid = (
         <div>
-          <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={2}>
+          <Box display="grid" gridTemplateColumns="repeat(4, 1fr)" gap={2} justifyItems="center" alignItems="center">
             {
                 materials?.map((material, i) => {
                     const included = brewingMaterials?.includes(material) === true
@@ -20,7 +20,7 @@ const MaterialSelector = ( { handleMixture, brewingMaterials, materials } ) => {
                     }
                     return(
                         <IconButton key={i} onClick={() => handleMixture(material)}>
-                            <ScienceIcon sx={{...iconStyle}}/>
+                            {material.description}
                         </IconButton>
                     )
                 })

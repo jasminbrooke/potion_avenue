@@ -1,15 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material"; 
+import PotionCard from "./PotionCard";
 
-const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCustomer, handleCurrentCustomer}) => {
+const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCustomer, handleCurrentCustomer, onSelect, selectedCustomer}) => {
     const {request, name, level} = customer
     const served = servedCustomers.includes(customer)
     const waiting = waitingCustomers.includes(customer)
+    const selected = selectedCustomer === customer
+
+    useEffect(() => {
+        if (selectedCustomer === customer) {
+            console.log(selectedCustomer)
+        }
+      }, [selectedCustomer]);
 
     const handleClick = (customer) => {
+        onSelect(customer)
         handleCurrentCustomer(customer)
-        console.log(request)
     }
 
     const cardStyle =
@@ -17,7 +25,7 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
         display: "flex",
         justifyContent: "space-between",
         height: "100%",
-        backgroundColor: currentCustomer === customer ?  '#fff8e8' : '#7d4534', 
+        backgroundColor: '#7d4534', 
         // backgroundColor: servedCustomers.includes(customer) ? '#00563b' : '#7d4534',
         opacity: waiting && !served ? '0.8' : '1'
     }
@@ -54,13 +62,26 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
         </CardActionArea>
     )
     
+    const determineCard = () => {
+        if (selected && !waiting) {
+            return (
+                <div>
+                    <PotionCard customer={customer}/>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <Card sx={{...cardStyle, height: 200, width: 200 }}>
+                        {served ? servedCard : initialCard}
+                    </Card>
+                </div>
+            )
+        }
+    }
 
     return (
-        <div>
-            <Card sx={{...cardStyle, height: 200, width: 200 }}>
-                {served ? servedCard : initialCard}
-            </Card>
-        </div>
+        determineCard()
     )
     
 }

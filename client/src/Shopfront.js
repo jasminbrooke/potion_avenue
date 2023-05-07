@@ -116,9 +116,7 @@ const Shopfront = () => {
   }
 
   const handleCurrentCustomer = (customer) => {
-    if (!currentCustomer) {
       setCurrentCustomer(customer)
-    }
   };
 
   const handleClose = (event, reason) => {

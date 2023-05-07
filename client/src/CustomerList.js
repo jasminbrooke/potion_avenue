@@ -7,7 +7,11 @@ import Slide from '@mui/material/Slide';
 
 const CustomerList = ( { visibleCustomers, handleCurrentCustomer, currentCustomer, servedCustomers, waitingCustomers } ) => {
     const potions = useSelector(state => state.PotionReducer.potions)
-    
+    const [selectedCustomer, setSelectedCustomer] = useState({})
+
+    const onSelect = (customer) => {
+        setSelectedCustomer(customer)
+    }
     
     visibleCustomers.forEach(customer => {
         if(!customer.request) {
@@ -24,6 +28,9 @@ const CustomerList = ( { visibleCustomers, handleCurrentCustomer, currentCustome
                 currentCustomer={currentCustomer}
                 servedCustomers={servedCustomers}
                 waitingCustomers={waitingCustomers}
+                onSelect={onSelect}
+                selectedCustomer={selectedCustomer}
+                setSelectedCustomer={setSelectedCustomer}
             /> 
             )}
         </Stack>

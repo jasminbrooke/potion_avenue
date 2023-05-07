@@ -106,7 +106,6 @@ const SlotCard = ( {
                     <IconButton 
                         onClick={() => onSelect(slot)}
                         disabled={!currentCustomer}
-                        // selectedSlot && !(selectedSlot === slot) && 
                         >
                         <ScienceIcon sx={{ ...emptyBottle, fontSize: 150 }} />
                     </IconButton>   
