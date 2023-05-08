@@ -93,8 +93,14 @@ const SlotCard = ( {
                 handleMixture={handleMixture}
                 handleMix={handleMix}
                 />
-                <IconButton onClick={() => handleMix(brewingMaterials)}> Mix! </IconButton>
-                <> {brewingMaterials.map((material) => <p key={material.id}> {material.name} </p>)} </>
+                <IconButton onClick={() => handleMix(brewingMaterials)}> Mix! 🍯 </IconButton>
+                <> {brewingMaterials.map((material) => <p key={material.id}> {material.description} </p>)} </>
+                <div class="mixing-bowl">
+                <div class="ingredient">
+
+                </div>
+                </div>
+
             </>
         )
     }
@@ -117,8 +123,11 @@ const SlotCard = ( {
                     <IconButton
                         disabled={brewing}
                         onClick={() => handleBottleClick()}>
-                        <ScienceIcon sx={{ ...fullBottle, fontSize: 150 }} />
                         <div className="bubble-container">
+                        <ScienceIcon sx={{ ...fullBottle, fontSize: 150 }} />
+
+                        <div className="bubble"></div>
+                        <div className="bubble"></div>
                         <div className="bubble"></div>
                         <div className="bubble"></div>
                         <div className="bubble"></div>
