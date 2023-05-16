@@ -14,12 +14,24 @@ const PotionCard = ( { customer } ) => {
     const timer = potion.brew_time
 
     const cardStyle = {
-        backgroundColor: '#fff8e8'
+        justifyContent: "center",
+        alignItems: "center",
+        height: 245, 
+        width: 200,
+        backgroundColor: '#fff8e8',
+        border: '1px solid #000',
+        padding: '16px',
+        boxSizing: 'border-box', // Add this line
+        '& > *': {
+          border: '3px solid #000',
+          padding: '8px',
+          borderRadius: '5px'
+        }
         
     }
 
     const defaultCard = (        
-        <Card sx={{...cardStyle, height: 200, width: 200 }}>
+        <Card sx={{...cardStyle }}>
             <CardContent sx={{ textAlign: "center" }}>
                 <Typography sx={{ fontSize: 12 }}>
                     {potion.description}

@@ -53,8 +53,20 @@ const EditPotionCard = ( { potion } ) => {
 
     const color = '#fff8e8';
 
+
+    const cardStyle = {
+        border: '1px solid #000',
+        padding: '16px',
+        boxSizing: 'border-box', // Add this line
+        '& > *': {
+          border: '3px solid #000',
+          padding: '8px',
+        },
+        
+    }
+
     const defaultCard = (
-        <Card sx={{height: 275, width: 250, backgroundColor: color }}>
+        <Card sx={{height: 275, width: 250, backgroundColor: color, ...cardStyle }}>
             <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
                 <CardContent sx={{ textAlign: "center" }}>
                     <Typography variant="h6" sx={{ mb: 1 }}>{potion.name}</Typography>
@@ -62,7 +74,7 @@ const EditPotionCard = ( { potion } ) => {
                     <Typography sx={{ mb: 2 }}>{potion.description}</Typography>
                     <Stack direction="row" spacing={2} sx={{alignItems: 'center', justifyContent: 'center'}}>
                         {
-                            potion.materials?.map((material, i) => <Typography sx={ {mb: 2 }} key={i}>{material.description}</Typography>)
+                            potion.materials?.map((material, i) => <Typography key={i}>{material.description}</Typography>)
                         }
                     </Stack>
                     <Typography sx={{ mb: 1 }}>| 💰: {potion.cost} | ⌛: {potion.brew_time} |</Typography>

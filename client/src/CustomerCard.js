@@ -42,15 +42,15 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
                         />
                     <p sx={{ fontsize: '8' }}>{name}</p>
                     <p>Level {level} </p>
-                    <p>Greetings! I am seeking a {request.name}. </p>
-                    <p>{request.materials.map(material => material.name + ' ')}</p>
+                    <p>Greetings! <br></br>I am seeking a {request.name}. </p>
+                    {/* <p>{request.materials.map(material => material.name + ' ')}</p> */}
         </CardActionArea>
     )
 
     const servedCard = (
         <CardActionArea 
         disabled={served || waiting}
-            sx={{ height: "100%" }}>
+            sx={{ height: "100%", backgroundColor: '#00563b' }}>
                     <img
                         floated='right'
                         size='mini'
@@ -72,7 +72,7 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
         } else {
             return (
                 <div>
-                    <Card sx={{...cardStyle, height: 200, width: 200 }}>
+                    <Card sx={{...cardStyle, height: 245, width: 200 }}>
                         {served ? servedCard : initialCard}
                     </Card>
                 </div>

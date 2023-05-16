@@ -7,7 +7,7 @@ const PotionReducer = (state = initialState, action) => {
         case "GET_POTIONS":
             return { potions: action.payload };
         case "DESTROY_POTION":
-            const updatedPotions = state.potions.filter(potion => potion.id != action.payload.id)
+            const updatedPotions = state.potions.filter(potion => potion.id !== action.payload.id)
             return { potions: updatedPotions}
         case "CREATE_POTION":
             const updatedPotionsCreate = [...state.potions, action.payload]

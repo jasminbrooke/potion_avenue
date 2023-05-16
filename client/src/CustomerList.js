@@ -11,6 +11,7 @@ const CustomerList = ( { visibleCustomers, handleCurrentCustomer, currentCustome
 
     const onSelect = (customer) => {
         setSelectedCustomer(customer)
+        console.log(customer.request)
     }
     
     visibleCustomers.forEach(customer => {

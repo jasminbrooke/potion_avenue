@@ -15,11 +15,11 @@ const MaterialSelector = ( { handleMixture, brewingMaterials, materials } ) => {
             {
                 materials?.map((material, i) => {
                     const included = brewingMaterials?.includes(material) === true
-                    const iconStyle = {
-                       color: included ? "lightblue" : ('#FFFFFF' + '80')
-                    }
                     return(
-                        <IconButton key={i} onClick={() => handleMixture(material)}>
+                        <IconButton 
+                        key={i} 
+                        onClick={() => handleMixture(material)}
+                        sx={{ opacity: included ? 1 : 0.5 }}>
                             {material.description}
                         </IconButton>
                     )
@@ -29,9 +29,6 @@ const MaterialSelector = ( { handleMixture, brewingMaterials, materials } ) => {
         </div>
       );
       
-
-    const loading = ( <p> Loading... </p> )
-
     return (
         materialGrid
     )

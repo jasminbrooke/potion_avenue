@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState} from "react"
 import MaterialSelector from "./MaterialSelector";
 import ScienceIcon from '@mui/icons-material/Science';
+import ScienceRoundedIcon from '@mui/icons-material/ScienceRounded';
 import IconButton from '@mui/material/IconButton';
 
 const SlotCard = ( {  
@@ -20,6 +21,8 @@ const SlotCard = ( {
     const timer = currentCustomer?.request?.brew_time
     const customer = useRef(currentCustomer)
     const [results, setResults] = useState({})
+    const [isMixing, setIsMixing] = useState(false);
+
 
     useEffect(() => {
         if (selectedSlot === slot) {
@@ -36,8 +39,14 @@ const SlotCard = ( {
       }
 
       const handleMix = (brewingMaterials) => {
-        setReady('toBrew')
-        setMessage('Ready to brew!')
+        setIsMixing(true);
+        setTimeout(() => {
+            setIsMixing(false);
+            setReady('toBrew')
+            setMessage('Ready to brew!')
+          }, 1000);
+        // setReady('toBrew')
+        // setMessage('Ready to brew!')
         const arraysMatch = customer.current.request.materials.every(requestMaterial => {
           return brewingMaterials.some(brewingMaterial => brewingMaterial.name === requestMaterial.name)
         })
@@ -86,22 +95,22 @@ const SlotCard = ( {
 
     const renderSelector = () => {
         return (
-            <>
+            <div>
             <MaterialSelector 
                 materials={materials}  
                 brewingMaterials={brewingMaterials} 
                 handleMixture={handleMixture}
                 handleMix={handleMix}
                 />
-                <IconButton onClick={() => handleMix(brewingMaterials)}> Mix! 🍯 </IconButton>
-                <> {brewingMaterials.map((material) => <p key={material.id}> {material.description} </p>)} </>
-                <div class="mixing-bowl">
-                <div class="ingredient">
-
+                <div class={`mixing-bowl ${isMixing ? "mixing" : ""}`}>
+                <IconButton onClick={() => handleMix(brewingMaterials)}> Mix! 🍯 
+                <div class={"ingredients-container"}>
+                <> {brewingMaterials.map((material) => <div class= {isMixing ?"ingredient" : ""} key={material.id}> {material.description} </div>)} </>
+                
                 </div>
+                </IconButton>
                 </div>
-
-            </>
+            </div>
         )
     }
 
@@ -113,7 +122,7 @@ const SlotCard = ( {
                         onClick={() => onSelect(slot)}
                         disabled={!currentCustomer}
                         >
-                        <ScienceIcon sx={{ ...emptyBottle, fontSize: 150 }} />
+                        <ScienceRoundedIcon sx={{ ...emptyBottle, fontSize: 150 }} />
                     </IconButton>   
                 </>
             )
@@ -124,13 +133,17 @@ const SlotCard = ( {
                         disabled={brewing}
                         onClick={() => handleBottleClick()}>
                         <div className="bubble-container">
-                        <ScienceIcon sx={{ ...fullBottle, fontSize: 150 }} />
-
-                        <div className="bubble"></div>
-                        <div className="bubble"></div>
-                        <div className="bubble"></div>
-                        <div className="bubble"></div>
-                        <div className="bubble"></div>
+                        <ScienceRoundedIcon sx={{ ...fullBottle, fontSize: 150 }} />
+                        {brewing || ready === 'toServe' ? 
+                        <>
+                        <div className={brewing ? "bubble" : "bubble bubbleover"}></div>
+                        <div className={brewing ? "bubble" : "bubble bubbleover"}></div>
+                        <div className={brewing ? "bubble" : "bubble bubbleover"}></div>
+                        <div className={brewing ? "bubble" : "bubble bubbleover"}></div>
+                        <div className={brewing ? "bubble" : "bubble bubbleover"}></div>
+                        </>
+                        : null
+                    }
                         </div>
                     </IconButton>
                     <p>{message}</p>
