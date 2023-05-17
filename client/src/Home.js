@@ -14,7 +14,7 @@ const Home = ( { handleLogout } ) => {
   const home = (
     
     <Container id="start-game">
-      <h2>
+      <h2 style={{ width: 600 }}>
         Welcome to Potion Avenue, your very own potion shop! <br />
         To start, create an account. 
         You can manage your account in the Manage Account route.

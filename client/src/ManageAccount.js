@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
+import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 
 const ManageAccount = () => {
     const user = useSelector(state => state.LoginReducer.currentUser)
@@ -60,7 +61,8 @@ const ManageAccount = () => {
                             label="Storename" 
                             variant="standard" 
                         />
-                        <Button type='submit'>Update Changes</Button>
+                        <Button type='submit'>Update Changes   </Button>
+                        <HistoryEduIcon></HistoryEduIcon>
                     </form>
                 </Container>
             </Box>

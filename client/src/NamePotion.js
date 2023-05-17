@@ -30,7 +30,7 @@ const NamePotion = ( { handleSubmit, potionErrors, handleDescription, handleName
             <Button 
                 id="gooey-button" 
                 type="submit"
-            > Brew Potion
+            > Concoct Potion
             </Button>
         </form>
     </Box>

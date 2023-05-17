@@ -27,7 +27,23 @@ code {
 }
 
 #navbar a {
-  color: white
+  color: white;
+}
+
+#navbar a:hover {
+  color: rgb(218, 248, 182);
+  animation: hover .2s ease-out forwards;
+}
+
+@keyframes hover {
+  0%{
+    transform: scale(1);
+    opacity: 1
+  }
+  100%{
+    transform: scale(1.5);
+    opacity: 1
+  }
 }
 
 #potion-form {
@@ -99,7 +115,7 @@ code {
   bottom: 15%;
   background-color: #fff;
   border-radius: 50%;
-  animation: bubbleover 5s, ease-in-out;
+  animation: bubbleover 5s ease-in-out infinite;
   opacity: 0; /* start the bubbles as hidden */
 }
 
@@ -129,15 +145,15 @@ code {
 .bubble:nth-child(4) {
   width: 8px;
   height: 8px;
-  animation-delay: .8s;
+  /* animation-delay: .8s; */
   left: 50%;
-  bottom: 30%;
+  bottom: 32%;
 }
 
 .bubble:nth-child(5) {
   width: 9px;
   height: 9px;
-  animation-delay: .2s;
+  animation-delay: .7s;
   left: 55%;
   bottom: 30%
 }
@@ -147,7 +163,7 @@ code {
   height: 8px;
   animation-delay: .5s;
   left: 60%;
-  bottom: 15%
+  bottom: 30%
 }
 
 @keyframes bubble {
@@ -167,19 +183,15 @@ code {
 
 @keyframes bubbleover {
   0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: .1;
+    transform: translate(-50%, -1050%) scale(1);
+    opacity: 0;
   }
   50% {
-    /* transform: translate(-50%, -1100%) scale(3); */
-    opacity: .5;
-  }
-  60% {
-    transform: translate(-50%, -1100%) scale(3);
+    transform: translate(-50%, -1100%) scale(2);
     opacity: .5;
   }
   100% {
-    transform: translate(-50%, -1100%) scale(4);
+    transform: translate(-50%, -900%) scale(4);
     opacity: 0;
   }
 }
