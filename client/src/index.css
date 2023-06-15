@@ -35,6 +35,15 @@ code {
   animation: hover .2s ease-out forwards;
 }
 
+#navbar a:active {
+  color: rgb(245, 255, 234);
+}
+
+#navbar .active-link {
+  color: blue;
+  font-weight: bold;
+}
+
 @keyframes hover {
   0%{
     transform: scale(1);

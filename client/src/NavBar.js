@@ -9,13 +9,20 @@ const NavBar = ({ handleLogout }) => {
     return (
         <AppBar position="sticky" style={{ backgroundColor: 'black', opacity: 0.5 }} >
             <Toolbar id='navbar'>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/manageaccount">Manage Account</NavLink>
-                <NavLink to="/createnewpotion">Create New Potion</NavLink>
-                <NavLink to="/shopfront">Shopfront</NavLink>
-                <NavLink to="/menu">Menu</NavLink>
-                <NavLink to="/viewinventory">View Inventory</NavLink>
-                <NavLink to="/" onClick={() => handleLogout()}>Log Out</NavLink>
+                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                to="/">Home</NavLink>
+                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                to="/manageaccount">Manage Account</NavLink>
+                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                to="/createnewpotion">Create New Potion</NavLink>
+                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                to="/shopfront">Shopfront</NavLink>
+                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                to="/menu">Menu</NavLink>
+                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                to="/viewinventory">View Inventory</NavLink>
+                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                to="/" onClick={() => handleLogout()}>Log Out</NavLink>
             </Toolbar>
     </AppBar>
     );
