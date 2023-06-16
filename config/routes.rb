@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show create update destroy] do
     resources :potions, only: %i[create update destroy]
   end
+  resources :customers, only: %i[show index update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

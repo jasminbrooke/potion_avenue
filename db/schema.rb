@@ -56,4 +56,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_021442) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.integer "level"
+    t.integer "budget"
+    t.string "priority"
+    t.integer "satisfaction"
+    t.string "reviews"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
