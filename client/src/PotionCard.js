@@ -21,7 +21,7 @@ const PotionCard = ( { customer } ) => {
         backgroundColor: '#fff8e8',
         border: '1px solid #000',
         padding: '16px',
-        boxSizing: 'border-box', // Add this line
+        boxSizing: 'border-box',
         '& > *': {
           border: '3px solid #000',
           padding: '8px',

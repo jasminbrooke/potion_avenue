@@ -205,78 +205,66 @@ code {
   }
 }
 
-.mixing-bowl {
-  display: flex;
+.ingredients-container {
+  position: relative;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  width: 100px;
-  border: 2px solid #000;
-  border-radius: 50%;
-  margin: 20px auto;
+  display: flex;
 }
 
-@keyframes mixing {
+.ingredient-bob {
+  animation: bob 1s ease-in infinite; 
+}
+
+.ingredient-mixing {
+  animation: mix 1s ease-in-out infinite; 
+}
+
+.ingredient-bob:nth-child(1) {
+  animation-delay: 0;
+}
+
+.ingredient-bob:nth-child(2) {
+  animation-delay: 0;
+}
+
+.ingredient-bob:nth-child(3) {
+  animation-delay: 0;
+}
+
+.ingredient-mixing:nth-child(1) {
+  animation-delay: 0;
+}
+
+.ingredient-mixing:nth-child(2) {
+  animation-delay: 0;
+}
+
+.ingredient-mixing:nth-child(3) {
+  animation-delay: 0;
+}
+
+@keyframes bob {
   0% {
-    transform: rotate(0deg);
+    transform: translate(0%, -50%) scale(1);
+
   }
   50% {
-    transform: rotate(180deg);
+    transform: translate(0%, -20%) scale(1);
+
   }
   100% {
-    transform: rotate(0deg);
+    transform: translate(0%, -50%) scale(1);
   }
 }
 
-.mixing-bowl.mixing {
-  animation: mixing 1s ease-in-out forwards;
-}
+  @keyframes mix {
+    0% {
+      transform: translate(0%, -20%) scale(1) rotate(0deg);
+    }
+    
+    100% {
+      transform: translate(0%, 100%) scale(.5) rotate(360deg);
+    }
 
-.ingredients-container img {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  margin: 10px;
-  animation: spin 2s linear infinite;
-}
-
-.ingredient {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation-name: mix;
-  animation-duration: 1s;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-.ingredient:nth-child(1) {
-  animation-delay: 0.5s;
-}
-
-.ingredient:nth-child(2) {
-  animation-delay: 0.3s;
-}
-
-.ingredient:nth-child(3) {
-  animation-delay: 0.7s;
-}
-
-@keyframes mix {
-  0% {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    top: 40%;
-    left: 45%;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  100% {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-  }
 }

@@ -21,8 +21,7 @@ const SlotCard = ( {
     const timer = currentCustomer?.request?.brew_time
     const customer = useRef(currentCustomer)
     const [results, setResults] = useState({})
-    const [isMixing, setIsMixing] = useState(false);
-
+    const [mixingAnimation, setMixingAnimation] = useState(false)
 
     useEffect(() => {
         if (selectedSlot === slot) {
@@ -39,14 +38,8 @@ const SlotCard = ( {
       }
 
       const handleMix = (brewingMaterials) => {
-        setIsMixing(true);
-        setTimeout(() => {
-            setIsMixing(false);
-            setReady('toBrew')
-            setMessage('Ready to brew!')
-          }, 1000);
-        // setReady('toBrew')
-        // setMessage('Ready to brew!')
+        setReady('toBrew')
+        setMessage('Ready to brew!')
         const arraysMatch = customer.current.request.materials.every(requestMaterial => {
           return brewingMaterials.some(brewingMaterial => brewingMaterial.name === requestMaterial.name)
         })
@@ -82,6 +75,15 @@ const SlotCard = ( {
         }
     }
 
+    const handleBowlClick = (brewingMaterials) => {
+        setMixingAnimation(true)
+        setTimeout(() => {
+            setMixingAnimation(false);
+            handleMix(brewingMaterials)
+        }, 1000)
+        
+    }
+
     const fullBottle = {
         color: 'success',
         opacity: '1'
@@ -96,20 +98,23 @@ const SlotCard = ( {
     const renderSelector = () => {
         return (
             <div>
+                <div>
+                Select Materials to Mix for 
+                {currentCustomer.name}.
+                </div>
             <MaterialSelector 
                 materials={materials}  
                 brewingMaterials={brewingMaterials} 
                 handleMixture={handleMixture}
                 handleMix={handleMix}
                 />
-                <div class={`mixing-bowl ${isMixing ? "mixing" : ""}`}>
-                <IconButton onClick={() => handleMix(brewingMaterials)}> Mix! 🍯 
-                <div class={"ingredients-container"}>
-                <> {brewingMaterials.map((material) => <div class= {isMixing ?"ingredient" : ""} key={material.id}> {material.description} </div>)} </>
-                
+                <div className="ingredients-container">
+                {brewingMaterials.map((material) => <div className={mixingAnimation ? "ingredient-mixing" : "ingredient-bob" }
+                key={material.id}> {material.description} </div>)}
                 </div>
+                <IconButton onClick={() => handleBowlClick(brewingMaterials)}> 🍯 
                 </IconButton>
-                </div>
+                
             </div>
         )
     }

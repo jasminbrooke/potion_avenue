@@ -145,7 +145,7 @@ const Shopfront = () => {
           servedCustomers={servedCustomers}
           waitingCustomers={waitingCustomers}
         /> 
-      <Container sx={{margin: '0 auto'}}>
+      <Container sx={{margin: '0 auto', width: '60vw'}}>
         <Slots 
           handleBrew={handleBrew} 
           materials={materials} 
