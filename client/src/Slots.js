@@ -10,7 +10,7 @@ const Slots = ({
     handleServe,
     currentCustomer,
  }) => {
-    const slots = [1, 2, 3, 4, 5]
+    const slots = [1, 2, 3]
     const [selectedSlot, setSelectedSlot] = useState(null)
 
     const onSelect = (slot) => {

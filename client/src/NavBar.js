@@ -7,21 +7,21 @@ import Toolbar from '@mui/material/Toolbar';
 const NavBar = ({ handleLogout }) => {
 
     return (
-        <AppBar position="sticky" style={{ backgroundColor: 'black', opacity: 0.5 }} >
+        <AppBar position="sticky" style={{ backgroundColor: 'black', opacity: 0.7 }} >
             <Toolbar id='navbar'>
-                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                <NavLink 
                 to="/">Home</NavLink>
-                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                <NavLink 
                 to="/manageaccount">Manage Account</NavLink>
-                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                <NavLink 
                 to="/createnewpotion">Create New Potion</NavLink>
-                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                <NavLink 
                 to="/shopfront">Shopfront</NavLink>
-                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                <NavLink 
                 to="/menu">Menu</NavLink>
-                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                <NavLink 
                 to="/viewinventory">View Inventory</NavLink>
-                <NavLink className={isActive =>(!isActive ? "" : "active-link")} 
+                <NavLink 
                 to="/" onClick={() => handleLogout()}>Log Out</NavLink>
             </Toolbar>
     </AppBar>

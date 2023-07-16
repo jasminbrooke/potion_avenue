@@ -58,16 +58,20 @@ const EditPotionCard = ( { potion } ) => {
         border: '1px solid #000',
         padding: '16px',
         boxSizing: 'border-box', // Add this line
-        '& > *': {
-          border: '3px solid #000',
-          padding: '8px',
-        },
+        // '& > *': {
+        //   border: '3px solid #000',
+        //   padding: '8px',
+        // },
         
     }
 
     const defaultCard = (
         <Card sx={{height: 275, width: 250, backgroundColor: color, ...cardStyle }}>
-            <CardActionArea sx={{ height: "100%" }} onClick={() => handleClick()}>
+            <CardActionArea sx={{ 
+                height: "100%", 
+                border: '3px solid #000',
+                padding: '8px', }} 
+                onClick={() => handleClick()}>
                 <CardContent sx={{ textAlign: "center" }}>
                     <Typography variant="h6" sx={{ mb: 1 }}>{potion.name}</Typography>
                     <Typography sx={{ fontsize: 50 }}>⚗️</Typography>
@@ -79,16 +83,13 @@ const EditPotionCard = ( { potion } ) => {
                     </Stack>
                     <Typography sx={{ mb: 1 }}>| 💰: {potion.cost} | ⌛: {potion.brew_time} |</Typography>
                     </CardContent>
-                    <Typography sx={{ fontSize: 10 }}> Select Card to make changes</Typography>
             </CardActionArea>
+            <Typography sx={{ fontSize: 10 }}> Select Card to make changes</Typography>
         </Card>
     )
 
     const editCard = (
         <Card sx={{height: 275, width: 250 }}>
-            <CardActionArea sx={{ height: "10%" }} onClick={() => handleClick()}>
-                <Typography>Go Back</Typography>
-            </CardActionArea>
             <CardContent sx={{ textAlign: "center", fontSize: 12 }}>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <TextField
@@ -114,6 +115,9 @@ const EditPotionCard = ( { potion } ) => {
                 </form>
                 <Button onClick={() => handleDeletePotion()}> Delete </Button>
             </CardContent>
+            <CardActionArea  onClick={() => handleClick()}>
+                <Typography>Go Back</Typography>
+            </CardActionArea>
         </Card>
     )
 

@@ -27,20 +27,21 @@ code {
 }
 
 #navbar a {
-  color: white;
+  color: rgb(87, 206, 206);
 }
 
 #navbar a:hover {
-  color: rgb(218, 248, 182);
+  color: rgb(126, 217, 170);
   animation: hover .2s ease-out forwards;
 }
 
 #navbar a:active {
-  color: rgb(245, 255, 234);
+  color: rgb(255, 255, 255);
+  font-weight: bold;
 }
 
-#navbar .active-link {
-  color: blue;
+#navbar .active {
+  color: rgb(98, 157, 76);
   font-weight: bold;
 }
 

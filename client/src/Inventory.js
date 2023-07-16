@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const Inventory = () => {
   const materials = useSelector(state => state.MaterialReducer.materials)
 
-    const rows = materials.map((material, i) => ({
+    const rows = materials?.map((material, i) => ({
         name: material.name, 
         cost: material.cost, 
         time: material.brew_time, 

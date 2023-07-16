@@ -43,6 +43,7 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
                     <p sx={{ fontsize: '8' }}>{name}</p>
                     <p>Level {level} </p>
                     <p>"Greetings! <br></br>I am seeking a {request.name}." </p>
+                    <p sx={{ fontsize: '10' }} >💬</p>
                     {/* <p>{request.materials.map(material => material.name + ' ')}</p> */}
         </CardActionArea>
     )

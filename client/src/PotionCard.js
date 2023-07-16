@@ -14,7 +14,6 @@ const PotionCard = ( { customer } ) => {
     const timer = potion.brew_time
 
     const cardStyle = {
-        justifyContent: "center",
         alignItems: "center",
         height: 245, 
         width: 200,
@@ -22,28 +21,28 @@ const PotionCard = ( { customer } ) => {
         border: '1px solid #000',
         padding: '16px',
         boxSizing: 'border-box',
-        '& > *': {
-          border: '3px solid #000',
-          padding: '8px',
-          borderRadius: '5px'
-        }
-        
     }
 
     const defaultCard = (        
-        <Card sx={{...cardStyle }}>
-            <CardContent sx={{ textAlign: "center" }}>
-                <Typography sx={{ fontSize: 12 }}>
-                    {potion.description}
-                </Typography>
-                    <Stack direction="column" spacing={2} sx={{alignItems: 'center', justifyContent: 'center'}}>
+        <Card sx={{...cardStyle }}>       
+                <CardActionArea sx={{ 
+                height: "100%", 
+                border: '3px solid #000',
+                padding: '8px', }} >
+            <CardContent 
+            sx={{ textAlign: "center" }}>
+                    <Stack direction="row" spacing={2} sx={{alignItems: 'center'}}>
                         {potion.materials?.map((material, i) => (
                     <div key={i} style={{ listStyleType: 'none' }}>
                     <Typography sx={{ fontSize: 24 }}>{material.description}</Typography>
                     </div>
                     ))}
                     </Stack>
+                    <Typography sx={{ fontSize: 12 }}>
+                    {potion.description}
+                </Typography>
             </CardContent>
+            </CardActionArea>
         </Card>
     )
 

@@ -63,7 +63,7 @@ const SlotCard = ( {
             setTimeout(() => {
                 setBrewing(false);
                 setReady('toServe')
-                setMessage('Ready to Serve! ' + customer?.current?.name) 
+                setMessage('Ready to Serve ' + customer?.current?.name) 
                 console.log(customer)
             }, timer * 1000);
         } else if (ready === 'toServe') {
@@ -114,7 +114,6 @@ const SlotCard = ( {
                 </div>
                 <IconButton onClick={() => handleBowlClick(brewingMaterials)}> 🍯 
                 </IconButton>
-                
             </div>
         )
     }

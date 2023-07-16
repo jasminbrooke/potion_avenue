@@ -110,7 +110,7 @@ const Shopfront = () => {
         }
         return newQueue
       });
-    }, 15000);
+    }, 150000);
   
     return () => clearInterval(interval);
   }
