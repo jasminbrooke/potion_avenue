@@ -20,7 +20,11 @@ const Alert1 = React.forwardRef(function Alert(props, ref) {
 });
 
 const Shopfront = () => {
+  const [loading, setLoading] = useState(true)
   const materials = useSelector(state => state.MaterialReducer.materials)
+  useEffect(() => {
+    setLoading(materials?.length === 0)
+  }, [materials])
 
   const [open, setOpen] = useState(false);
   const [points, setPoints] = useState(0)
@@ -88,7 +92,7 @@ const Shopfront = () => {
     setCurrentCustomer(null)
     setServedCustomers([])
     setWaitingCustomers([])
-    setVisibleCustomers(customers.slice(0, 5))
+    setVisibleCustomers(customers?.slice(0, 5))
     setPoints(0)
     setPlayingGame(true)
     let index = 5; //skip first five customers
@@ -162,7 +166,11 @@ const Shopfront = () => {
 
 
   const renderStartGame = () => {
-    return (
+    if (loading)
+      return (
+    <p>Loading...</p>
+    )
+    else return (
       <>
         {gameOver ? (
           <>
@@ -170,7 +178,7 @@ const Shopfront = () => {
         {reviews}
           </>
         ) : null}
-        <Container id="start-game">
+        <Container>
           <Button sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }} onClick={() => startGame()}>Start Game</Button>
         </Container>
         <Instructions />

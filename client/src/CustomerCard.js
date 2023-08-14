@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material"; 
 import PotionCard from "./PotionCard";
 
-const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCustomer, handleCurrentCustomer, onSelect, selectedCustomer}) => {
+const CustomerCard = ({customer, servedCustomers, waitingCustomers, handleCurrentCustomer, onSelect, selectedCustomer}) => {
     const {request, name, level} = customer
     const served = servedCustomers.includes(customer)
     const waiting = waitingCustomers.includes(customer)
@@ -13,7 +13,7 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
         if (selectedCustomer === customer) {
             console.log(selectedCustomer)
         }
-      }, [selectedCustomer]);
+      }, [selectedCustomer, customer]);
 
     const handleClick = (customer) => {
         onSelect(customer)
@@ -35,11 +35,12 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
         disabled={waiting}
         onClick={() => {handleClick(customer)}}
             sx={{ height: "100%" }}>
-                    <img
+                    {/* <img TBD
+                        alt=
                         floated='right'
                         size='mini'
                         // src={thumbnail}
-                        />
+                        /> */}
                     <p sx={{ fontsize: '8' }}>{name}</p>
                     <p>Level {level} </p>
                     <p>"Greetings! <br></br>I am seeking a {request.name}." </p>
@@ -52,11 +53,11 @@ const CustomerCard = ({customer, servedCustomers, waitingCustomers, currentCusto
         <CardActionArea 
         disabled={served || waiting}
             sx={{ height: "100%", backgroundColor: '#00563b' }}>
-                    <img
+                    {/* <img TBD
                         floated='right'
                         size='mini'
                         // src={thumbnail}
-                        />
+                        /> */}
                     <p >{name}</p>
                     <p sx={{ fontsize: '10' }}>Level {level}</p>
                     <p>{served ? 'Thank you!' : 'waiting...'}</p>

@@ -23,15 +23,12 @@ function App() {
         // if not, do nothing
       }
     });
-  }, []);
-
-  useEffect(() => {
     fetch('/materials').then((response) => {
       if (response.ok) {
         response.json().then((materials) => dispatch(setMaterials(materials)))
       }
     })
-  }, [])
+  }, []);
 
   const handleLogin = (user) => {
     dispatch(setCurrentUser(user));

@@ -20,7 +20,7 @@ const Slots = ({
     return (
         <Stack direction="row">
             {slots.map((slot, i) => (
-                <Card key={i} style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 300, width: 300 }}>
+                <Card key={i} style={{ backgroundColor: 'rgba(0, 0, 0, 0)', height: 350, width: 300 }}>
                         <SlotCard
                             readytoBrew={readytoBrew}
                             materials={materials}

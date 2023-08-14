@@ -9,7 +9,7 @@ const Menu = () => {
     const potions = useSelector(state => state.PotionReducer.potions)
           
     return (
-            <Stack direction="row" spacing={2} sx={{alignItems: 'center', justifyContent: 'center'}} >
+            <Stack direction="row" spacing={2} sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh'}} >
                 {
                     potions?.map((potion, i) => (
                         <EditPotionCard 

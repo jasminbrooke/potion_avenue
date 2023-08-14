@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { createPotion } from './actions/PotionActions';
 import NamePotion from './NamePotion';
@@ -23,11 +23,11 @@ const CreateNewPotion = () => {
   const dispatch = useDispatch()
   const materials = useSelector(state => state.MaterialReducer.materials)
   const user = useSelector(state => state.LoginReducer.currentUser)
-  const potions = useSelector(state => state.PotionReducer.potions)
+  // in order to view list of potions while creating a new one:
+  // const potions = useSelector(state => state.PotionReducer.potions)
 
   const newPotion={
     name,
-    // image: image,
     description,
     user_id: user.id
   }

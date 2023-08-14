@@ -112,7 +112,7 @@ const SlotCard = ( {
                 {brewingMaterials.map((material) => <div className={mixingAnimation ? "ingredient-mixing" : "ingredient-bob" }
                 key={material.id}> {material.description} </div>)}
                 </div>
-                <IconButton onClick={() => handleBowlClick(brewingMaterials)}> 🍯 
+                <IconButton sx={{fontSize: '3rem'}} onClick={() => handleBowlClick(brewingMaterials)}> 🍯 
                 </IconButton>
             </div>
         )
