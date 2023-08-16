@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
 import HistoryEduIcon from '@mui/icons-material/HistoryEdu';
 
 const ManageAccount = () => {
@@ -14,7 +13,6 @@ const ManageAccount = () => {
 
     const [displayname, setDisplayname] = useState(user.displayname)
     const [username, setUsername] = useState(user.username)
-    const [storename, setStorename] = useState(user.store_name)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,8 +23,7 @@ const ManageAccount = () => {
         },
         body: JSON.stringify({
             displayname: displayname,
-            username: username,
-            store_name: storename
+            username: username
         })
     })
     .then(response => response.json())
@@ -38,7 +35,8 @@ const ManageAccount = () => {
 
     return (
         <div id="manage-account">
-            <p>{user.displayname} ({user.username}) {user.storename}</p>
+            <h2>Welcome to Potion Avenue, {user.displayname} !</h2>
+            <p>{user.displayname} ({user.username})</p>
             <Box>
                 <Container maxWidth="sm">
                     <form onSubmit={(e) => handleSubmit(e)}>
@@ -54,14 +52,14 @@ const ManageAccount = () => {
                             label="Username" 
                             variant="standard" 
                             />
-                        <TextField
+                        {/* <TextField
                             defaultValue={storename}
                             onChange={(e) => setStorename(e.target.value)} 
                             label="Storename" 
                             variant="standard" 
-                        />
-                        <Button type='submit'>Update Changes   </Button>
-                        <HistoryEduIcon></HistoryEduIcon>
+                        /> */}
+                        <Button type='submit'>Update Changes<HistoryEduIcon></HistoryEduIcon></Button>
+                        
                     </form>
                 </Container>
             </Box>

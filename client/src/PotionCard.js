@@ -1,17 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
 import Card from '@mui/material/Card';
 import { CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
-import ScienceIcon from '@mui/icons-material/Science';
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
+
 
 const PotionCard = ( { customer } ) => {
     const potion = customer.request
-    const color = '#fff8e8';
-    const [remainingTime, setRemainingTime] = useState(null);
-    const timer = potion.brew_time
+    // const [remainingTime, setRemainingTime] = useState(null);
+    // const timer = potion.brew_time
 
     const cardStyle = {
         alignItems: "center",
@@ -24,7 +22,7 @@ const PotionCard = ( { customer } ) => {
     }
 
     const defaultCard = (        
-        <Card sx={{...cardStyle }}>       
+        <Card sx={{...cardStyle }}>    
                 <CardActionArea sx={{ 
                 height: "100%", 
                 border: '3px solid #000',

@@ -8,18 +8,12 @@ import Shopfront from './Shopfront';
 import Menu from './Menu'
 import CreatePotionForm from "./CreatePotionForm";
 import Container from "@mui/material/Container";
-import Instructions from "./Instructions";
 
 const Home = ( { handleLogout } ) => {
 
   const home = (
     
-    <Container style={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-      <h2 style={{ width: 600 }}>
-        Welcome to Potion Avenue, your very own potion shop! <br />
-
-      </h2>
-      <p>Edit Account:</p>
+    <Container style={{ height: '90vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
     <ManageAccount />
     </Container>)
 
@@ -30,7 +24,6 @@ const Home = ( { handleLogout } ) => {
           <NavBar handleLogout={handleLogout} />
           <div>
             <Switch>
-              {/* <Route exact path="/manageaccount" element={<ManageAccount />}/> */}
               <Route exact path="/createnewpotion" element={<CreatePotionForm/>}/>
               <Route exact path="/shopfront" element={<Shopfront />}/>
               <Route exact path="/viewinventory" element={<Inventory />}/>

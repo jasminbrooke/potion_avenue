@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react"
 import CustomerList from "./CustomerList"
 import Container from "@mui/material/Container";
-import PotionList from "./PotionList";
 import { Box, Typography } from "@mui/material";
 import Button from '@mui/material/Button';
-import ScienceIcon from '@mui/icons-material/Science';
-import { setCurrentUser } from "./actions/LoginActions";
-import CardActionArea from "@mui/material/Card";
-import MaterialCard from "./MaterialCard";
 import Slots from "./Slots";
 import Alert from "@mui/material/Alert";
 import Snackbar from '@mui/material/Snackbar';
@@ -149,6 +144,7 @@ const Shopfront = () => {
           servedCustomers={servedCustomers}
           waitingCustomers={waitingCustomers}
         /> 
+        <Typography>Current Customer: {currentCustomer?.name}</Typography>
       <Container sx={{margin: '0 auto', width: '60vw'}}>
         <Slots 
           handleBrew={handleBrew} 

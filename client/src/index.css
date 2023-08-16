@@ -4,9 +4,9 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-image: url('./assets/backgroundImage.webp'), url('./assets/wood.jpg');
+  background-image: url('./assets/transparentscroll.png'), url('./assets/wood.jpg');
   background-position: center, left;
-  background-size: contain;
+  background-size: auto, contain;
   background-repeat: no-repeat, repeat; 
   background-color: rgb(75, 42, 16);
   height: 100%;
