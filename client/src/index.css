@@ -39,7 +39,7 @@ code {
 
 #navbar a:hover {
   color: rgb(126, 217, 170);
-  animation: hover .2s ease-out forwards;
+  animation: hover .2s ease-out forwards
 }
 
 #navbar a:active {
@@ -63,6 +63,76 @@ code {
   }
 }
 
+@keyframes growFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.button-container {
+  position: relative;
+}
+
+.vine-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allow interactions with the button beneath */
+  z-index: -1; /* Place the vines behind the button */
+}
+
+.vine {
+  position: absolute;
+  bottom: 15%;
+  left: 35%;
+  width: 8px;
+  height: 8px;
+  background-color: #307700;
+  border-radius: 50%;
+  transform-origin: left;
+  transform: scaleX(1);
+  transition: transform 0.4s ease-in;
+}
+
+.button-container:hover .vine {
+  transform: scaleX(10); /* Elongate the vine horizontally */
+  border-radius: 25%; /* Adjust this value for the desired roundness */
+}
+
+.vine:nth-child(1) {
+  width: 8px;
+  height: 8px;
+  animation-delay: .2s;
+}
+
+.vine:nth-child(2) {
+  width: 12px;
+  height: 12px;
+  bottom: 30%;
+  animation-delay: 1s;
+}
+
+.vine:nth-child(3) {
+  width: 10px;
+  height: 10px;
+  bottom: 60%;
+  animation-delay: 5s;
+}
+
+
+
 #potion-form {
   width: 60%;
   display: flex;
@@ -83,24 +153,6 @@ code {
   align-items: center; 
   height: 100vh
 }
-
-/* .bubble-container {
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.bubble {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  position: absolute;
-  animation: bubble 3s ease-out infinite, bubbleover 5s ease-in-out infinite;
-} */
 
 .custom-bullet {
   list-style-type: none;

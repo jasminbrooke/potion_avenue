@@ -109,7 +109,7 @@ const Shopfront = () => {
         }
         return newQueue
       });
-    }, 150000);
+    }, 15000);
   
     return () => clearInterval(interval);
   }
@@ -144,7 +144,7 @@ const Shopfront = () => {
           servedCustomers={servedCustomers}
           waitingCustomers={waitingCustomers}
         /> 
-        <Typography>Current Customer: {currentCustomer?.name}</Typography>
+        {/* <Typography>Current Customer: {currentCustomer?.name}</Typography> */}
       <Container sx={{margin: '0 auto', width: '60vw'}}>
         <Slots 
           handleBrew={handleBrew} 

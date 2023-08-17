@@ -20,7 +20,7 @@ const Inventory = () => {
 
   return (
     <div>
-      <TableContainer sx={{ width: 850, margin: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <TableContainer sx={{ width: 600, margin: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       
         <Table sx={{ minWidth: 400, padding: '8px', fontSize: '14px'}} size="small" aria-label="a dense table">
           <TableHead>
