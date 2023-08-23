@@ -14,9 +14,9 @@ const NavBar = ({ handleLogout }) => {
                         <NavLink to="/">Home</NavLink>
                     </Button>
                     <div className="vine-container">
+                        {/* <div className="vine"></div>
                         <div className="vine"></div>
-                        <div className="vine"></div>
-                        <div className="vine"></div>
+                        <div className="vine"></div> */}
                         
                     </div>
 
@@ -27,9 +27,9 @@ const NavBar = ({ handleLogout }) => {
                             to="/createnewpotion">Create New Potion</NavLink>
                     </Button>
                         <div className="vine-container">
+                        {/* <div className="vine"></div>
                         <div className="vine"></div>
-                        <div className="vine"></div>
-                        <div className="vine"></div>
+                        <div className="vine"></div> */}
                     </div> </div>
                 <div className="button-container">
                     <Button sx={{minWidth: '40vh', minHeight: '15vh'}}>
@@ -37,9 +37,9 @@ const NavBar = ({ handleLogout }) => {
                             to="/shopfront">Shopfront</NavLink>
                     </Button>
                         <div className="vine-container">
+                        {/* <div className="vine"></div>
                         <div className="vine"></div>
-                        <div className="vine"></div>
-                        <div className="vine"></div>
+                        <div className="vine"></div> */}
                     
                     </div></div>
                 <div className="button-container">
@@ -48,9 +48,9 @@ const NavBar = ({ handleLogout }) => {
                             to="/menu">Menu</NavLink>
                     </Button>
                         <div className="vine-container">
+                        {/* <div className="vine"></div>
                         <div className="vine"></div>
-                        <div className="vine"></div>
-                        <div className="vine"></div>
+                        <div className="vine"></div> */}
                     
                     </div></div>
                     <div className="button-container">
@@ -59,9 +59,9 @@ const NavBar = ({ handleLogout }) => {
                             to="/viewinventory">View Inventory</NavLink>
                     </Button>
                         <div className="vine-container">
+                        {/* <div className="vine"></div>
                         <div className="vine"></div>
-                        <div className="vine"></div>
-                        <div className="vine"></div>
+                        <div className="vine"></div> */}
                     
                     </div></div>
                 <div className="button-container">
@@ -70,9 +70,9 @@ const NavBar = ({ handleLogout }) => {
                     to="/" onClick={() => handleLogout()}>Log Out</NavLink>
                     </Button>
                         <div className="vine-container">
+                        {/* <div className="vine"></div>
                         <div className="vine"></div>
-                        <div className="vine"></div>
-                        <div className="vine"></div>
+                        <div className="vine"></div> */}
                     </div></div>
             </Toolbar>
     </AppBar>
