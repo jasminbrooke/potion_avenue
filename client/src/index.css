@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   background-image: url('./assets/transparentscroll.png'), url('./assets/wood.jpg');
-  background-position: center, left;
+  background-position: center, right;
   background-size: auto, contain;
   background-repeat: no-repeat, repeat; 
   background-color: rgb(75, 42, 16);
@@ -20,6 +20,37 @@ code {
     monospace;
 }
 
+/* Define the animation for the circle */
+@keyframes moveCircle {
+  0% {
+    transform: translate(10px, 100px);
+  }
+  100% {
+    transform: translate(190px, 100px);
+  }
+}
+
+/* Apply the animation to the circle */
+.animated-circle {
+  fill: blue;
+}
+
+/* Define the motion path animation */
+@keyframes followPath {
+  0% {
+    transform: translate(10px, 100px);
+  }
+  100% {
+    transform: translate(190px, 100px);
+  }
+}
+
+/* Apply the motion path animation to the circle */
+.motion-path {
+  animation: followPath 4s linear infinite;
+}
+
+
 #navbar {
   display: flex;
   flex-direction: column;
@@ -27,7 +58,6 @@ code {
   height: 100vh;
   width: 15vw;
   position: absolute;
-  background-image: ('./assets/wood.jpg');
   background-color: black;
   opacity: 0.7;
   left: 0;

@@ -1,5 +1,5 @@
 class MaterialsController < ApplicationController
-
+    skip_before_action :authorize, only: :index
     def index
         materials = Material.all
         render json: materials

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,6 +9,11 @@ import { useSelector } from "react-redux";
 
 const Inventory = () => {
   const materials = useSelector(state => state.MaterialReducer.materials)
+  const [loading, setLoading] = useState(materials.length === 0)
+
+  useEffect(() => {
+    setLoading(materials.length === 0)
+  }, [materials])
 
   const rows = materials?.map((material) => ({
     name: material.name, 
@@ -18,10 +23,13 @@ const Inventory = () => {
     quality: material.quality
   }))
 
-  return (
+  const renderMaterials = () => {
+    return loading ? <p>Loading...</p> : materialTable
+  }
+
+  const materialTable = () => (
     <div>
       <TableContainer sx={{ width: 600, margin: 'auto', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      
         <Table sx={{ minWidth: 400, padding: '8px', fontSize: '14px'}} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
@@ -47,6 +55,10 @@ const Inventory = () => {
         </Table>
       </TableContainer>
     </div>
+  )
+
+  return (
+    {renderMaterials}
   )
 }
 

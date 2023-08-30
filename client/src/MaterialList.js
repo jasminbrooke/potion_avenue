@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Box from '@mui/material/Box';
 import MaterialCard from "./MaterialCard";
 
@@ -11,8 +11,6 @@ const MaterialList = ( { setMixture, materials, mixture, reset } ) => {
             </Box>
         </div>
     )
-
-    const loading = ( <p> Loading... </p> )
 
     return (
         materialGrid
