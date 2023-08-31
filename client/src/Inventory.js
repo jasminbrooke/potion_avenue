@@ -9,10 +9,10 @@ import { useSelector } from "react-redux";
 
 const Inventory = () => {
   const materials = useSelector(state => state.MaterialReducer.materials)
-  const [loading, setLoading] = useState(materials.length === 0)
+  const [loading, setLoading] = useState(materials)
 
   useEffect(() => {
-    setLoading(materials.length === 0)
+    setLoading(materials?.length === 0)
   }, [materials])
 
   const rows = materials?.map((material) => ({
@@ -24,7 +24,7 @@ const Inventory = () => {
   }))
 
   const renderMaterials = () => {
-    return loading ? <p>Loading...</p> : materialTable
+    return loading ? <p>Loading...</p> : materialTable()
   }
 
   const materialTable = () => (
@@ -58,7 +58,9 @@ const Inventory = () => {
   )
 
   return (
-    {renderMaterials}
+    <>
+      {renderMaterials()}
+    </>
   )
 }
 
