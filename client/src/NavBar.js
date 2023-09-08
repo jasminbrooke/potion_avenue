@@ -7,86 +7,90 @@ import { Button } from '@mui/material';
 const NavBar = ({ handleLogout }) => {
 
     return (
-        <AppBar>
+        <AppBar style={{ padding: 'none' }}>
             <Toolbar id='navbar'>
-                <div className="button-container">
-                    <Button sx={{ minWidth: '40vh', minHeight: '15vh' }}>
-                        <NavLink to="/">Home</NavLink>
-                    </Button>
+                <NavLink to="/">
+                    <div className="button-container">
+                        Home
+                    </div>
+                </NavLink>
+                    
+                    
                     {/* <div className="vine-container">
                     
 
                     <svg className="animation-container" width="200" height="200">
-    <path id="motionPath" d="M10 100 Q 100 10, 190 100" fill="none" />
-    <circle className="animated-circle" r="10">
-      <animateMotion dur="4s" repeatCount="indefinite">
-        <mpath href="#motionPath" />
-      </animateMotion>
-    </circle>
-  </svg>
+                        <path id="motionPath" d="M10 100 Q 100 10, 190 100" fill="none" />
+                        <circle className="animated-circle" r="10">
+                        <animateMotion dur="4s" repeatCount="indefinite">
+                            <mpath href="#motionPath" />
+                        </animateMotion>
+                        </circle>
+                    </svg>
                         <div className="vine"></div>
                         <div className="vine"></div>
                         <div className="vine"></div>
                         
                     </div> */}
-                </div>
-                <div className="button-container">
-                    <Button sx={{minWidth: '40vh', minHeight: '15vh'}}>
-                        <NavLink 
-                            to="/createnewpotion">Create New Potion</NavLink>
-                    </Button>
-                {/* <div className="vine-container">
+                <NavLink to="/createnewpotion">
+                    <div className="button-container">
+                        Create New Potion
+                    </div>
+                </NavLink>
+                    {/* <div className="vine-container">
                         <div className="vine"></div>
                         <div className="vine"></div>
                         <div className="vine"></div>
                     </div>  */}
+            
+                <NavLink to="/shopfront">
+                    <div className="button-container">
+                        Shopfront
                     </div>
-                <div className="button-container">
-                    <Button sx={{minWidth: '40vh', minHeight: '15vh'}}>
-                        <NavLink 
-                            to="/shopfront">Shopfront</NavLink>
-                    </Button>
+                </NavLink>
                     {/* <div className="vine-container">
                         <div className="vine"></div>
                         <div className="vine"></div>
                         <div className="vine"></div>
                     </div> */}
-                </div>
-                <div className="button-container">
-                    <Button sx={{minWidth: '40vh', minHeight: '15vh'}}>
-                        <NavLink 
-                            to="/menu">Menu</NavLink>
-                    </Button>
-                    {/* <div className="vine-container">
-                        <div className="vine"></div>
-                        <div className="vine"></div>
-                        <div className="vine"></div>
-                    </div> */}
-                </div>
-                <div className="button-container">
-                    <Button sx={{minWidth: '40vh', minHeight: '15vh'}}>
-                        <NavLink 
-                            to="/viewinventory">View Inventory</NavLink>
-                    </Button>
-                    {/* <div className="vine-container">
-                        <div className="vine"></div>
-                        <div className="vine"></div>
-                        <div className="vine"></div>
-                    </div> */}
+                <NavLink to="/menu">
+                    <div className="button-container">
+                        Menu
                     </div>
-                <div className="button-container">
-                    <Button sx={{minWidth: '40vh', minHeight: '15vh'}}>
-                        <NavLink 
-                    to="/" onClick={() => handleLogout()}>Log Out</NavLink>
-                    </Button>
+                </NavLink>
+                    
+                    
                     {/* <div className="vine-container">
                         <div className="vine"></div>
                         <div className="vine"></div>
                         <div className="vine"></div>
                     </div> */}
+                    
+                <NavLink to="/viewinventory">
+                    <div className="button-container">
+                        View Inventory
                     </div>
+                </NavLink>
+                    
+                    {/* <div className="vine-container">
+                        <div className="vine"></div>
+                        <div className="vine"></div>
+                        <div className="vine"></div>
+                    </div> */}
+                <NavLink to="/" onClick={() => handleLogout()}>
+                    <div className="button-container">
+                        Log Out
+                    </div>
+                </NavLink>
+                    
+                    
+                    {/* <div className="vine-container">
+                        <div className="vine"></div>
+                        <div className="vine"></div>
+                        <div className="vine"></div>
+                    </div> */}
             </Toolbar>
-    </AppBar>
+        </AppBar>
     );
 }
 

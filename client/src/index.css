@@ -61,10 +61,15 @@ code {
   background-color: black;
   opacity: 0.7;
   left: 0;
+  padding: 0 1.5%;
 }
 
 #navbar a {
   color: rgb(87, 206, 206);
+  border-color: rgb(1 137 120);
+  border-style: outset;
+  padding: 0 1.5%;
+  text-decoration: none;
 }
 
 #navbar a:hover {
@@ -72,14 +77,16 @@ code {
   animation: hover .2s ease-out forwards
 }
 
-#navbar a:active {
+/* #navbar a:active {
   color: rgb(255, 255, 255);
   font-weight: bold;
-}
+} */
 
 #navbar .active {
   color: rgb(98, 157, 76);
+  border-color: rgb(98, 157, 76);
   font-weight: bold;
+  border-style: inset;
 }
 
 @keyframes hover {
@@ -88,7 +95,7 @@ code {
     opacity: 1
   }
   100%{
-    transform: scale(1.5);
+    transform: scale(1.1);
     opacity: 1
   }
 }
@@ -110,7 +117,11 @@ code {
 
 
 .button-container {
-  position: relative;
+  width: 15vw;
+  height: 15vh;
+  text-align: center;
+  line-height: 15vh;
+  font-size: x-large;
 }
 
 .vine-container {
