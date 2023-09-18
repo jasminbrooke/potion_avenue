@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
 import LogIn from './LogIn'
 import SignUp from './SignUp'
@@ -11,6 +12,7 @@ import { useDispatch } from "react-redux"
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
@@ -34,6 +36,7 @@ function App() {
     dispatch(setCurrentUser(user));
     dispatch(setPotions(user.potions))
     setIsLoggedIn(true)
+    navigate('/')
   }
 
   const handleLogout = () => {

@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import { Button } from '@mui/material';
 
 const NavBar = ({ handleLogout }) => {
 
@@ -77,7 +76,7 @@ const NavBar = ({ handleLogout }) => {
                         <div className="vine"></div>
                         <div className="vine"></div>
                     </div> */}
-                <NavLink to="/" onClick={() => handleLogout()}>
+                <NavLink to="/logout" onClick={() => handleLogout()}>
                     <div className="button-container">
                         Log Out
                     </div>

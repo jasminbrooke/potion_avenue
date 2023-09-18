@@ -1,5 +1,5 @@
 // import { useEffect, useState } from "react"
-import { BrowserRouter, Route, Routes as Switch } from "react-router-dom";
+import { Route, Routes as Switch } from "react-router-dom";
 // import { useSelector } from 'react-redux'
 import NavBar from './NavBar'
 import ManageAccount from './ManageAccount';
@@ -20,7 +20,7 @@ const Home = ( { handleLogout } ) => {
   return (
     <>
       <div id="navContainer">
-        <BrowserRouter>
+        {/* <BrowserRouter> */}
           <NavBar handleLogout={handleLogout} />
           <div>
             <Switch>
@@ -31,7 +31,7 @@ const Home = ( { handleLogout } ) => {
               <Route exact path="/" element={home}/>
             </Switch>
           </div>
-        </BrowserRouter>
+        {/* </BrowserRouter> */}
 
       </div>
     </>
