@@ -157,27 +157,43 @@ const Shopfront = () => {
 
 
   const reviews = (
-    feedback.map((f, i) => <Typography key={i} f={f}>"{f}"</Typography>)
+    <Container sx={{ maxHeight: '35vh', overflowY: 'scroll' }}>
+     { feedback.map((f, i) => <Typography key={i} f={f}>"{f}"</Typography>)}
+    </Container>
   )
 
 
   const renderStartGame = () => {
     if (loading)
-      return (
-    <p>Loading...</p>
-    )
+      return <p>Loading...</p>
     else return (
       <>
-        {gameOver ? (
-          <>
-        <Typography>Your Score: {points}</Typography>
-        {reviews}
-          </>
-        ) : null}
-        <Container>
-          <Button sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }} onClick={() => startGame()}>Start Game</Button>
-        </Container>
-        <Instructions />
+        { gameOver ? 
+            <>
+              <Container sx={{margin: '10vh auto'}}>
+                <Typography variant='h3'>Your Score: {points}</Typography>
+                {reviews}
+                <Button
+                  sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }}
+                  onClick={() => startGame()}
+                >
+                  Play Again?
+                </Button>
+              </Container>
+            </>
+          : 
+            <>
+              <Container>
+                <Button
+                  sx={{ fontSize: '8rem', fontFamily: "'Tangerine', cursive;", textTransform: 'lowercase !important;' }}
+                  onClick={() => startGame()}
+                >
+                  Start Game
+                </Button>
+              </Container>
+              <Instructions />
+            </>
+        }
       </>
     )
   }
